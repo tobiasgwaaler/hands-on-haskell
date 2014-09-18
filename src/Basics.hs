@@ -39,3 +39,15 @@ myName = "tobiasgw"
   ... then change the target to `Tests` and hit Run again.
   You passed a test, right? Congrats.
 -}
+
+
+-- Strings
+stringConcat = "string1" ++ "string2"
+convertToString = show 1234
+
+
+
+
+
+
+
