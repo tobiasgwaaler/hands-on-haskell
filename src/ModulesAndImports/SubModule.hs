@@ -1,4 +1,4 @@
-module Modules.SubModule (subModuleFunction) where
+module ModulesAndImports.SubModule (subModuleFunction) where
 {-             ^          ^
             submodule    exported function
 -}

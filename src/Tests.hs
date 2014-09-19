@@ -1,9 +1,9 @@
 module Tests where
 
-import qualified Basics
-import qualified Functions
+import qualified Basics    as Basics
+import qualified Functions as Functions
 import qualified PatternMatching as PM
-import qualified Recursion
+import qualified Recursion       as Recursion
 
 {-
   When this module is run, all exercises will be checked and
