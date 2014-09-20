@@ -3,7 +3,7 @@ module Basics where
 -- I'm a comment!
 
 {-
-  So am I, but I can spazn
+  So am I, but I can span
   multiple
   lines
 -}
