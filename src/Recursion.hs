@@ -13,12 +13,11 @@ isInList element list =
 
 {-
     Exercise 1:
-    Write a function `isMax` that determines if a given value is the highest in the list
-
-    TODO: make a better 
+    Write a function `containsUpperCaseZ` that returns True if, and only if, a text
+    contains the upper case letter Z.
 -}
-isMax :: Int -> [Int] -> Bool
-isMax candidate list = True
+containsUpperCaseZ :: String -> Bool
+containsUpperCaseZ text = False
 
 
 {-

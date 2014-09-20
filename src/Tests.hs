@@ -23,9 +23,9 @@ exercises = [
     ("PatternMatching exercise 2: Help",      PM.extractFlags PM.Help == []),
     ("PatternMatching exercise 2: Run",       PM.extractFlags runCmd  == []),
 
-    ("Recursion exercise 1: 100 in [1, 100, 99, 0]", (Recursion.isMax 100 [1, 100, 99, 0]) == True),
-    ("Recursion exercise 1: 99 in [1, 100, 99, 0]",  (Recursion.isMax 99 [1, 100, 99, 0]) == False),
-    ("Recursion exercise 1: 0 in []",                (Recursion.isMax 0 []) == False),
+    ("Recursion exercise 1: zzz", Recursion.containsUpperCaseZ "zzz" == False),
+    ("Recursion exercise 1: aZcZ", Recursion.containsUpperCaseZ "aZcZ" == True),
+    ("Recursion exercise 1: abc", Recursion.containsUpperCaseZ "abc" == False),
 
     ("ModulesAndImports", (MaM.myName == Basics.myName))
     ]
