@@ -1,4 +1,4 @@
-module CommonDatatypesAndFunctions where
+module CommonDataTypesAndFunctions where
 
 
 {-
