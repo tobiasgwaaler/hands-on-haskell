@@ -22,3 +22,7 @@ isMax candidate list = True
     To avoid writing a lot of recursive functions we can use some of the
     most famous functions from functional programming: map, filter, fold and their friends.
 -}
+
+{-
+    TODO: write about recursion schemes and use them in exercises
+-}

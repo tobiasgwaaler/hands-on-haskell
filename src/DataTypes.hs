@@ -1,5 +1,10 @@
 module DataTypes where
 
+{-
+    NOT FINISHED
+-}
+
+
 -- There are three ways to define data types:
 
 -- 1:

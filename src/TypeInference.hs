@@ -21,3 +21,8 @@ readInteger = readMay "1" :: Maybe Integer -- <- without this type annotation th
 
 main :: IO ()
 main = putStrLn "This truly is I/O, just as the type says"
+
+
+{-
+    TODO: exercises
+-}
