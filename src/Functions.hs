@@ -27,6 +27,6 @@ yVal = 9
 result = 0
 
 {-
-    TODO: more exercises!
+    TODO: lots more exercises here!
 -}
 

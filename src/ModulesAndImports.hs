@@ -8,12 +8,13 @@ import qualified ModulesAndImports.SubModule           -- everything, as Modules
 
 import qualified Basics
 
+import Data.List (permutations)
 
 callFunctionFullyQualified = ModulesAndImports.SubModule.subModuleFunction
 callFunctionQualifiedWithAlias = S.subModuleFunction
 
 {-
-    Exercise:
+    Exercise 1:
     Import the myName function from the Basics module.
     Make the myName function defined beneath call the myName function from Basics.
 
@@ -21,6 +22,12 @@ callFunctionQualifiedWithAlias = S.subModuleFunction
 -}
 myName = ""
 
+
 {-
-    TODO: more exercises?
+    Exercise 2:
+    namePermutations should return all possible substrings of your name.
+    There's a handy function for this called permutations, and you can find it in
+    Data.List
 -}
+namePermutations :: [String]
+namePermutations = []
