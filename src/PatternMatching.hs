@@ -62,7 +62,7 @@ extractFlags :: Command -> [String]
 extractFlags cmd = case cmd of
         Help            -> ["Should be empty list"]
         _               -> [""]
---              ^ This is a "wild card" that matches everything.
+--      ^ This is a "wild card" that matches everything.
 
 
 
