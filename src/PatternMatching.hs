@@ -20,7 +20,7 @@ handle cmd = case cmd of
                 Help            -> printHelp
                 Run       mode  -> run mode
 
--- these are just dummy functions to show case what
+-- these are just dummy functions to showcase what
 -- would typically happen in a real application:
 configure = undefined
 install = undefined
