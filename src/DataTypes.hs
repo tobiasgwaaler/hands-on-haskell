@@ -5,7 +5,7 @@ module DataTypes where
 -}
 
 
--- There are three ways to define data types:
+-- Here are two ways to define data types:
 
 -- 1:
 type FirstName = String
@@ -29,16 +29,6 @@ data FullName = FullName FirstName LastName
 data Address = DomesticAddress String | InternationalAddress String | NoAddress
 {-
     Here we have three different 
--}
-
-
--- 3:
-newtype Email = Email String
-{-
-    This one's a bit weird. It's similar to `data`, but more restricted.
-    As is often the case in computer systems restrictions allow for optimizations.
-    So is the case with newtype. The restriction is that a newtype can only
-    have one constructor, and one field.
 -}
 
 
