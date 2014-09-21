@@ -44,3 +44,4 @@ listAppend = 1:[2,3,4]
 firstElementInList = head [1,2,3]
 restOfList = tail [1,2,3]
 fifthElementInList = [1,2,3,4,5,6,7] !! 5
+lengthOfList = length [1,2,3]

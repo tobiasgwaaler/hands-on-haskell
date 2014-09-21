@@ -1,9 +1,10 @@
 module Tests where
 
 import qualified GettingStarted as GS
-import qualified Functions1 as F1
-import Functions1 (xor)
-import qualified Lists as L
+import qualified Functions as F1
+import Functions (xor)
+import qualified PatternMatching as L
+import qualified Recursion as R
 
 {-
     You're not supposed to touch this ;)
@@ -22,28 +23,29 @@ exercises =
     [
     test "GettingStarted.myName"        $ GS.myName /= "tobiasgw"
     ,
-    test "Functions1.multiply10by20"    $ F1.multiply10by20 == 200
+    test "Functions.multiply10by20"    $ F1.multiply10by20 == 200
     ,
-    test "Functions1.plus"              $ F1.plus 9873 772 == 9873+772
+    test "Functions.plus"              $ F1.plus 9873 772 == 9873+772
                                        && F1.plus 0 0 == 0
     ,
-    test "Functions1.sum3"              $ F1.sum3 1 2 3 == 1+2+3
+    test "Functions.sum3"              $ F1.sum3 1 2 3 == 1+2+3
                                        && F1.sum3 (-1) (-90) 300 == 300-90-1
     ,
-    test "Functions1.isAlpha"           $ filter F1.isAlpha ['a', 'K', '.'] == []
+    test "Functions.isAlpha"           $ filter F1.isAlpha ['a', 'K', '.'] == []
                                        && F1.isAlpha '@'
     ,
-    test "Functions1.xor"               $ False `xor` False == False
+    test "Functions.xor"               $ False `xor` False == False
                                        && True  `xor` True  == False
                                        && True  `xor` False == True
                                        && False `xor` True  == True
     ,
-    test "Lists.secondElement"          $ L.secondElement [1,2,3,4,5] == 2
+    test "PatternMatching.secondElement"          $ L.secondElement [1,2,3,4,5] == 2
     ,
-    test "Lists.drop3"                  $ L.drop3 [1,2,3,4,5,6] == [4,5,6]
+    test "PatternMatching.drop3"                  $ L.drop3 [1,2,3,4,5,6] == [4,5,6]
     ,
-    test "Lists.thirdAndLast"           $ L.thirdAndLast [1,2] == 3
-
+    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2] == 3
+    ,
+    test "Recursion.secondToLast"                 $ R.secondToLast [1,2,3,4] == 3
     ]
 
 

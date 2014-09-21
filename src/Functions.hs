@@ -1,4 +1,4 @@
-module Functions1 where
+module Functions where
 
 {-
     In this module we will learn how to define and apply functions.

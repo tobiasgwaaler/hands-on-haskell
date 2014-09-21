@@ -1,4 +1,4 @@
-module Lists where
+module PatternMatching where
 
 {-
     Now it's time to introduce lists.
@@ -52,7 +52,8 @@ desugaredList = 1:(2:(3:[]))
     Define the secondElement function so it returns the second element
     in the list. Use pattern matching.
 
-    tip: replace the underscore (_) with a pattern match.
+    tip: the underscore represents a wildcard, matching any pattern. Replace
+         it with a pattern match and get cracking!
 -}
 secondElement _ = 0
 
@@ -75,4 +76,10 @@ drop3 _ = []
           the runtime will throw a PatternMatchFail exception.
 -}
 thirdAndLast _ = 0
+
+{-
+    It's tempting to write a function that returns the last element of the list
+    no matter how long the list is. But you can't do that with pattern matching alone.
+    In Recursion we'll see how this can be achieved by recursing through the list.
+-}
 
