@@ -46,6 +46,9 @@ exercises =
     test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2] == 3
     ,
     test "Recursion.secondToLast"                 $ R.secondToLast [1,2,3,4] == 3
+    ,
+    test "Recursion.listLength"                   $ R.listLength [1..100] == 100
+                                                 && R.listLength [] == 0
     ]
 
 

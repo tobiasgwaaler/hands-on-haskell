@@ -12,29 +12,33 @@ downToZero x =
 {-
     This meaningless function returns 0 by reducing the input number by 1 each time the function is called.
     As you may have noticed this function is flawed. For negative numbers it will never terminate!
-    This illustrates an important point about recursive functions: it's you resposibility to make sure they terminate.
-    The compiler can't help you with that (remember the halting problem?).
+    This illustrates an important point about recursive functions: it's your resposibility to make sure they terminate.
+    The compiler can't help you with that. Remember the halting problem? :)
 
-    We can do a lot of fun stuff with lists and recursion:
+    Lists and recursion is a marriage made in heaven:
 -}
 returnLastElement list =
     if length list == 1
     then list !! 0
     else returnLastElement (tail list)
 
-{-
+{-  
     This is one way to recurse through a list. We could do all sorts of things with each element
     in the list by replacing the expression in the then-clause.
 
-    You might have noticed that this function is partial, it's not defined for the empty list.
+    Sidenote: You might have noticed that this function is partial, it's not defined for the empty list.
+              depending on our use case this might be a really bad idea.
+-}
 
+
+{-
     If we combine recursion with pattern matching we get a power couple (like Hillary and Bill Clinton):
 -}
 returnLastElement2 [] = 0
 returnLastElement2 (x:[]) = x
 returnLastElement2 (x:xs) = returnLastElement2 xs
 {-
-    Nice! We got away with the if-expression and I dare say the code looks more declarative.
+    Nice! We got away with the if-expression and I dare say the code is easier to understand.
     Also, the function is now total, although returning 0 for empty lists is rarely a
     good idea.
 -}
@@ -57,6 +61,5 @@ secondToLast _ = 0
 -}
 listLength list = listLengthRec 0 list
 
-listLengthRec count list = 0
-
+listLengthRec count list = 0 -- implement me
 
