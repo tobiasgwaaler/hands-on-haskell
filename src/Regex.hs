@@ -9,13 +9,14 @@ module Regex where
     To get your foot in the door start by implementing a simple search for substrings. 
     Then, add support for special characters like . * and ?
 
-    By running the main method you can see how your function responds to different input.
-
     Here's a quick overview over the semantics of the special characters:
 
         . (dot)  - matches any _one_ character
         *        - matches the preceding pattern element zero or more times
         ?        - matches the preceding pattern element zero or one times
+
+    By running the main method you can see how your function responds to different input.
+    There are also a few test cases in the Test module you can look at.
 -}
 
 -- input: two strings, output: a list of strings representing the hits
