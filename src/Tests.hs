@@ -67,12 +67,13 @@ exercises =
                                                  && Regex.find "2312" "badabiiiing231"    == []
     ,
     test "Regex.find ."                           $ Regex.find "su." "oosubstr"            == ["sub"]
+                                                 && Regex.find ".i.of" "aa1i1ofs"          == ["1i1of"]
     ,
     test "Regex.find *"                           $ Regex.find "su*" "papasuubstring"      == ["suu"]
                                                  && Regex.find "ab*" "abbbba"              == ["abbbb"]
                                                  && Regex.find "a*b" "accbaaabsdab"        == ["aaab", "ab"]
-                                                 
-    
+    ,
+    test "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
     ]
 
 
