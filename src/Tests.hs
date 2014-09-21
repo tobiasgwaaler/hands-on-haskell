@@ -6,6 +6,7 @@ import Functions (xor)
 import qualified PatternMatching as L
 import qualified Recursion as R
 import qualified RecursionSchemes as RS
+import qualified Regex
 
 {-
     You're not supposed to touch this ;)
@@ -55,12 +56,23 @@ exercises =
     ,
     test "RecursionSchemes.numsAsStrings"         $ RS.numsAsStrings == map show RS.nums
     ,
-    test "RS.greaterThan2"                        $ RS.greaterThan2 == filter (> 2) RS.nums
+    test "RecursionSchemes.greaterThan2"          $ RS.greaterThan2 == filter (> 2) RS.nums
     ,
-    test "RS.greaterThan3"                        $ RS.greaterThan3 == filter (>3) (map (+1) RS.nums)
+    test "RecursionSchemes.greaterThan3"          $ RS.greaterThan3 == filter (>3) (map (+1) RS.nums)
     ,
-    test "RS.filterNot"                           $ RS.filterNot (>2) [1,2,3,4] == [1,2]
+    test "RecursionSchemes.filterNot"             $ RS.filterNot (>2) [1,2,3,4] == [1,2]
                                                  && RS.filterNot (==1) [1,1,1,9] == [9]
+    ,
+    test "Regex.find substring"                   $ Regex.find "sub" "substringsubstring" == ["sub", "sub"]
+                                                 && Regex.find "2312" "badabiiiing231"    == []
+    ,
+    test "Regex.find ."                           $ Regex.find "su." "oosubstr"            == ["sub"]
+    ,
+    test "Regex.find *"                           $ Regex.find "su*" "papasuubstring"      == ["suu"]
+                                                 && Regex.find "ab*" "abbbba"              == ["abbbb"]
+                                                 && Regex.find "a*b" "accbaaabsdab"        == ["aaab", "ab"]
+                                                 
+    
     ]
 
 

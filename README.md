@@ -10,6 +10,7 @@
 * PatternMatching
 * Recursion
 * RecursionSchemes
+* Regex (exercise only)
 
 
 ### Resources
