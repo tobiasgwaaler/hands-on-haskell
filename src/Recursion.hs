@@ -63,3 +63,8 @@ listLength list = listLengthRec 0 list
 
 listLengthRec count list = 0 -- implement me
 
+{-
+    Already we're getting tired of writing these recursive functions. In RecursionSchemes
+    we'll look at some of the function programming darlings map, filter, fold and their friends,
+    and see how they can help us get out of this mess.
+-}
