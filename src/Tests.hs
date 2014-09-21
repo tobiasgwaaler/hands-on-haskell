@@ -5,6 +5,7 @@ import qualified Functions as F1
 import Functions (xor)
 import qualified PatternMatching as L
 import qualified Recursion as R
+import qualified RecursionSchemes as RS
 
 {-
     You're not supposed to touch this ;)
@@ -49,6 +50,17 @@ exercises =
     ,
     test "Recursion.listLength"                   $ R.listLength [1..100] == 100
                                                  && R.listLength [] == 0
+    ,
+    test "RecursionSchemes.add2"                  $ RS.add1 == map (\x -> x+1) RS.nums
+    ,
+    test "RecursionSchemes.numsAsStrings"         $ RS.numsAsStrings == map show RS.nums
+    ,
+    test "RS.greaterThan2"                        $ RS.greaterThan2 == filter (> 2) RS.nums
+    ,
+    test "RS.greaterThan3"                        $ RS.greaterThan3 == filter (>3) (map (+1) RS.nums)
+    ,
+    test "RS.filterNot"                           $ RS.filterNot (>2) [1,2,3,4] == [1,2]
+                                                 && RS.filterNot (==1) [1,1,1,9] == [9]
     ]
 
 
