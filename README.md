@@ -1,6 +1,8 @@
 ### Exercises
 [The IDE with exercises](https://www.fpcomplete.com/user/tobiasgw/hands-on-haskell-1)
 
+[Online REPL](http://tryhaskell.org/)
+
 [Etherpad for Q&A and everything else](https://etherpad.mozilla.org/AGsZxrgFgf)
 
 #### Recommended order:
