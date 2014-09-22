@@ -12,6 +12,7 @@ import qualified HigherOrderFunctions as HOF
 import qualified Regex
 
 import Functions (xor)
+import qualified Test.QuickCheck as QC
 
 {-
     You're not supposed to touch this ;)
@@ -83,7 +84,26 @@ exercises =
     test "Project Euler - Problem 1"              $ PE.problem1 == 233168
     ]
 
-main = mapM_ (putStrLn . check) exercises
+-- QuickCheck properties
+encodeDecodeProperty :: [String] -> Bool
+encodeDecodeProperty xs = xs == (QCE.decode . QCE.encode) xs
+
+rot13Property :: String -> Bool
+rot13Property xs = xs == (QCE.rot13 . QCE.rot13) xs
+
+unionProperty :: Int -> Bool
+unionProperty n = HOF.explicitSet n == HOF.unionedSet n
+
+runQuickCheck :: QC.Testable prop => String -> prop -> IO ()
+runQuickCheck title prop = do
+                             putStrLn $ title ++ ":"
+                             QC.quickCheck prop
+
+main = do
+         mapM_ (putStrLn . check) exercises
+         runQuickCheck "encodeDecode" encodeDecodeProperty
+         runQuickCheck "rot13"        rot13Property
+         runQuickCheck "union"        unionProperty
 
 check :: Test -> String
 check (Test desc ok) =
@@ -93,6 +113,4 @@ check (Test desc ok) =
     where space = "  "
           yes   = "√"
           no    = "x"
-
-
 
