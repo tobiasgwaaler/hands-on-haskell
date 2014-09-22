@@ -48,10 +48,10 @@ lengthOfList = length [1,2,3]
 
 -- Tuples
 aPair = ("whatever", 1234)
-fst aPair -- "whatever"
-snd aPair -- 1234
+firstElementInPair = fst aPair -- "whatever"
+secondElementInPair = snd aPair -- 1234
 
-bestPinkFloydAlbums = [("Animals", 1977), "The Piper at the Gates of Dawn", 1967)]
+bestPinkFloydAlbums = [("Animals", 1977), ("The Piper at the Gates of Dawn", 1967)]
 years  = map snd bestPinkFloydAlbums -- [1977, 1967]
 titles = map fst bestPinkFloydAlbums -- ["Animals", "The Piper at the Gates of Dawn"]
 
@@ -59,5 +59,6 @@ titles = map fst bestPinkFloydAlbums -- ["Animals", "The Piper at the Gates of D
 evenNumbers = map (* 2) [1..10] -- [2,4,6,8,10,12,14,16,18,20]
 
 -- Infinite lists and lazyness
-allPositiveEvensInTheWorld = map (* 2) [1..] -- This alone doesn't compute anything ...
-take 5 allPositiveEvensInTheWorld            -- .. until it is asked for
+allPositiveEvensInTheWorld = map (* 2) [1..]      -- This alone doesn't compute anything ...
+get5Evens = take 5 allPositiveEvensInTheWorld     -- .. until it is asked for
+
