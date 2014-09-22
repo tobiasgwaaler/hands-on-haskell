@@ -10,7 +10,10 @@
 * PatternMatching
 * Recursion
 * RecursionSchemes
+* HigherOrderFunctions
+* QuickCheckExamples
 * Regex (exercise only)
+* ProjectEuler
 
 
 ### Resources
