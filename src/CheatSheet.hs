@@ -45,3 +45,19 @@ firstElementInList = head [1,2,3]
 restOfList = tail [1,2,3]
 fifthElementInList = [1,2,3,4,5,6,7] !! 5
 lengthOfList = length [1,2,3]
+
+-- Tuples
+aPair = ("whatever", 1234)
+fst aPair -- "whatever"
+snd aPair -- 1234
+
+bestPinkFloydAlbums = [("Animals", 1977), "The Piper at the Gates of Dawn", 1967)]
+years  = map snd bestPinkFloydAlbums -- [1977, 1967]
+titles = map fst bestPinkFloydAlbums -- ["Animals", "The Piper at the Gates of Dawn"]
+
+-- Currying
+evenNumbers = map (* 2) [1..10] -- [2,4,6,8,10,12,14,16,18,20]
+
+-- Infinite lists and lazyness
+allPositiveEvensInTheWorld = map (* 2) [1..] -- This alone doesn't compute anything ...
+take 5 allPositiveEvensInTheWorld            -- .. until it is asked for
