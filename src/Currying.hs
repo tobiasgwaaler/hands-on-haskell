@@ -12,7 +12,7 @@ add x y = x + y
 
 {-
     The function `addTwo` utilizes the concept of currying by calling `add` with
-    only 1 argument (2). That makes addTwo a higher-order function as it takes an
+    only 1 argument. That makes addTwo a higher-order function as it takes an
     argument x and returns a function which adds 2 and the value of x.
 -}
 

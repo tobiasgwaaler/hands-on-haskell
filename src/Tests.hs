@@ -1,5 +1,16 @@
 module Tests where
 
+{-
+
+
+
+    You're not supposed to touch this ;)
+
+
+
+
+-}
+
 import qualified GettingStarted       as GS
 import qualified Functions            as F1
 import qualified PatternMatching      as L
@@ -13,12 +24,6 @@ import qualified Regex
 
 import Functions (xor)
 import qualified Test.QuickCheck as QC
-
-{-
-    You're not supposed to touch this ;)
-
-    ... and I should really be using quickcheck for this :/
--}
 
 type Description = String
 type Result = Bool
@@ -96,14 +101,16 @@ unionProperty n = HOF.explicitSet n == HOF.unionedSet n
 
 runQuickCheck :: QC.Testable prop => String -> prop -> IO ()
 runQuickCheck title prop = do
+                             putStrLn $ ""
                              putStrLn $ title ++ ":"
                              QC.quickCheck prop
 
 main = do
          mapM_ (putStrLn . check) exercises
-         runQuickCheck "encodeDecode" encodeDecodeProperty
-         runQuickCheck "rot13"        rot13Property
-         runQuickCheck "union"        unionProperty
+         runQuickCheck "HigherOrderFunctions.union"      unionProperty
+         runQuickCheck "QuickCheckExamples.encodeDecode" encodeDecodeProperty
+         runQuickCheck "QuickCheckExamples.rot13"        rot13Property
+
 
 check :: Test -> String
 check (Test desc ok) =

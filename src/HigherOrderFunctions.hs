@@ -2,7 +2,7 @@ module HigherOrderFunctions where
 
 {-
     Higher order functions.
-    We have already seen higher order functions in use in the Currying-module, 
+    We have already seen higher order functions in use in the Currying-module,
     but not in a very useful way (only by setting default parameters).
 
     Here follows a simple implementation of sets of integers, as functions.
