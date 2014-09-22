@@ -79,6 +79,8 @@ exercises =
                                                  && Regex.find "a*b" "accbaaabsdab"        == ["aaab", "ab"]
     ,
     test "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
+    ,
+    test "Project Euler - Problem 1"              $ PE.problem1 == 233168
     ]
 
 main = mapM_ (putStrLn . check) exercises
