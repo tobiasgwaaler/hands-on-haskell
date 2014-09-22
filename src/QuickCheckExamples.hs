@@ -4,11 +4,16 @@ module QuickCheckExamples where
     QuickCheck can be used for property-based testing.
     A common example is that a list of something twice reversed should equal the original list.
     This could be written as:
-    reverseProperty :: String -> Bool
-    reverseProperty xs = xs == reverse (reverse xs)
-    We could also use function composition:
-    reverseProperty xs = xs == (reverse . reverse) xs
+-}
+reverseProperty :: String -> Bool
+reverseProperty xs = xs == reverse (reverse xs)
 
+{-
+    We could also use function composition:
+-}
+reverseProperty' xs = xs == (reverse . reverse) xs
+
+{-
     Lossless encoding/compression is also a group of suitable problems for QuickCheck,
     as the decoded output of an encoded <something> should always equal the original input.
 -}
