@@ -1,12 +1,18 @@
 module Tests where
 
-import qualified GettingStarted as GS
-import qualified Functions as F1
-import Functions (xor)
-import qualified PatternMatching as L
-import qualified Recursion as R
-import qualified RecursionSchemes as RS
+import qualified GettingStarted       as GS
+import qualified Functions            as F1
+import qualified PatternMatching      as L
+import qualified Recursion            as R
+import qualified RecursionSchemes     as RS
+import qualified QuickCheckExamples   as QCE
+import qualified ProjectEuler         as PE
+import qualified HigherOrderFunctions as HOF
+
 import qualified Regex
+
+import Functions (xor)
+import qualified Test.QuickCheck as QC
 
 {-
     You're not supposed to touch this ;)
@@ -23,7 +29,7 @@ test desc res = Test desc res
 exercises :: [Test]
 exercises =
     [
-    test "GettingStarted.myName"        $ GS.myName /= "tobiasgw"
+    test "GettingStarted.myName"       $ GS.myName /= "tobiasgw"
     ,
     test "Functions.multiply10by20"    $ F1.multiply10by20 == 200
     ,
@@ -74,18 +80,37 @@ exercises =
                                                  && Regex.find "a*b" "accbaaabsdab"        == ["aaab", "ab"]
     ,
     test "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
+    ,
+    test "Project Euler - Problem 1"              $ PE.problem1 == 233168
     ]
 
+-- QuickCheck properties
+encodeDecodeProperty :: [String] -> Bool
+encodeDecodeProperty xs = xs == (QCE.decode . QCE.encode) xs
 
-main = mapM_ (putStrLn . check) exercises
+rot13Property :: String -> Bool
+rot13Property xs = xs == (QCE.rot13 . QCE.rot13) xs
+
+unionProperty :: Int -> Bool
+unionProperty n = HOF.explicitSet n == HOF.unionedSet n
+
+runQuickCheck :: QC.Testable prop => String -> prop -> IO ()
+runQuickCheck title prop = do
+                             putStrLn $ title ++ ":"
+                             QC.quickCheck prop
+
+main = do
+         mapM_ (putStrLn . check) exercises
+         runQuickCheck "encodeDecode" encodeDecodeProperty
+         runQuickCheck "rot13"        rot13Property
+         runQuickCheck "union"        unionProperty
 
 check :: Test -> String
-check (Test desc res) =
-    (if res
+check (Test desc ok) =
+    (if  ok
     then yes
     else no) ++ space ++ desc
-
-space = "  "
-yes = "√"
-no = "x"
+    where space = "  "
+          yes   = "√"
+          no    = "x"
 
