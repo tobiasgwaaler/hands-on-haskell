@@ -29,7 +29,7 @@ test desc res = Test desc res
 exercises :: [Test]
 exercises =
     [
-    test "GettingStarted.myName"        $ GS.myName /= "tobiasgw"
+    test "GettingStarted.myName"       $ GS.myName /= "tobiasgw"
     ,
     test "Functions.multiply10by20"    $ F1.multiply10by20 == 200
     ,
