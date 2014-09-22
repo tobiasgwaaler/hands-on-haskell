@@ -4,14 +4,15 @@ module Tests where
     You're not supposed to touch this ;)
 -}
 
-import qualified Basics    as Basics
-import qualified Functions as Functions
-import qualified PatternMatching as PM
-import qualified Recursion       as Recursion
-import qualified ModulesAndImports as MaM
+import qualified Basics
+import qualified Functions
+import qualified Recursion
+import qualified PatternMatching      as PM
+import qualified ModulesAndImports    as MaM
 import qualified QuickCheckExamples   as QCE
 import qualified ProjectEuler         as PE
 import qualified HigherOrderFunctions as HOF
+
 import           Test.QuickCheck
 
 exercises = [
