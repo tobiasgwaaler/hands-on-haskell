@@ -6,8 +6,8 @@ module Regex where
     The task is to make a simplified regex engine for searching in text. If you've ever used
     the command line tool grep you know how this works.
 
-    To get your foot in the door start by implementing a simple search for substrings. 
-    Then, add support for special characters like . * and ?
+    To get your foot in the door start by implementing a simple search for substrings.
+    Then, add support for special characters like . * ?
 
     Here's a quick overview over the semantics of the special characters:
 
