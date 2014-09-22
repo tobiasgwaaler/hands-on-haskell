@@ -1,12 +1,17 @@
 module Tests where
 
-import qualified GettingStarted as GS
-import qualified Functions as F1
-import Functions (xor)
-import qualified PatternMatching as L
-import qualified Recursion as R
-import qualified RecursionSchemes as RS
+import qualified GettingStarted       as GS
+import qualified Functions            as F1
+import qualified PatternMatching      as L
+import qualified Recursion            as R
+import qualified RecursionSchemes     as RS
+import qualified QuickCheckExamples   as QCE
+import qualified ProjectEuler         as PE
+import qualified HigherOrderFunctions as HOF
+
 import qualified Regex
+
+import Functions (xor)
 
 {-
     You're not supposed to touch this ;)
