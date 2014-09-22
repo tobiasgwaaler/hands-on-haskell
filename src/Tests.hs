@@ -14,6 +14,7 @@ import qualified ProjectEuler         as PE
 import qualified HigherOrderFunctions as HOF
 
 import           Test.QuickCheck
+import           System.Console.ANSI
 
 exercises = [
     ("Basics myName", Basics.myName /= "Tobias"),
@@ -50,7 +51,8 @@ rot13Property xs = xs == (QCE.rot13 . QCE.rot13) xs
 unionProperty :: Int -> Bool
 unionProperty n = HOF.explicitSet n == HOF.unionedSet n
 
-main = do
+main = do 
+    setSGR [SetColor Foreground Vivid Red ]
     putStrLn $ "Hi, " ++ Basics.myName ++ ", here are your results:"
     mapM_ check exercises
     --quickCheck unionProperty
@@ -58,7 +60,12 @@ main = do
     --quickCheck rot13Property
 
 check :: (String, Bool) -> IO ()
-check (name,result) = putStrLn $ (if result then "√" else "x") ++ space ++ name
-
+check (name, ok) = if ok
+                       then 
+                         do  setSGR [SetColor Foreground Dull Green]
+                             putStrLn $ "√" ++ space ++ name
+                       else 
+                         do  setSGR [SetColor Foreground Dull Red]
+                             putStrLn $ "x" ++ space ++ name
 space = "  "
 
