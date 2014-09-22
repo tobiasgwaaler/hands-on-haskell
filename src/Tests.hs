@@ -81,16 +81,16 @@ exercises =
     test "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
     ]
 
-
 main = mapM_ (putStrLn . check) exercises
 
 check :: Test -> String
-check (Test desc res) =
-    (if res
+check (Test desc ok) =
+    (if  ok
     then yes
     else no) ++ space ++ desc
+    where space = "  "
+          yes   = "√"
+          no    = "x"
 
-space = "  "
-yes = "√"
-no = "x"
+
 
