@@ -93,9 +93,6 @@ exercises =
 encodeDecodeProperty :: [String] -> Bool
 encodeDecodeProperty xs = xs == (QCE.decode . QCE.encode) xs
 
-rot13Property :: String -> Bool
-rot13Property xs = xs == (QCE.rot13 . QCE.rot13) xs
-
 unionProperty :: Int -> Bool
 unionProperty n = HOF.explicitSet n == HOF.unionedSet n
 
@@ -109,8 +106,6 @@ main = do
          mapM_ (putStrLn . check) exercises
          runQuickCheck "HigherOrderFunctions.union"      unionProperty
          runQuickCheck "QuickCheckExamples.encodeDecode" encodeDecodeProperty
-         runQuickCheck "QuickCheckExamples.rot13"        rot13Property
-
 
 check :: Test -> String
 check (Test desc ok) =
