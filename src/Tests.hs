@@ -56,14 +56,14 @@ exercises =
     ,
     test "PatternMatching.drop3"                  $ L.drop3 [1,2,3,4,5,6] == [4,5,6]
     ,
-    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2] == 3
+    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2,3] == 3
     ,
     test "Recursion.secondToLast"                 $ R.secondToLast [1,2,3,4] == 3
     ,
     test "Recursion.listLength"                   $ R.listLength [1..100] == 100
                                                  && R.listLength [] == 0
     ,
-    test "RecursionSchemes.add2"                  $ RS.add1 == map (\x -> x+1) RS.nums
+    test "RecursionSchemes.add1"                  $ RS.add1 == map (\x -> x+1) RS.nums
     ,
     test "RecursionSchemes.numsAsStrings"         $ RS.numsAsStrings == map show RS.nums
     ,
@@ -93,9 +93,6 @@ exercises =
 encodeDecodeProperty :: [String] -> Bool
 encodeDecodeProperty xs = xs == (QCE.decode . QCE.encode) xs
 
-rot13Property :: String -> Bool
-rot13Property xs = xs == (QCE.rot13 . QCE.rot13) xs
-
 unionProperty :: Int -> Bool
 unionProperty n = HOF.explicitSet n == HOF.unionedSet n
 
@@ -109,8 +106,6 @@ main = do
          mapM_ (putStrLn . check) exercises
          runQuickCheck "HigherOrderFunctions.union"      unionProperty
          runQuickCheck "QuickCheckExamples.encodeDecode" encodeDecodeProperty
-         runQuickCheck "QuickCheckExamples.rot13"        rot13Property
-
 
 check :: Test -> String
 check (Test desc ok) =
