@@ -56,14 +56,14 @@ exercises =
     ,
     test "PatternMatching.drop3"                  $ L.drop3 [1,2,3,4,5,6] == [4,5,6]
     ,
-    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2] == 3
+    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2,3] == 3
     ,
     test "Recursion.secondToLast"                 $ R.secondToLast [1,2,3,4] == 3
     ,
     test "Recursion.listLength"                   $ R.listLength [1..100] == 100
                                                  && R.listLength [] == 0
     ,
-    test "RecursionSchemes.add2"                  $ RS.add1 == map (\x -> x+1) RS.nums
+    test "RecursionSchemes.add1"                  $ RS.add1 == map (\x -> x+1) RS.nums
     ,
     test "RecursionSchemes.numsAsStrings"         $ RS.numsAsStrings == map show RS.nums
     ,

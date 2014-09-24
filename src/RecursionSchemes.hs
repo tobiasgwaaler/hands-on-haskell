@@ -53,7 +53,7 @@ numsAsStrings = []
 
 {-
     Exercise:
-    Define the greaterThan2 function so it returns the numbers from num that are greater than 2
+    Define the greaterThan2 function so it returns the numbers from nums that are greater than 2
 -}
 greaterThan2 = []
 
