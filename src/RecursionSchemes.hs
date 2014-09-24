@@ -41,7 +41,7 @@ nums = [1,2,3,4]
     Exercise:
     Define the add1 function so it adds 1 to all the numbers in nums
 -}
-add1 = []
+add1 = map (+ 1) nums
 
 {-
     Exercise:
@@ -49,25 +49,25 @@ add1 = []
 
     tip: the `show` function converts ints to strings
 -}
-numsAsStrings = []
+numsAsStrings = map show nums
 
 {-
     Exercise:
     Define the greaterThan2 function so it returns the numbers from num that are greater than 2
 -}
-greaterThan2 = []
+greaterThan2 = filter (> 2) nums
 
 {-
     Exercise:
     Define the greaterThan3 function so it increments each value from nums by 1, then
     return the numbers that are greater than 3
 -}
-greaterThan3 = []
+greaterThan3 = filter (> 3) $ map (+ 1) nums
 
 {-
     Exercise:
     Define the filterNot function that works just like filter but inverts the condition.
     In other words, filterNot will *keep* the exact elements that filter would *remove*
 -}
-filterNot condition list = []
+filterNot condition list = filter (not . condition) list
 

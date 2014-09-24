@@ -55,7 +55,7 @@ desugaredList = 1:(2:(3:[]))
     tip: the underscore represents a wildcard, matching any pattern. Replace
          it with a pattern match and get cracking!
 -}
-secondElement _ = 0
+secondElement (_:x:_) = x
 
 
 {-
@@ -63,7 +63,7 @@ secondElement _ = 0
     Define the drop3 function so it "skips" the 3 first elements in the list,
     but returns the rest. Use pattern matching.
 -}
-drop3 _ = []
+drop3 (_:_:_:xs) = xs
 
 
 {-
@@ -75,7 +75,7 @@ drop3 _ = []
           That means it doesn't know what to do if it receives a list of length /= 3, and
           the runtime will throw a PatternMatchFail exception.
 -}
-thirdAndLast _ = 0
+thirdAndLast (_:_:x:[]) = x
 
 {-
     It's tempting to write a function that returns the last element of the list

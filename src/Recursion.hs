@@ -48,7 +48,9 @@ returnLastElement2 (x:xs) = returnLastElement2 xs
     Define the secondToLast function so it returns the second to last element in the input list.
     Return 0 if the list is too short.
 -}
-secondToLast _ = 0
+secondToLast []       = 0
+secondToLast (x:_:[]) = x
+secondToLast (x:xs)   = secondToLast xs
 
 {-
     Exercise:
@@ -61,7 +63,8 @@ secondToLast _ = 0
 -}
 listLength list = listLengthRec 0 list
 
-listLengthRec count list = 0 -- implement me
+listLengthRec count []     = count
+listLengthRec count (x:xs) = listLengthRec (count + 1) xs
 
 {-
     Already we're getting tired of writing these recursive functions. In RecursionSchemes

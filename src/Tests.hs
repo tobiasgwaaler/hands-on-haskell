@@ -56,7 +56,7 @@ exercises =
     ,
     test "PatternMatching.drop3"                  $ L.drop3 [1,2,3,4,5,6] == [4,5,6]
     ,
-    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2] == 3
+    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2,3] == 3
     ,
     test "Recursion.secondToLast"                 $ R.secondToLast [1,2,3,4] == 3
     ,

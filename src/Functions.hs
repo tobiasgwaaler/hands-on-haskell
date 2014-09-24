@@ -51,14 +51,14 @@ printWelcomeMessage2 = putStrLn welcome "Welcome to the present"
 -}
 multiply arg1 arg2 = arg1 * arg2
 -- This function returns the product of its arguments
-multiply10by20 = 0
+multiply10by20 = multiply 10 20
 
 
 {-
     Exercise:
     Define a function, plus, that takes 2 arguments and returns their sum
 -}
-plus arg1 arg2 = 0
+plus arg1 arg2 = arg1 + arg2
 
 
 {-
@@ -66,7 +66,7 @@ plus arg1 arg2 = 0
     Define a function, sum3, that takes 3 arguments and returns their sum.
     ... and you must use the plus function to do so!
 -}
-sum3 arg1 arg2 arg3 = 0
+sum3 arg1 arg2 arg3 = plus arg1 $ plus arg2 arg3
 
 
 {-
@@ -74,13 +74,13 @@ sum3 arg1 arg2 arg3 = 0
     Define a function, isAlpha, that takes a Char and returns
     True if, and only if, that character is a '@'.
 -}
-isAlpha character = False
+isAlpha character = character == '@'
 
 
 {-
     Exercise:
     Define an "exclusive or" operator: http://en.wikipedia.org/wiki/Exclusive_or#Truth_table
 -}
-xor arg1 arg2 = True
+xor arg1 arg2 = (arg1 && not arg2) || (arg2 && not arg1)
 
 
