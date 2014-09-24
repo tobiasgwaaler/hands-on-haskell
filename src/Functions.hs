@@ -65,8 +65,6 @@ plus arg1 arg2 = 0
     Exercise:
     Define a function, sum3, that takes 3 arguments and returns their sum.
     ... and you must use the plus function to do so!
-
-    tip: use parenthesis to get the correct order of evaluation
 -}
 sum3 arg1 arg2 arg3 = 0
 
