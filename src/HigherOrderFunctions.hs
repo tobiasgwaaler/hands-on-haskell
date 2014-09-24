@@ -59,7 +59,7 @@ main = mapM_ putStrLn $ map show $ filter mySet2 [-50..50]
 -}
 
 union :: Set -> Set -> Set
-union _ _ = emptySet -- TODO Replace with a proper union function
+union a b n = a n || b n
 
 explicitSet :: Set
 explicitSet n = n `mod` 2 == 0 || n `mod` 3 == 0

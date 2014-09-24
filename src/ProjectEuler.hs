@@ -13,5 +13,7 @@ module ProjectEuler where
     A simple solution to this involves sum, filter and mod.
 -}
 
-problem1 = 0 -- TODO Implement this
+sumOfMultiplesOf :: Int -> Int -> [Int] -> Int
+sumOfMultiplesOf f1 f2 numbers = sum $ filter (\n -> n `mod` f1 == 0 || n `mod` f2 == 0) numbers
 
+problem1 = sumOfMultiplesOf 3 5 [1..999]
