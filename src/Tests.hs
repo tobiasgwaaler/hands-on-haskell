@@ -80,9 +80,9 @@ exercises =
     test "Regex.find ."                           $ Regex.find "su." "oosubstr"            == ["sub"]
                                                  && Regex.find ".i.of" "aa1i1ofs"          == ["1i1of"]
     ,
-    test "Regex.find *"                           $ Regex.find "su*" "papasuubstring"      == ["suu"]
-                                                 && Regex.find "ab*" "abbbba"              == ["abbbb"]
-                                                 && Regex.find "a*b" "accbaaabsdab"        == ["aaab", "ab"]
+    test "Regex.find *"                           $ Regex.find "su*" "papasuubstring" == ["suu", "s"]
+                                                 && Regex.find "ab*" "abbbba"         == ["abbbb", "a"]
+                                                 && Regex.find "a*b" "accbaaabsdab"   == ["b", "aaab", "ab"]
     ,
     test "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
     ,
