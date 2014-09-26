@@ -113,6 +113,6 @@ check (Test desc ok) =
     then yes
     else no) ++ space ++ desc
     where space = "  "
-          yes   = "√"
-          no    = "x"
+          yes   = "✔"
+          no    = "✘"
 
