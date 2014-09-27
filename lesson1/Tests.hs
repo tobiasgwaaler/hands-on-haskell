@@ -21,73 +21,87 @@ import qualified ProjectEuler         as PE
 import qualified HigherOrderFunctions as HOF
 
 import qualified Regex
+import Data.Bits (xor)
 
-import Functions (xor)
 import qualified Test.QuickCheck as QC
+import Test.Hspec
 
-type Description = String
-type Result = Bool
-data Test = Test Description Result
+main = hspec $ do
+    describe "GettingStarted.myName" $ do
+        it "returns your name" $ do
+            GS.myName `shouldSatisfy` (/= "tobiasgw")
 
-test desc res = Test desc res
+    describe "Functions.multiply10by20" $ do
+        it "returns 200" $ do
+            F1.multiply10by20 `shouldBe` 200
 
-exercises :: [Test]
-exercises =
-    [
-    test "GettingStarted.myName"       $ GS.myName /= "tobiasgw"
-    ,
-    test "Functions.multiply10by20"    $ F1.multiply10by20 == 200
-    ,
-    test "Functions.plus"              $ F1.plus 9873 772 == 9873+772
-                                       && F1.plus 0 0 == 0
-    ,
-    test "Functions.sum3"              $ F1.sum3 1 2 3 == 1+2+3
-                                       && F1.sum3 (-1) (-90) 300 == 300-90-1
-    ,
-    test "Functions.isAlpha"           $ filter F1.isAlpha ['a', 'K', '.'] == []
-                                       && F1.isAlpha '@'
-    ,
-    test "Functions.xor"               $ False `xor` False == False
-                                       && True  `xor` True  == False
-                                       && True  `xor` False == True
-                                       && False `xor` True  == True
-    ,
-    test "PatternMatching.secondElement"          $ L.secondElement [1,2,3,4,5] == 2
-    ,
-    test "PatternMatching.drop3"                  $ L.drop3 [1,2,3,4,5,6] == [4,5,6]
-    ,
-    test "PatternMatching.thirdAndLast"           $ L.thirdAndLast [1,2,3] == 3
-    ,
-    test "Recursion.secondToLast"                 $ R.secondToLast [1,2,3,4] == 3
-    ,
-    test "Recursion.listLength"                   $ R.listLength [1..100] == 100
-                                                 && R.listLength [] == 0
-    ,
-    test "RecursionSchemes.add1"                  $ RS.add1 == map (\x -> x+1) RS.nums
-    ,
-    test "RecursionSchemes.numsAsStrings"         $ RS.numsAsStrings == map show RS.nums
-    ,
-    test "RecursionSchemes.greaterThan2"          $ RS.greaterThan2 == filter (> 2) RS.nums
-    ,
-    test "RecursionSchemes.greaterThan3"          $ RS.greaterThan3 == filter (>3) (map (+1) RS.nums)
-    ,
-    test "RecursionSchemes.filterNot"             $ RS.filterNot (>2) [1,2,3,4] == [1,2]
-                                                 && RS.filterNot (==1) [1,1,1,9] == [9]
-    ,
-    test "Regex.find substring"                   $ Regex.find "sub" "substringsubstring" == ["sub", "sub"]
-                                                 && Regex.find "2312" "badabiiiing231"    == []
-    ,
-    test "Regex.find ."                           $ Regex.find "su." "oosubstr"            == ["sub"]
-                                                 && Regex.find ".i.of" "aa1i1ofs"          == ["1i1of"]
-    ,
-    test "Regex.find *"                           $ Regex.find "su*" "papasuubstring" == ["suu", "s"]
-                                                 && Regex.find "ab*" "abbbba"         == ["abbbb", "a"]
-                                                 && Regex.find "a*b" "accbaaabsdab"   == ["b", "aaab", "ab"]
-    ,
-    test "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
-    ,
-    test "Project Euler - Problem 1"              $ PE.problem1 == 233168
-    ]
+    describe "Functions.plus" $ do
+        it "adds to *arbitrary* numbers" $ do
+            QC.property $ \x y -> F1.plus x y == x + y
+
+    describe "Functions.sum3" $ do 
+        it "adds three *arbitrary* numbers" $ do
+            QC.property $ \x y z -> F1.sum3 x y z == x + y + z
+
+    describe "Functions.isDollar" $ do
+        it "returns true for '$'" $ do
+            F1.isDollar '$' `shouldBe` True
+        it "returns false for anything but '$'" $ do
+            or (map F1.isDollar ['%'..'z']) `shouldBe` False
+
+    describe "Functions.xor" $ do
+        it "is correct" $ do
+            QC.property $ \x y -> F1.xor x y ==  x `xor` y
+
+    describe "PatternMatching.secondElement" $ do
+        let input = [12345]
+            expected = 2
+         in it ("should return the second element from " ++ show input) $ do
+            L.secondElement input `shouldBe` expected
+
+    describe "PatternMatching.drop3" $ do
+        let input = [123456]
+            expected = [456]
+         in it ("should drop the three first elements in " ++ show input) $ do
+            L.drop3 input `shouldBe` expected
+
+    describe "PatternMatching.thirdAndLast" $ do
+        let input = [123]
+            expected = 3
+         in it ("should return the third element in " ++ show input) $ do
+            L.thirdAndLast input `shouldBe` expected
+
+{-
+
+describe "Recursion.secondToLast"                 $ R.secondToLast [1234] == 3
+
+describe "Recursion.listLength"                   $ R.listLength [1..100] == 100
+                                             && R.listLength [] == 0
+
+describe "RecursionSchemes.add1"                  $ RS.add1 == map (\x -> x+1) RS.nums
+
+describe "RecursionSchemes.numsAsStrings"         $ RS.numsAsStrings == map show RS.nums
+
+describe "RecursionSchemes.greaterThan2"          $ RS.greaterThan2 == filter (> 2) RS.nums
+
+describe "RecursionSchemes.greaterThan3"          $ RS.greaterThan3 == filter (>3) (map (+1) RS.nums)
+
+describe "RecursionSchemes.filterNot"             $ RS.filterNot (>2) [1234] == [12]
+                                             && RS.filterNot (==1) [1119] == [9]
+
+describe "Regex.find substring"                   $ Regex.find "sub" "substringsubstring" == ["sub" "sub"]
+                                             && Regex.find "2312" "badabiiiing231"    == []
+
+describe "Regex.find ."                           $ Regex.find "su." "oosubstr"            == ["sub"]
+                                             && Regex.find ".i.of" "aa1i1ofs"          == ["1i1of"]
+
+describe "Regex.find *"                           $ Regex.find "su*" "papasuubstring" == ["suu" "s"]
+                                             && Regex.find "ab*" "abbbba"         == ["abbbb" "a"]
+                                             && Regex.find "a*b" "accbaaabsdab"   == ["b" "aaab" "ab"]
+
+describe "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
+
+describe "Project Euler - Problem 1"              $ PE.problem1 == 233168
 
 -- QuickCheck properties
 encodeDecodeProperty :: [String] -> Bool
@@ -102,7 +116,7 @@ runQuickCheck title prop = do
                              putStrLn $ title ++ ":"
                              QC.quickCheck prop
 
-main = do
+oldMain = do
          mapM_ (putStrLn . check) exercises
          runQuickCheck "HigherOrderFunctions.union"      unionProperty
          runQuickCheck "QuickCheckExamples.encodeDecode" encodeDecodeProperty
@@ -115,4 +129,4 @@ check (Test desc ok) =
     where space = "  "
           yes   = "✔"
           no    = "✘"
-
+-}    
