@@ -28,7 +28,7 @@ reverseProperty' xs = xs == (reverse . reverse) xs
     encode "Heeeello Haskell!!!"
     [(1,'H'),(4,'e'),(2,'l'),(1,'o'),(1,' '),(1,'H'),(1,'a'),(1,'s'),(1,'k'),(1,'e'),(2,'l'),(3,'!')]
 -}
-encode :: Eq a => [a] -> [(Int, a)]
+encode :: String -> [(Int, Char)]
 encode _ = [] -- TODO Implement this
 
 {-
@@ -41,16 +41,6 @@ encode _ = [] -- TODO Implement this
     "Heeeello Haskell!!!"
 -}
 
-decode :: Eq a => [(Int, a)] -> [a]
+decode :: [(Int, Char)] -> String
 decode _ = [] -- TODO Implement this
-
-{-
-    Excercise 3:
-    Use QuickCheck to figure out what is wrong with this function.
--}
-rot13 :: String -> String
-rot13 = map rotchar 
-    where rotchar c = maybe '#' id (lookup c transp)
-          transp = zip letters ((drop 13 letters) ++ (take 13 letters))
-          letters = ['a' .. 'z']
 

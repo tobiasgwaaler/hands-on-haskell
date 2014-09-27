@@ -56,77 +56,78 @@ main = hspec $ do
     describe "PatternMatching.secondElement" $ do
         let input = [12345]
             expected = 2
-         in it ("should return the second element from " ++ show input) $ do
+         in it ("returns the second element from " ++ show input) $ do
             L.secondElement input `shouldBe` expected
 
     describe "PatternMatching.drop3" $ do
         let input = [123456]
             expected = [456]
-         in it ("should drop the three first elements in " ++ show input) $ do
+         in it ("drops the three first elements in " ++ show input) $ do
             L.drop3 input `shouldBe` expected
 
     describe "PatternMatching.thirdAndLast" $ do
         let input = [123]
             expected = 3
-         in it ("should return the third element in " ++ show input) $ do
+         in it ("returns the third element in " ++ show input) $ do
             L.thirdAndLast input `shouldBe` expected
 
-{-
+    describe "Recursion.secondToLast" $ do
+        let input = [1234]
+            expected = 3
+        it ("returns the second to last element in " ++ show input) $ do
+            R.secondToLast input `shouldBe` expected
 
-describe "Recursion.secondToLast"                 $ R.secondToLast [1234] == 3
+    describe "Recursion.listLength" $ do
+        it "returns the length of an *arbitrary* list" $ do
+            QC.property $ \x -> R.listLength x == length x
 
-describe "Recursion.listLength"                   $ R.listLength [1..100] == 100
-                                             && R.listLength [] == 0
+    describe "RecursionSchemes.add1" $ do
+        it "adds 1 to all elements in an *arbitrary* list" $ do
+            QC.property $ \xs -> RS.add1 xs == map (+1) xs
 
-describe "RecursionSchemes.add1"                  $ RS.add1 == map (\x -> x+1) RS.nums
+    describe "RecursionSchemes.numsAsStrings" $ do
+        it "converts all integers to strings" $ do
+            QC.property $ \xs -> RS.numsAsStrings xs == map show xs
 
-describe "RecursionSchemes.numsAsStrings"         $ RS.numsAsStrings == map show RS.nums
+    describe "RecursionSchemes.greaterThan2" $ do
+        it "returns integers greater than 2" $ do
+            QC.property $ \xs -> RS.greaterThan2 xs == filter (> 2) xs
 
-describe "RecursionSchemes.greaterThan2"          $ RS.greaterThan2 == filter (> 2) RS.nums
 
-describe "RecursionSchemes.greaterThan3"          $ RS.greaterThan3 == filter (>3) (map (+1) RS.nums)
+    describe "RecursionSchemes.filterNot" $ do
+        it "keeps the elements that filter would remove for condition (< 2)" $ do
+            QC.property $ \xs -> RS.filterNot (< 2) xs == filter (not . (< 2)) xs
 
-describe "RecursionSchemes.filterNot"             $ RS.filterNot (>2) [1234] == [12]
-                                             && RS.filterNot (==1) [1119] == [9]
+    describe "Regex.find" $ do
+        regexTest "sub" "substringsubstring" ["sub", "sub"]
 
-describe "Regex.find substring"                   $ Regex.find "sub" "substringsubstring" == ["sub" "sub"]
-                                             && Regex.find "2312" "badabiiiing231"    == []
+        let needle = "2312"
+            haystack = "badabiiiing231"
+         in it ("does not find '" ++ needle ++ "' in '" ++ haystack ++ "'") $ do
+              Regex.find needle haystack `shouldBe` []
 
-describe "Regex.find ."                           $ Regex.find "su." "oosubstr"            == ["sub"]
-                                             && Regex.find ".i.of" "aa1i1ofs"          == ["1i1of"]
+        regexTest "su." "oosubstr" ["sub"]
+        regexTest ".i.of" "aa1i1ofs" ["1i1of"]
+              
+        regexTest "su*" "papasuubstring" ["suu", "s"]
+        regexTest "ab*" "abbbba" ["abbbb", "a"]
+        regexTest "a*b" "accbaaabsdab" ["b", "aaab", "ab"]
 
-describe "Regex.find *"                           $ Regex.find "su*" "papasuubstring" == ["suu" "s"]
-                                             && Regex.find "ab*" "abbbba"         == ["abbbb" "a"]
-                                             && Regex.find "a*b" "accbaaabsdab"   == ["b" "aaab" "ab"]
+        regexTest "92?3?" "125s29242s" ["92"]
 
-describe "Regex.find ?"                           $ Regex.find "92?3?" "125s29242s"        == ["92"]
+    describe "Project Euler - Problem 1" $ do
+        it "is correct" $ do
+            PE.problem1 `shouldBe` 233168
 
-describe "Project Euler - Problem 1"              $ PE.problem1 == 233168
+    describe "HigherOrderFunctions.union" $ do
+        it "should return union" $ do
+            QC.property $ \n -> HOF.explicitSet n == HOF.unionedSet n
 
--- QuickCheck properties
-encodeDecodeProperty :: [String] -> Bool
-encodeDecodeProperty xs = xs == (QCE.decode . QCE.encode) xs
+    describe "QuickCheckExamples.encodeDecode" $ do
+        it "decode is inverse encode" $ do
+            QC.property $ \xs -> xs == (QCE.decode . QCE.encode) xs
 
-unionProperty :: Int -> Bool
-unionProperty n = HOF.explicitSet n == HOF.unionedSet n
+regexTest needle haystack expected =
+    it ("'" ++ needle ++ "' in '" ++ haystack ++ "'") $ do
+        Regex.find needle haystack `shouldBe` expected
 
-runQuickCheck :: QC.Testable prop => String -> prop -> IO ()
-runQuickCheck title prop = do
-                             putStrLn $ ""
-                             putStrLn $ title ++ ":"
-                             QC.quickCheck prop
-
-oldMain = do
-         mapM_ (putStrLn . check) exercises
-         runQuickCheck "HigherOrderFunctions.union"      unionProperty
-         runQuickCheck "QuickCheckExamples.encodeDecode" encodeDecodeProperty
-
-check :: Test -> String
-check (Test desc ok) =
-    (if  ok
-    then yes
-    else no) ++ space ++ desc
-    where space = "  "
-          yes   = "✔"
-          no    = "✘"
--}    

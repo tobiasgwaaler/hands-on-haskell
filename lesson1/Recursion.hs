@@ -59,6 +59,7 @@ secondToLast _ = 0
     count. This function will do the actual work, while listLength just starts
     the recursion off with the count set to 0.
 -}
+listLength :: [Int] -> Int
 listLength list = listLengthRec 0 list
 
 listLengthRec count list = 0 -- implement me

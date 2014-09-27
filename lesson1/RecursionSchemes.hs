@@ -36,38 +36,35 @@ startsWithT = filter (\(x:xs) -> x == 'T') celebrities
 -}
 
 
-nums = [1,2,3,4]
 {-
     Exercise:
-    Define the add1 function so it adds 1 to all the numbers in nums
+    Define the add1 function so it adds 1 to all the numbers in a list
 -}
-add1 = []
+add1 :: [Int] -> [Int]
+add1 list = []
 
 {-
     Exercise:
-    Define the numsAsStrings function so it converts the numbers in `nums` to strings.
+    Define the numsAsStrings function so it converts the integers in a list to strings.
 
     tip: the `show` function converts ints to strings
 -}
-numsAsStrings = []
+numsAsStrings :: [Int] -> [String]
+numsAsStrings list = []
 
 {-
     Exercise:
-    Define the greaterThan2 function so it returns the numbers from nums that are greater than 2
+    Define the greaterThan2 function so it returns the integers from a list 
+    that are greater than 2
 -}
-greaterThan2 = []
-
-{-
-    Exercise:
-    Define the greaterThan3 function so it increments each value from nums by 1, then
-    return the numbers that are greater than 3
--}
-greaterThan3 = []
+greaterThan2 :: [Int] -> [Int]
+greaterThan2 list = []
 
 {-
     Exercise:
     Define the filterNot function that works just like filter but inverts the condition.
     In other words, filterNot will *keep* the exact elements that filter would *remove*
 -}
+filterNot :: (Int -> Bool) -> [Int] -> [Int]
 filterNot condition list = []
 
