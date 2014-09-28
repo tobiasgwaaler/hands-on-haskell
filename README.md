@@ -1,24 +1,12 @@
-### Exercises
-[The IDE with exercises](https://www.fpcomplete.com/user/tobiasgw/hands-on-haskell-1)
+# Hands-on Haskell
+This repo contains exercises for learning Haskell, with tests for verify the solutions.
 
-[Online REPL](http://tryhaskell.org/)
-
-[Etherpad for Q&A and everything else](https://etherpad.mozilla.org/AGsZxrgFgf)
-
-#### Recommended order:
-* GettingStarted
-* Functions
-* CheatSheet
-* PatternMatching
-* Recursion
-* RecursionSchemes
-* Currying
-* HigherOrderFunctions
-* QuickCheckExamples
-* Regex (exercise only)
-* ProjectEuler (exercise only)
-
+## Installation
+* Install GHC and Cabal or Haskell platform
+* Clone this repo
+* `cabal install` inside the project to install dependencies
+* `cabal run` to run the tests
 
 ### Resources
-* [Learn You a Haskell: Baby's first functions](http://learnyouahaskell.com/starting-out#babys-first-functions)
+* [Learn You a Haskell](http://learnyouahaskell.com/)
 * [Hoogle](https://www.fpcomplete.com/hoogle)
