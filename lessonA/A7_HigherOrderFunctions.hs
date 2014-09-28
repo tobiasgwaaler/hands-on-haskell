@@ -1,4 +1,4 @@
-module HigherOrderFunctions where
+module A7_HigherOrderFunctions where
 
 {-
     Higher order functions.

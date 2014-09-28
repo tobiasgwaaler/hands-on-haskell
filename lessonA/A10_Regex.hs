@@ -1,4 +1,4 @@
-module Regex where
+module A10_Regex where
 
 {-
     This is a bigger exercise where you'll get to use all that you've learned about Haskell.

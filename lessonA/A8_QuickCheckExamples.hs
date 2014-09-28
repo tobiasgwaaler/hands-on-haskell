@@ -1,4 +1,4 @@
-module QuickCheckExamples where
+module A8_QuickCheckExamples where
 
 {-
     QuickCheck can be used for property-based testing.

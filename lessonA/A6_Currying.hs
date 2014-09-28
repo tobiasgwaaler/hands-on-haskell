@@ -1,4 +1,4 @@
-module Currying where
+module A6_Currying where
 
 {-
     Currying

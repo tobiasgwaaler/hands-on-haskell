@@ -1,4 +1,4 @@
-module RecursionSchemes where
+module A5_RecursionSchemes where
 
 {-
     This is what we all came here for. Finally we'll start using higher order functions!

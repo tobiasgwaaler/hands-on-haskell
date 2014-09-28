@@ -1,4 +1,4 @@
-module ProjectEuler where
+module A9_ProjectEuler where
 
 {-
     Exercises from Project Euler

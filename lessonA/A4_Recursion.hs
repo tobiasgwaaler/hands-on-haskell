@@ -1,4 +1,4 @@
-module Recursion where
+module A4_Recursion where
 
 {-
     A recursive function is a recursive function is a recursive function is a recursive function is. Very funny.

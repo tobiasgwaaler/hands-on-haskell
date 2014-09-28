@@ -1,4 +1,4 @@
-module Functions where
+module A2_Functions where
 
 {-
     In this module we will learn how to define and apply functions.

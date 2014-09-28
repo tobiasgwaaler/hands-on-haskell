@@ -1,4 +1,4 @@
-module PatternMatching where
+module A3_PatternMatching where
 
 {-
     Now it's time to introduce lists.

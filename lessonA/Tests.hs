@@ -11,18 +11,18 @@ module Main where
 
 -}
 
-import qualified GettingStarted       as GS
-import qualified Functions            as F1
-import qualified PatternMatching      as L
-import qualified Recursion            as R
-import qualified RecursionSchemes     as RS
-import qualified QuickCheckExamples   as QCE
-import qualified ProjectEuler         as PE
-import qualified HigherOrderFunctions as HOF
+import qualified A1_GettingStarted          as GS
+import qualified A2_Functions               as F1
+import qualified A3_PatternMatching         as L
+import qualified A4_Recursion               as R
+import qualified A5_RecursionSchemes        as RS
+import qualified A6_Currying                as CR
+import qualified A7_HigherOrderFunctions    as HOF
+import qualified A8_QuickCheckExamples      as QCE
+import qualified A9_ProjectEuler            as PE
+import qualified A10_Regex                  as Regex
 
-import qualified Regex
 import Data.Bits (xor)
-
 import qualified Test.QuickCheck as QC
 import Test.Hspec
 
