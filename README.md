@@ -1,5 +1,5 @@
 # Hands-on Haskell
-This repo contains exercises for learning Haskell, with tests for verify the solutions.
+This repo contains exercises for learning Haskell, with tests for verifying the solutions.
 
 ## Installation
 * Install GHC and Cabal or Haskell platform
