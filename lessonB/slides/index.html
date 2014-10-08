@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Osλo Haskell - Hands-on Haskell</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+        <link rel="stylesheet" href="plugin/highlight/styles/docco.css">
+
+
+        <style type="text/css">
+        pre {
+                box-shadow: none !important;
+                font-size: 0.85em !important;
+            }
+        code {
+                background: transparent !important;
+            }
+        </style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+
+
+<section>
+	<h1>Hands-on Haskell</h1>
+</section>
+
+
+<section>
+    <h2>Recap!</h2>
+</section>
+
+<section>
+    <h2>Functions</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage = "Welcome to the future"
+
+
+
+
+
+
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage name = "Welcome, " ++ name
+
+
+
+
+
+
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage name = "Welcome, " ++ name
+
+
+msg = welcomeMessage "Tobias"
+
+
+
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage name = "Welcome, " ++ name
+
+
+msg = welcomeMessage "Tobias"
+
+
+main = putStrLn msg
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+welcomeMessage :: String -> String
+welcomeMessage name = "Welcome, " ++ name
+
+msg :: String
+msg = welcomeMessage "Tobias"
+
+main :: IO ()
+main = putStrLn msg
+</code></pre>
+</section>
+
+
+
+<section>
+    <h2>Lists</h2>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers = [0,1,2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+   numbers = [0,1,2,3,4] ++ [5,6,7,8,9]
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+   numbers = [0,1,2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+      five = [0,1,2,3,4,5,6,7,8,9] !! 5
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+ten = length [0,1,2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+   numbers = 0:[1,2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers = 0:1:[2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers = 0:1:2:[3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers = 0:1:2:3:4:5:6:7:9:[]
+</code></pre>
+</section>
+
+<section>
+    <h2>Pattern Matching</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+</code></pre>
+</section>
+
+
+<section>
+    <h3>Data types</h3>
+    <pre><code data-trim>
+type StreetName = String
+type HouseNumber = String
+
+data House = House StreetName HouseNumber
+
+data Area = Area { name :: String,
+                   houses :: [House] }
+    </code></pre>
+        
+</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({                
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,   
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { 
+                        hljs.initHighlightingOnLoad(); 
+                        } 
+                    },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
