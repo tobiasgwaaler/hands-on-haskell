@@ -46,6 +46,7 @@
     <h2>Recap!</h2>
 </section>
 
+<!-- ---------------------------------------------------------------------- -->
 <section>
     <h2>Functions</h2>
 </section>
@@ -116,7 +117,7 @@ main = putStrLn msg
 </section>
 
 
-
+<!-- ---------------------------------------------------------------------- -->
 <section>
     <h2>Lists</h2>
 </section>
@@ -124,36 +125,42 @@ main = putStrLn msg
 
 <section>
 <pre><code class="haskell">
+
    numbers = [0,1,2,3,4,5,6,7,8,9]
 </code></pre>
 </section>
 
 <section>
 <pre><code class="haskell">
+   numbers :: [Int]
+   numbers = [0,1,2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+   numbers :: [Int]
    numbers = [0,1,2,3,4] ++ [5,6,7,8,9]
 </code></pre>
 </section>
 
 <section>
 <pre><code class="haskell">
-   numbers = [0,1,2,3,4,5,6,7,8,9]
-</code></pre>
-</section>
-
-<section>
-<pre><code class="haskell">
+      five :: Int
       five = [0,1,2,3,4,5,6,7,8,9] !! 5
 </code></pre>
 </section>
 
 <section>
 <pre><code class="haskell">
+ten :: Int
 ten = length [0,1,2,3,4,5,6,7,8,9]
 </code></pre>
 </section>
 
 <section>
 <pre><code class="haskell">
+   numbers :: [Int]
    numbers = 0:[1,2,3,4,5,6,7,8,9]
 </code></pre>
 </section>
@@ -161,6 +168,7 @@ ten = length [0,1,2,3,4,5,6,7,8,9]
 
 <section>
 <pre><code class="haskell">
+   numbers :: [Int]
    numbers = 0:1:[2,3,4,5,6,7,8,9]
 </code></pre>
 </section>
@@ -168,6 +176,7 @@ ten = length [0,1,2,3,4,5,6,7,8,9]
 
 <section>
 <pre><code class="haskell">
+   numbers :: [Int]
    numbers = 0:1:2:[3,4,5,6,7,8,9]
 </code></pre>
 </section>
@@ -175,33 +184,398 @@ ten = length [0,1,2,3,4,5,6,7,8,9]
 
 <section>
 <pre><code class="haskell">
+   numbers :: [Int]
    numbers = 0:1:2:3:4:5:6:7:9:[]
 </code></pre>
 </section>
 
+<!-- ---------------------------------------------------------------------- -->
 <section>
     <h2>Pattern Matching</h2>
 </section>
 
 <section>
 <pre><code class="haskell">
+openDoor :: String -> String
+openDoor secret = if secret == "Open Sesame" 
+                  then "Open up!" 
+                  else "Sorry"
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+openDoor :: String -> String
+openDoor "Open Sesame" = "Open up!"
+openDoor _             = "Sorry"
 
 </code></pre>
 </section>
 
 
+
+
+<!-- ---------------------------------------------------------------------- -->
 <section>
-    <h3>Data types</h3>
-    <pre><code data-trim>
-type StreetName = String
-type HouseNumber = String
+    <h2>Pattern Matching</h2>
+    <h2>♥</h2>
+    <h2>Lists</h2>
+</section>
 
-data House = House StreetName HouseNumber
 
-data Area = Area { name :: String,
-                   houses :: [House] }
+<section>
+<pre><code class="haskell">
+first (x:xs) = x
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+ rest (x:xs) = xs
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+third (x1:x2:x3:x4:xs) = x3
+</code></pre>
+</section>
+
+
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Recursion</h2>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+gcd ::  Int -> Int -> Int
+gcd a b = if b == 0
+          then a
+          else gcd b (a `mod` b)
+
+-- ... the largest positive integer 
+-- that divides the numbers without a remainder.
+</code></pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Recursion</h2>
+    <h2>♥</h2>
+    <h2>Pattern Matching</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+gcd ::  Int -> Int -> Int
+gcd a b = if b == 0
+          then a
+          else gcd b (a `mod` b)
+
+-- ... the largest positive integer 
+-- that divides the numbers without a remainder.
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+gcd ::  Int -> Int -> Int
+gcd a 0 = a
+gcd a b = gcd b (a `mod` b)
+
+
+-- ... the largest positive integer 
+-- that divides the numbers without a remainder.
+</code></pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Recursion</h2>
+    <h2>♥</h2>
+    <h2>Pattern Matching</h2>
+    <h2>♥</h2>
+    <h2>Lists</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+listLength :: [a] -> Int
+listLength list = if length list == 0
+                  then 0
+                  else 1 + listLength (tail list)
+</code>
+</pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+listLength :: [a] -> Int
+listLength []     = 0
+listLength (_:xs) = 1 + listLength xs
+
+</code>
+</pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Recursion Schemes</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+           filter :: (a -> Bool) -> [a] -> [a]
+</code>
+</pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+positivs :: [Int]
+positivs = filter (> 0) [-1, 3, -4, 9, -3]
+</code>
+</pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+           map :: (a -> b) -> [a] -> [b]
+</code>
+</pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+showThem :: [String]
+showThem = map show [1,2,3,4,5]
+</code>
+</pre>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Currying</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+add :: Int -> Int -> Int
+add a b = a + b
+
+
+
+</code>
+</pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+add :: Int -> Int -> Int
+add a b = a + b
+
+add5 :: Int -> Int
+add5 = add 5
+</code>
+</pre>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Data types</h2>        
+</section>
+
+<section>
+    <pre><code class="haskell">
+                Int
+                Integer
+                Float
+                Double
+                Char
+                String
+                Boolean
+                etc.
     </code></pre>
-        
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+
+
+
+
+
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+
+
+
+
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+  
+  data House = House StreetName HouseNumber
+
+
+
+    </code></pre>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+  
+  data House = House StreetName HouseNumber
+  
+  data Area = Area { name   :: String,
+                     houses :: [House] }
+    </code></pre>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
++-------------------------------------------+
+| data House = House StreetName HouseNumber |
++-------------------------------------------+
+  data Area = Area { name   :: String,
+                     houses :: [House] }
+    </code></pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Product types</h2>        
+</section>
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+    </code></pre>
+</section>
+
+<section>
+    <h2>Sum types</h2>        
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van Make Model
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van Make Model
+          | Tent
+    </code></pre>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Constructors</h2>        
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van Make Model
+          | Tent
+
+
+
+
+    </code></pre>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van Make Model
+          | Tent
+
+myHome :: Home
+myHome = House "Slottsplassen" "1"
+
+    </code></pre>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Pattern Matching</h2>        
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van Make Model
+          | Tent
+
+
+
+
+    </code></pre>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van Make Model
+          | Tent
+
+isStrange :: Home -> Bool
+isStrange Tent = True
+isStrange _    = False
+    </code></pre>
 </section>
 
 
