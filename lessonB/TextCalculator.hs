@@ -28,4 +28,5 @@ textSumHelp ((x, y):rest) carry = result : textSumHelp rest newCarry
                                   where originalSum = x + y + carry
                                         newCarry    = if originalSum > 9 then 1 else 0
                                         result      = if originalSum > 9 then originalSum `mod` 10 else originalSum
+textSumHelp _ 1 = [1]
 textSumHelp _ _ = []
