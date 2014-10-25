@@ -30,3 +30,6 @@ textSumHelp ((x, y):rest) carry = result : textSumHelp rest newCarry
                                         result      = if originalSum > 9 then originalSum `mod` 10 else originalSum
 textSumHelp _ 1 = [1]
 textSumHelp _ _ = []
+
+textMul :: Calculation
+textMul x y = x ++ " X " ++ y -- TODO Fix
