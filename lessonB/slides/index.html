@@ -446,7 +446,7 @@ add5 = add 5
   type StreetName = String
   type HouseNumber = String
   
-  data House = House StreetName HouseNumber
+  data Home = House StreetName HouseNumber
 
 
 
@@ -459,10 +459,10 @@ add5 = add 5
   type StreetName = String
   type HouseNumber = String
   
-  data House = House StreetName HouseNumber
+  data Home = House StreetName HouseNumber
   
   data Area = Area { name   :: String,
-                     houses :: [House] }
+                     houses :: [Home] }
     </code></pre>
 </section>
 
@@ -472,10 +472,10 @@ add5 = add 5
   type StreetName = String
   type HouseNumber = String
 +-------------------------------------------+
-| data House = House StreetName HouseNumber |
+| data Home = House StreetName HouseNumber  |
 +-------------------------------------------+
   data Area = Area { name   :: String,
-                     houses :: [House] }
+                     houses :: [Home] }
     </code></pre>
 </section>
 
@@ -484,33 +484,38 @@ add5 = add 5
 <!-- ---------------------------------------------------------------------- -->
 
 <section>
-    <h2>Product types</h2>        
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+
+  data Home = House StreetName HouseNumber
+
+
+
+      </code></pre>
 </section>
 
 <section>
     <pre><code class="haskell">
-data Home = House StreetName HouseNumber
+  type StreetName = String
+  type HouseNumber = String
+
+  data Home = House StreetName HouseNumber
+            | Van StreetName
+
+
     </code></pre>
 </section>
 
 <section>
-    <h2>Sum types</h2>        
-</section>
-
-
-<section>
     <pre><code class="haskell">
-data Home = House StreetName HouseNumber
-          | Van Make Model
+  type StreetName = String
+  type HouseNumber = String
 
-    </code></pre>
-</section>
+  data Home = House StreetName HouseNumber
+            | Van StreetName
+            | Tent
 
-<section>
-    <pre><code class="haskell">
-data Home = House StreetName HouseNumber
-          | Van Make Model
-          | Tent
     </code></pre>
 </section>
 
@@ -524,7 +529,7 @@ data Home = House StreetName HouseNumber
 <section>
     <pre><code class="haskell">
 data Home = House StreetName HouseNumber
-          | Van Make Model
+          | Van StreetName
           | Tent
 
 
@@ -537,7 +542,7 @@ data Home = House StreetName HouseNumber
 <section>
     <pre><code class="haskell">
 data Home = House StreetName HouseNumber
-          | Van Make Model
+          | Van StreetName
           | Tent
 
 myHome :: Home
@@ -556,7 +561,7 @@ myHome = House "Slottsplassen" "1"
 <section>
     <pre><code class="haskell">
 data Home = House StreetName HouseNumber
-          | Van Make Model
+          | Van StreetName
           | Tent
 
 
@@ -569,7 +574,7 @@ data Home = House StreetName HouseNumber
 <section>
     <pre><code class="haskell">
 data Home = House StreetName HouseNumber
-          | Van Make Model
+          | Van StreetName
           | Tent
 
 isStrange :: Home -> Bool
@@ -577,6 +582,112 @@ isStrange Tent = True
 isStrange _    = False
     </code></pre>
 </section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2><code>case</code></h2>
+    <h4>(Pattern Matching)</h4>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+isStrange :: Home -> Bool
+isStrange Tent = True
+isStrange _    = False
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+isStrange :: Home -> Bool
+isStrange home = case home of
+                 Tent -> True
+                 _    -> False
+    </code></pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Type Variables</h2>
+    <h3>(and recursive types)</h3>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data List a = Elem a (List a)
+            | End 
+            deriving (Show)
+
+
+
+
+
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+data List a = Elem a (List a)
+            | End 
+            deriving (Show)
+
+listOfInts :: List Integer
+listOfInts = Elem 1 (Elem 2 (Elem 3 End))
+
+
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+data List a = Elem a (List a)
+            | End 
+            deriving (Show)
+
+listOfInts :: List Integer
+listOfInts = Elem 1 (Elem 2 (Elem 3 End))
+
+listOfStrings :: List String
+listOfStrings = Elem "1" (Elem "2" (Elem "3" End))
+    </code></pre>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Exercises!</h2>
+    <h3>hands-on-haskell.com</h3>
+</section>
+
+
+
+
 
 
 			</div>
