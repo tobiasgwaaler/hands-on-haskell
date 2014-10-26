@@ -24,9 +24,6 @@ align xs ys = zip longer shorterFilled
           shorterFilled     = replicate diff 0 ++ shorter
           diff              = abs $ length longer - length shorter
 
-calculate :: (DigitList -> DigitList -> String) -> DigitList -> DigitList -> String
-calculate operator xs ys = operator xs ys
-
 textSum :: Calculation
 textSum x y = digitListToString $ reverse $ textSumHelp alignedAndReversed 0
               where alignedAndReversed = reverse $ align (stringNumberToDigitList x) (stringNumberToDigitList y)
