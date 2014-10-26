@@ -49,7 +49,7 @@ data ScheduledJob = ScheduledJob {
     threads :: Int,
     priority :: Int,
     timeoutMinutes :: Int
-    } deriving (Show)
+    } deriving (Show, Eq)
 
 backupDB :: ScheduledJob
 backupDB = ScheduledJob {
