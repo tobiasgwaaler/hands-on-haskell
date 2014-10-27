@@ -1,12 +1,14 @@
 module Bx_UsingDataTypes where
 
 {-
-    Full disclaimer, this exercises is bascially *stolen* from a brilliant
+    Full disclaimer, this exercise is basically *stolen* from a brilliant
     Haskell course, CIS194 at University of Pennsylvania 
     (http://www.seas.upenn.edu/~cis194/).
 
     If you want to learn more Haskell on your own the course material is
     online and waiting for you :)
+
+    =======================================================================
 
 
     Logging is something most applications use. Among other things logs can 
@@ -21,7 +23,7 @@ module Bx_UsingDataTypes where
         <YDM,9J_W?OH6*<
         16095 FATAL ultricies.adipiscing@metusurnaconvallis.net requested public.html
         Ebge-AHNsK3fBwR
-        33019 DEBUG Quisque.varius@atpretium.com logged out
+        33019 INFO Quisque.varius@atpretium.com logged out
         25760 FATAL at@fermentumfermentumarcu.org logged out
 
 -}
@@ -39,7 +41,7 @@ data Level = Debug
            deriving (Show, Eq)
 
 data Log = Log Timestamp Level Message
-           deriving (Show)
+           deriving (Show, Eq)
 
 
 {-
@@ -59,6 +61,7 @@ data Log = Log Timestamp Level Message
 -}
 data MaybeLogLine = LogLine Log
                   | Error
+                  deriving (Show, Eq)
 
 parseLine :: String -> MaybeLogLine
 parseLine line = undefined
@@ -103,4 +106,4 @@ importantOnly = undefined
     ascending order (oldest first)
 -}
 sorted :: [Log] -> [Log]
-
+sorted = undefined
