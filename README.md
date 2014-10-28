@@ -4,8 +4,7 @@ This repo contains exercises for learning Haskell, with tests for verifying the 
 ## Installation & Usage
 * Install [Haskell platform](https://www.haskell.org/platform/) (or [GHC](http://www.haskell.org/ghc/download) and [Cabal](http://www.haskell.org/cabal/download.html) if you're adventurous)
 * Clone this repo: `git clone https://github.com/tobiasgwaaler/hands-on-haskell.git && cd hands-on-haskell`
-* `cabal install` to install dependencies
-* `cabal run` to run the tests
+* `cabal run <lesson>` to run the tests, where \<lesson\> is `a`, `b` and so on. Example: `cabal run a` will run the tests for lesson A.
 
 ### Resources
 * [Osλo Haskell](http://www.meetup.com/Oslo-Haskell/)
