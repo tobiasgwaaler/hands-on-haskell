@@ -676,6 +676,12 @@ add5 = add 5
 
 
     </code></pre>
+    <aside class="notes">
+<ul>
+  <li>Alternatives</li>
+  <li>Van and House are constructors</li>
+</ul>
+</aside>     
 </section>
 
 <section>
@@ -688,12 +694,22 @@ add5 = add 5
             | Tent
 
     </code></pre>
+    <aside class="notes">
+<ul>
+  <li>Tent doesn't have any fields</li>
+</ul>
+</aside>     
 </section>
 
 <!-- ---------------------------------------------------------------------- -->
 
 <section>
     <h2>Constructors</h2>        
+<aside class="notes">
+<ul>
+  <li>Values are created with constructors</li>
+</ul>
+</aside>   
 </section>
 
 
@@ -726,6 +742,11 @@ myHome = House "Slottsplassen" "1"
 
 <section>
     <h2>Pattern Matching</h2>        
+<aside class="notes">
+<ul>
+  <li>Constructors are what we pattern match on</li>
+</ul>
+</aside>   
 </section>
 
 
@@ -752,6 +773,11 @@ isStrange :: Home -> Bool
 isStrange Tent = True
 isStrange _    = False
     </code></pre>
+<aside class="notes">
+<ul>
+  <li>Pattern Matching example</li>
+</ul>
+</aside>   
 </section>
 
 <!-- ---------------------------------------------------------------------- -->
@@ -795,6 +821,11 @@ isStrange home = case home of
 <section>
     <h2>Type Variables</h2>
     <h3>(and recursive types)</h3>
+<aside class="notes">
+<ul>
+  <li>like "generics"</li>
+</ul>
+</aside>   
 </section>
 
 
@@ -810,6 +841,11 @@ data List a = Elem a (List a)
 
 
     </code></pre>
+<aside class="notes">
+<ul>
+  <li><code>a</code> can be anything!</li>
+</ul>
+</aside>  
 </section>
 
 <section>
@@ -838,6 +874,11 @@ listOfInts = Elem 1 (Elem 2 (Elem 3 End))
 listOfStrings :: List String
 listOfStrings = Elem "1" (Elem "2" (Elem "3" End))
     </code></pre>
+<aside class="notes">
+<ul>
+  <li>Can be used with Integer, String or anything else</li>
+</ul>
+</aside>  
 </section>
 
 
