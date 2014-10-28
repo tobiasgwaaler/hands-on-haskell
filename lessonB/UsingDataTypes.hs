@@ -1,4 +1,4 @@
-module Bx_UsingDataTypes where
+module UsingDataTypes where
 
 {-
     Full disclaimer, this exercise is basically *stolen* from a brilliant

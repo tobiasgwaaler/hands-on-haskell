@@ -1,4 +1,4 @@
-module Bx_UpdateRecords where
+module UpdateRecords where
 
 {-
     Sometimes you want to change some fields of a record, but keep the

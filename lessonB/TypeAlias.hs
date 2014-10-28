@@ -1,4 +1,4 @@
-module Bx_TypeAlias where
+module TypeAlias where
 
 {-
     With type aliases you can give any type an additional name.
