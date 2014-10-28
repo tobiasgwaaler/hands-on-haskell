@@ -119,15 +119,15 @@ main = hspec $ do
         it "make sure `safeHead` returns `Nothing` for an empty list" $ do
             Maybe.safeHead ([] :: [Int]) `shouldBe` Nothing
 
-    describe "Maybe.f I" $ do
+    describe "Maybe.f" $ do
         it "make sure the equation returns the correct result" $ do
             Maybe.f 4 0 `shouldBe` Nothing
 
-    describe "Maybe.f II" $ do
+    describe "Maybe.f" $ do
         it "make sure the equation returns the correct result" $ do
             Maybe.f 4 4 `shouldBe` Nothing
 
-    describe "Maybe.f I" $ do
+    describe "Maybe.f" $ do
         it "make sure the equation returns the correct result" $ do
             Maybe.f 4 2 `shouldBe` Just 1
 
