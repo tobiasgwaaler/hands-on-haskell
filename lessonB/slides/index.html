@@ -62,6 +62,16 @@ welcomeMessage = "Welcome to the future"
 
 
 </code></pre>
+
+<aside class="notes">
+<ul>
+  <li>Defining a function</li>
+  <li>Minimal syntax.</li>
+  <li>no return statement</li>
+  <li>(technically this is not a function, because it doesn't take input)</li>
+</ul>
+</aside>
+
 </section>
 
 <section>
@@ -75,6 +85,14 @@ welcomeMessage name = "Welcome, " ++ name
 
 
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>Let's add some input</li>
+  <li>one parameter</li>
+  <li>Using the string concat operator</li>
+</ul>
+</aside>
+
 </section>
 
 <section>
@@ -88,6 +106,13 @@ msg = welcomeMessage "Tobias"
 
 
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>Calling the function</li>
+  <li>Passing an argument</li>
+</ul>
+</aside>
+
 </section>
 
 <section>
@@ -101,7 +126,16 @@ msg = welcomeMessage "Tobias"
 
 main = putStrLn msg
 </code></pre>
+<aside class="notes">
+<ul>
+  <li><code>main</code> is the entrypoint</li>
+  <li><code>putStrLn</code> is in the Prelude</li>
+</ul>
+</aside>
 </section>
+
+
+
 
 <section>
 <pre><code class="haskell">
@@ -114,27 +148,44 @@ msg = welcomeMessage "Tobias"
 main :: IO ()
 main = putStrLn msg
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>Type inference is nice</li>
+  <li>We should add type signatures</li>
+  <li>Todays topic!</li>
+</ul>
+</aside>
 </section>
 
 
 <!-- ---------------------------------------------------------------------- -->
 <section>
     <h2>Lists</h2>
+<aside class="notes">
+<ul>
+  <li>One of many data structures</li>
+  <li>Great when learning fp (recursion, pattern matching etc.)</li>
+</ul>
+</aside>
+
 </section>
 
-
-<section>
-<pre><code class="haskell">
-
-   numbers = [0,1,2,3,4,5,6,7,8,9]
-</code></pre>
-</section>
 
 <section>
 <pre><code class="haskell">
    numbers :: [Int]
    numbers = [0,1,2,3,4,5,6,7,8,9]
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>a list of integers</li>
+</ul>
+</aside>
+</section>
+
+
+<section>
+  <h2>Our list toolbox</h2>
 </section>
 
 <section>
@@ -201,6 +252,11 @@ openDoor secret = if secret == "Open Sesame"
                   then "Open up!" 
                   else "Sorry"
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>if-then-else can often be rewritten with pattern matching</li>
+</ul>
+</aside>
 </section>
 
 <section>
@@ -210,6 +266,12 @@ openDoor "Open Sesame" = "Open up!"
 openDoor _             = "Sorry"
 
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>the order is important</li>
+  <li>wildcard matches everything</li>
+</ul>
+</aside>
 </section>
 
 
@@ -227,6 +289,12 @@ openDoor _             = "Sorry"
 <pre><code class="haskell">
 first (x:xs) = x
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>using the cons operator</li>
+</ul>
+</aside>
+
 </section>
 
 
@@ -240,6 +308,12 @@ first (x:xs) = x
 <pre><code class="haskell">
 third (x1:x2:x3:x4:xs) = x3
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>will only match lists with at least 4 elements</li>
+</ul>
+</aside>
+
 </section>
 
 
@@ -262,6 +336,11 @@ gcd a b = if b == 0
 -- ... the largest positive integer 
 -- that divides the numbers without a remainder.
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>stupid function, just an example of recursion</li>
+</ul>
+</aside>
 </section>
 
 
@@ -282,19 +361,26 @@ gcd a b = if b == 0
 
 -- ... the largest positive integer 
 -- that divides the numbers without a remainder.
+
 </code></pre>
+<aside class="notes">
+<ul>
+  <li>Let's rewrite it using pattern matching</li>
+</ul>
+</aside>
 </section>
 
 
 <section>
 <pre><code class="haskell">
 gcd ::  Int -> Int -> Int
+gcd a b = if b == 0
+          then a
+          else gcd b (a `mod` b)
+
+gcd ::  Int -> Int -> Int
 gcd a 0 = a
 gcd a b = gcd b (a `mod` b)
-
-
--- ... the largest positive integer 
--- that divides the numbers without a remainder.
 </code></pre>
 </section>
 
@@ -315,16 +401,31 @@ listLength :: [a] -> Int
 listLength list = if length list == 0
                   then 0
                   else 1 + listLength (tail list)
+
+
+
+
 </code>
 </pre>
+<aside class="notes">
+<ul>
+  <li>Computes the length of the list</li>
+  <li>Using recursion</li>
+  <li>if-then-else -> pattern matching</li>
+</ul>
+</aside>
 </section>
 
 <section>
 <pre><code class="haskell">
 listLength :: [a] -> Int
+listLength list = if length list == 0
+                  then 0
+                  else 1 + listLength (tail list)
+
+listLength :: [a] -> Int
 listLength []     = 0
 listLength (_:xs) = 1 + listLength xs
-
 </code>
 </pre>
 </section>
@@ -335,6 +436,12 @@ listLength (_:xs) = 1 + listLength xs
 
 <section>
     <h2>Recursion Schemes</h2>
+<aside class="notes">
+<ul>
+  <li>This gets old ...</li>
+  <li>So let's abstract away the cruft</li>
+</ul>
+</aside>
 </section>
 
 <section>
@@ -343,6 +450,11 @@ listLength (_:xs) = 1 + listLength xs
            filter :: (a -> Bool) -> [a] -> [a]
 </code>
 </pre>
+<aside class="notes">
+<ul>
+  <li>Keeps the elements that satisfies the predicate</li>
+</ul>
+</aside>
 </section>
 
 <section>
@@ -351,6 +463,11 @@ positivs :: [Int]
 positivs = filter (> 0) [-1, 3, -4, 9, -3]
 </code>
 </pre>
+<aside class="notes">
+<ul>
+  <li>Using filter to keep positive numbers only</li>
+</ul>
+</aside>
 </section>
 
 <section>
@@ -359,6 +476,11 @@ positivs = filter (> 0) [-1, 3, -4, 9, -3]
            map :: (a -> b) -> [a] -> [b]
 </code>
 </pre>
+<aside class="notes">
+<ul>
+  <li>apply a function to each element</li>
+</ul>
+</aside>
 </section>
 
 <section>
@@ -369,11 +491,28 @@ showThem = map show [1,2,3,4,5]
 </pre>
 </section>
 
+<section>
+  <h3>... you get the picture</h3>
+</section>
+
 <!-- ---------------------------------------------------------------------- -->
 
 <section>
     <h2>Currying</h2>
 </section>
+
+
+<section>
+    <h3><code>Why -> All -> The -> Arrows</code></h3>
+<aside class="notes">
+<ul>
+  <li>Partial application</li>
+  <li>Can be confusing</li>
+</ul>
+</aside>
+</section>
+</section>
+
 
 <section>
 <pre><code class="haskell">
@@ -384,6 +523,11 @@ add a b = a + b
 
 </code>
 </pre>
+<aside class="notes">
+<ul>
+  <li>Example</li>
+</ul>
+</aside>
 </section>
 
 <section>
@@ -395,12 +539,22 @@ add5 :: Int -> Int
 add5 = add 5
 </code>
 </pre>
+<aside class="notes">
+<ul>
+  <li>"Fixes" the 'a'</li>
+</ul>
+</aside>
 </section>
 
 <!-- ---------------------------------------------------------------------- -->
 
 <section>
-    <h2>Data types</h2>        
+    <h2>Data types</h2>   
+<aside class="notes">
+<ul>
+  <li>New stuff!</li>
+</ul>
+</aside>     
 </section>
 
 <section>
@@ -414,6 +568,12 @@ add5 = add 5
                 Boolean
                 etc.
     </code></pre>
+<aside class="notes">
+<ul>
+  <li>Common data types you've seen</li>
+</ul>
+</aside>     
+
 </section>
 
 
@@ -427,18 +587,14 @@ add5 = add 5
 
 
     </code></pre>
-</section>
+<aside class="notes">
+<ul>
+  <li>First up: type aliases</li>
+  <li>It's still a String!</li>
+  <li>Improves readability, that's all</li>
+</ul>
+</aside>     
 
-<section>
-    <pre><code class="haskell">
-  type StreetName = String
-  type HouseNumber = String
-
-
-
-
-
-    </code></pre>
 </section>
 
 <section>
@@ -451,6 +607,13 @@ add5 = add 5
 
 
     </code></pre>
+<aside class="notes">
+<ul>
+  <li>This is the real deal!</li>
+  <li>House is a constructor</li>
+  <li>StreetName and HouseNumber are fields</li>
+</ul>
+</aside>   
 </section>
 
 
@@ -464,6 +627,14 @@ add5 = add 5
   data Area = Area { name   :: String,
                      houses :: [Home] }
     </code></pre>
+<aside class="notes">
+<ul>
+  <li>Records</li>
+  <li>Will be desugared to <code>data</code></li>
+  <li>Gives us functions for accessing the fields</li>
+</ul>
+</aside>     
+
 </section>
 
 
