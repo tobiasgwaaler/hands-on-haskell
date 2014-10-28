@@ -20,6 +20,7 @@ import qualified Maybe
 import Maybe (Maybe (..))
 import Data.List (foldl', nub, sort)
 import qualified Test.QuickCheck as QC
+import qualified TextCalculator as TC
 import Test.Hspec
 
 main = hspec $ do
@@ -130,7 +131,38 @@ main = hspec $ do
     describe "Maybe.f" $ do
         it "make sure the equation returns the correct result" $ do
             Maybe.f 4 2 `shouldBe` Just 1
+    describe "TextCalculator.textSum" $ do
+        it "sums numbers with no carrying needed" $ do
+            TC.textSum "123" "456" `shouldBe` "579"
 
+    describe "TextCalculator.textSum" $ do
+        it "sums numbers where carrying is needed" $ do
+            TC.textSum "129" "456" `shouldBe` "585"
+
+    describe "TextCalculator.textSum" $ do
+        it "sums numbers where carrying is needed" $ do
+            TC.textSum "48" "960" `shouldBe` "1008"
+
+    describe "TextCalculator.textSum" $ do
+        it "sums random (positive) numbers" $ do
+            QC.quickCheck $ QC.forAll positivePairs (\(x, y) -> TC.textSum (show x) (show y) == (show (x + y)))
+
+    describe "TextCalculator.textSub" $ do
+        it "subtract simple numbers" $ do
+            TC.textSub "5" "3" `shouldBe` "2"
+
+    describe "TextCalculator.textSub" $ do
+        it "subtract harder numbers" $ do
+            TC.textSub "10" "3" `shouldBe` "7"
+
+    describe "TextCalculator.textMul" $ do
+        it "multiplicates 48 with 10" $ do
+            TC.textMul "48" "10" `shouldBe` "480"
+
+    describe "TextCalculator.textMul" $ do
+        it "multiplicates random (positive) numbers" $ do
+            QC.quickCheck $ QC.forAll positivePairs (\(x, y) -> TC.textMul (show x) (show y) == (show (x * y)))
+    
 
 correctBackupDBWeekly :: UR.ScheduledJob
 correctBackupDBWeekly = UR.ScheduledJob {
@@ -143,4 +175,10 @@ correctBackupDBWeekly = UR.ScheduledJob {
     UR.threads = 1,
     UR.timeoutMinutes = 60
     }
+
+positivePairs :: QC.Gen (Integer, Integer)
+positivePairs = 
+    do x <- QC.arbitrary
+       y <- QC.arbitrary
+       return (abs x, abs y)
 
