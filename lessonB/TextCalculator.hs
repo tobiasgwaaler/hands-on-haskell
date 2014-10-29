@@ -54,7 +54,12 @@ textSumHelp _ _ = []
     Do the same with subtraction.
 -}
 textSub :: Calculation
-textSub x y = calculationNotYetImplemented x y "-" -- TODO Replace with your implementation
+textSub x y = digitListToString $ reverse $ textSubHelp alignedAndReversed
+              where alignedAndReversed = reverse $ zip (stringNumberToDigitList x) (stringNumberToDigitList y)
+
+textSubHelp ((x, y):rest) = result : textSubHelp rest
+                            where result = x - y
+textSubHelp _ = []
 
 {-
     Exercise 3
