@@ -14,8 +14,8 @@ module Main where
 import qualified UpdateRecords     as UR
 import UsingDataTypes   
 import Prelude hiding (Maybe (..))
-import qualified BST
-import BST (BST (..))
+import qualified BinTree
+import BinTree (BinTree (..))
 import qualified Maybe
 import Maybe (Maybe (..))
 import Data.List (foldl', nub, sort)
@@ -75,23 +75,23 @@ main = hspec $ do
             `shouldBe`
             [Log 0 Warn "", Log 2 Debug "", Log 3 Debug "", Log 9 Info "", Log 90 Info "", Log 1453 Fatal ""]
 
-    describe "BST.insert" $ do
+    describe "BinTree.insert" $ do
         it "insert 1 into an empty tree" $ do
-            BST.insert 1 Nil `shouldBe` Node 1 Nil Nil
+            BinTree.insert 1 Nil `shouldBe` Node 1 Nil Nil
 
-    describe "BST.insert" $ do
+    describe "BinTree.insert" $ do
         it "insert 2 1 3 4 into an empty tree" $ do
-            BST.insert 4 (BST.insert 1 (BST.insert 3 (BST.insert 2 Nil)))
+            BinTree.insert 4 (BinTree.insert 1 (BinTree.insert 3 (BinTree.insert 2 Nil)))
               `shouldBe` Node 2 (Node 1 Nil Nil) (Node 3 Nil (Node 4 Nil Nil))
 
-    describe "BST.insert" $ do
+    describe "BinTree.insert" $ do
         it "make sure duplicates are ignored" $ do
-            BST.insert 3 (BST.insert 1 (BST.insert 3 (BST.insert 2 Nil)))
+            BinTree.insert 3 (BinTree.insert 1 (BinTree.insert 3 (BinTree.insert 2 Nil)))
               `shouldBe` Node 2 (Node 1 Nil Nil) (Node 3 Nil Nil)
 
-    describe "BST.inorder" $ do
+    describe "BinTree.inorder" $ do
         it "make sure an in-order traversal ouputs a sorted list" $ do
-            let propSorted xs = BST.inorder (foldl' (flip BST.insert) Nil xs) == (sort . nub) xs
+            let propSorted xs = BinTree.inorder (foldl' (flip BinTree.insert) Nil xs) == (sort . nub) xs
              in QC.quickCheck propSorted
 
     describe "Maybe.safeDiv" $ do
