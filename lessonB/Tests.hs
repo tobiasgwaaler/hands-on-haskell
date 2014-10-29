@@ -12,7 +12,7 @@ module Main where
 -}
 
 import qualified UpdateRecords     as UR
-import UsingDataTypes   
+import UsingDataTypes
 import Prelude hiding (Maybe (..))
 import qualified BinTree
 import BinTree (BinTree (..))
@@ -27,53 +27,6 @@ main = hspec $ do
     describe "UpdateRecords.backupDBWeekly" $ do
         it "updates the record" $ do
             UR.backupDBWeekly `shouldBe` correctBackupDBWeekly
-
-    describe "UsingDataTypes.parseLine" $ do
-        let input1 = "21527 FATAL augue@tristiquepellentesque.org logged out"
-        it input1 $ do
-            parseLine input1
-            `shouldBe`
-            LogLine (Log 21527 Fatal "augue@tristiquepellentesque.org logged out")
-
-        let input2 = "19440 INFO Nam.ac.nulla@consequat.net requested api.json"
-        it input2 $ do
-            parseLine input2
-            `shouldBe`
-            LogLine (Log 19440 Info "Nam.ac.nulla@consequat.net requested api.json")    
-
-        let garbage = "l90sm3s()u0dsada¨^s+sd"
-        it ("should handle garbage \"" ++ garbage ++ "\"") $ do
-            parseLine garbage
-            `shouldBe`
-            Error
-
-    describe "UsingDataTypes.validLogLines" $ do
-        it "remove garbage from log" $ do
-            validLogLines [Error, Error, LogLine (Log 0 Info "a"), Error, LogLine (Log 1 Debug "a")]
-            `shouldBe`
-            [Log 0 Info "a", Log 1 Debug "a"]
-
-    describe "UsingDataTypes.parse" $ do
-        it "parse log" $ do
-            let input = "21527 FATAL augue@tristiquepellentesque.org logged out\n" ++
-                        "19440 INFO Nam.ac.nulla@consequat.net requested api.json\n" ++
-                        "l90sm3s()u0dsada¨^s+sd"
-            parse input 
-            `shouldBe` 
-            [Log 21527 Fatal "augue@tristiquepellentesque.org logged out",
-             Log 19440 Info "Nam.ac.nulla@consequat.net requested api.json"]
-
-    describe "UsingDataTypes.importantOnly" $ do
-        it "should remove Debug and Info log lines" $ do
-            importantOnly [Log 0 Info "", Log 0 Debug "", Log 0 Warn "", Log 0 Fatal "", Log 0 Info "", Log 0 Debug ""]
-            `shouldBe` 
-            [Log 0 Warn "", Log 0 Fatal ""]
-
-    describe "UsingDataTypes.sorted" $ do
-        it "should sort lines by timestamp, in ascending order" $ do
-            sorted [Log 9 Info "", Log 3 Debug "", Log 0 Warn "", Log 1453 Fatal "", Log 90 Info "", Log 2 Debug ""]
-            `shouldBe`
-            [Log 0 Warn "", Log 2 Debug "", Log 3 Debug "", Log 9 Info "", Log 90 Info "", Log 1453 Fatal ""]
 
     describe "BinTree.insert" $ do
         it "insert 1 into an empty tree" $ do
@@ -93,6 +46,53 @@ main = hspec $ do
         it "make sure an in-order traversal ouputs a sorted list" $ do
             let propSorted xs = BinTree.inorder (foldl' (flip BinTree.insert) Nil xs) == (sort . nub) xs
              in QC.quickCheck propSorted
+
+    describe "UsingDataTypes.parseLine" $ do
+        let input1 = "21527 FATAL augue@tristiquepellentesque.org logged out"
+        it input1 $ do
+            parseLine input1
+            `shouldBe`
+            LogLine (Log 21527 Fatal "augue@tristiquepellentesque.org logged out")
+
+        let input2 = "19440 INFO Nam.ac.nulla@consequat.net requested api.json"
+        it input2 $ do
+            parseLine input2
+            `shouldBe`
+            LogLine (Log 19440 Info "Nam.ac.nulla@consequat.net requested api.json")
+
+        let garbage = "l90sm3s()u0dsada¨^s+sd"
+        it ("should handle garbage \"" ++ garbage ++ "\"") $ do
+            parseLine garbage
+            `shouldBe`
+            Error
+
+    describe "UsingDataTypes.validLogLines" $ do
+        it "remove garbage from log" $ do
+            validLogLines [Error, Error, LogLine (Log 0 Info "a"), Error, LogLine (Log 1 Debug "a")]
+            `shouldBe`
+            [Log 0 Info "a", Log 1 Debug "a"]
+
+    describe "UsingDataTypes.parse" $ do
+        it "parse log" $ do
+            let input = "21527 FATAL augue@tristiquepellentesque.org logged out\n" ++
+                        "19440 INFO Nam.ac.nulla@consequat.net requested api.json\n" ++
+                        "l90sm3s()u0dsada¨^s+sd"
+            parse input
+            `shouldBe`
+            [Log 21527 Fatal "augue@tristiquepellentesque.org logged out",
+             Log 19440 Info "Nam.ac.nulla@consequat.net requested api.json"]
+
+    describe "UsingDataTypes.importantOnly" $ do
+        it "should remove Debug and Info log lines" $ do
+            importantOnly [Log 0 Info "", Log 0 Debug "", Log 0 Warn "", Log 0 Fatal "", Log 0 Info "", Log 0 Debug ""]
+            `shouldBe`
+            [Log 0 Warn "", Log 0 Fatal ""]
+
+    describe "UsingDataTypes.sorted" $ do
+        it "should sort lines by timestamp, in ascending order" $ do
+            sorted [Log 9 Info "", Log 3 Debug "", Log 0 Warn "", Log 1453 Fatal "", Log 90 Info "", Log 2 Debug ""]
+            `shouldBe`
+            [Log 0 Warn "", Log 2 Debug "", Log 3 Debug "", Log 9 Info "", Log 90 Info "", Log 1453 Fatal ""]
 
     describe "Maybe.safeDiv" $ do
         it "make sure divide by non-zero denominator returns the same result as `div`" $ do
@@ -162,7 +162,7 @@ main = hspec $ do
     describe "TextCalculator.textMul" $ do
         it "multiplicates random (positive) numbers" $ do
             QC.quickCheck $ QC.forAll positivePairs (\(x, y) -> TC.textMul (show x) (show y) == (show (x * y)))
-    
+
 
 correctBackupDBWeekly :: UR.ScheduledJob
 correctBackupDBWeekly = UR.ScheduledJob {
@@ -177,7 +177,7 @@ correctBackupDBWeekly = UR.ScheduledJob {
     }
 
 positivePairs :: QC.Gen (Integer, Integer)
-positivePairs = 
+positivePairs =
     do x <- QC.arbitrary
        y <- QC.arbitrary
        return (abs x, abs y)
