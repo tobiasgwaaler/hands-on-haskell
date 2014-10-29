@@ -76,14 +76,14 @@ insert n Nil = _YOUR_CODE_HERE
 
 insert n _YOUR_CODE_HERE {- code for matching a non-empty tree -} = _YOUR_CODE_HERE
 
-{- Next, we're goint to create a function that does an in-order traversal of a
- binary tree. An in-order travelsal means first traversing the left subtree
- (smaller values), then a node's own value, and last its right subtree (larger
- values). The result – if `insert` is correct – should be a sorted list.
-Remembmer, to concatenate two lists, you can use the function (++):
+{-
+    Next, we're goint to create a function that does an in-order traversal of a
+    binary tree. An in-order travelsal means first traversing the left subtree
+    (smaller values), then a node's own value, and last its right subtree (larger
+    values). The result – if `insert` is correct – should be a sorted list.
+    Remembmer, to concatenate two lists, you can use the function (++):
 
-[1,2,3] ++ [4] ++ [5,6] = [1,2,3,4,5,6]
-
+      [1,2,3] ++ [4] ++ [5,6] = [1,2,3,4,5,6]
 -}
 
 inorder :: IntBST -> [Int]
