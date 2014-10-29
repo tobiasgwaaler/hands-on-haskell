@@ -97,6 +97,9 @@ inorder (Node value left right) = _YOUR_CODE_HERE
     generalize it for any type `a`? Can our data type and the functions really
     work for *any* type?
 
+    Change `BinTree`, `insert` and `inorder` so that they are no longer
+    Int-specific.
+
     Can you think of reasons why this naïve BinTree might not be that great in
     practice? :)
 -}
