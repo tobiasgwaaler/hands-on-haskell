@@ -90,4 +90,15 @@ inorder :: IntBST -> [Int]
 inorder Nil = _YOUR_CODE_HERE -- What's the only value we can return here?
 inorder (Node value left right) = _YOUR_CODE_HERE
 
+{-
+    Bonus questions:
+
+    Our binary search tree is only for `Int`s – what would it take to
+    generalize it for any type `a`? Can our data type and the functions really
+    work for *any* type?
+
+    Can you think of reasons why this naïve BST might not be that great in
+    practice? :)
+-}
+
 _YOUR_CODE_HERE = undefined -- ignore me
