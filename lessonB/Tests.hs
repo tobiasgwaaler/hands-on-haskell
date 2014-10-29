@@ -1,3 +1,5 @@
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Main where
 
 {-
@@ -44,7 +46,7 @@ main = hspec $ do
 
     describe "BinTree.inorder" $ do
         it "make sure an in-order traversal ouputs a sorted list" $ do
-            let propSorted xs = BinTree.inorder (foldl' (flip BinTree.insert) Nil xs) == (sort . nub) xs
+            let propSorted (xs :: [Int]) = BinTree.inorder (foldl' (flip BinTree.insert) Nil xs) == (sort . nub) xs
              in QC.quickCheck propSorted
 
     describe "UsingDataTypes.parseLine" $ do
