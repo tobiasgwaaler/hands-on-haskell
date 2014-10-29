@@ -1,4 +1,4 @@
-module IntBST where
+module BST where
 
 {-
     Let's put our new knowledge of algebraic data types into practice.
@@ -9,9 +9,9 @@ module IntBST where
     First, let's define the data structure for a binary tree of Ints:
 -}
 
-data IntBST = Nil                     -- ← An empty tree
-            | Node Int IntBST IntBST  -- ← A node with an Int value and two
-            deriving (Eq, Show)       --   children that are also IntBSTs
+data BST = Nil               -- ← An empty tree
+         | Node Int BST BST  -- ← A node with an Int value and two
+         deriving (Eq, Show) --   children, that are also BSTs
 
 {-
     To use our binary tree as a binary *search* tree we have to create
@@ -63,7 +63,7 @@ data IntBST = Nil                     -- ← An empty tree
     following:
 -}
 
-insert :: Int -> IntBST -> IntBST
+insert :: Int -> BST -> BST
 
 {- The first case is inserting into an empty tree: -}
 
@@ -71,7 +71,7 @@ insert n Nil = _YOUR_CODE_HERE
 
 {- ... the next case is inserting into a non-empty tree (i.e. a `Node`). We
  need to find out whether to insert into the left or the right subtree. and
- then our problem has been reduced to inserting a value into an IntBST again.
+ then our problem has been reduced to inserting a value into an BST again.
  We (soon) have a function to do that, don't we..? :) -}
 
 insert n _YOUR_CODE_HERE {- code for matching a non-empty tree -} = _YOUR_CODE_HERE
@@ -86,7 +86,7 @@ insert n _YOUR_CODE_HERE {- code for matching a non-empty tree -} = _YOUR_CODE_H
       [1,2,3] ++ [4] ++ [5,6] = [1,2,3,4,5,6]
 -}
 
-inorder :: IntBST -> [Int]
+inorder :: BST -> [Int]
 inorder Nil = _YOUR_CODE_HERE -- What's the only value we can return here?
 inorder (Node value left right) = _YOUR_CODE_HERE
 
