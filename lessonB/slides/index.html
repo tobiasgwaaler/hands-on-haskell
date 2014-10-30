@@ -398,7 +398,7 @@ gcd a b = gcd b (a `mod` b)
 <section>
 <pre><code class="haskell">
 listLength :: [a] -> Int
-listLength list = if length list == 0
+listLength list = if list == []
                   then 0
                   else 1 + listLength (tail list)
 
