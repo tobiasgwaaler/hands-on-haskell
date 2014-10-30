@@ -56,4 +56,29 @@ safeHead _Match_Non_empty_List_Here = _YOUR_CODE_HERE
 f :: Int -> Int -> Maybe Int
 f a b = _YOUR_CODE_HERE
 
+{-
+    Concluding remarks:
+
+    What if you had even more sub calculations that could fail – wouldn't we
+    end up with a horrible “staircase” of `case`s, like this?
+
+    case calcA of
+         Nothing -> Nothing
+         Just a -> case calcB a of
+                        Nothing -> Nothing
+                        Just b -> case calcC c of
+                                       Nothing -> Nothing
+                                       Just c -> ...
+
+    Well, yes. But fear not! You will later learn about how `Maybe` is a
+    “monad” in you Haskell adventures. This will allow you to use much nicer
+    syntax and you will not be required to do this boring “threading” of
+    results.
+
+    “Learn you a Haskell” has a chapter which introduces monads by show the
+    Maybe monad:
+
+      http://learnyouahaskell.com/a-fistful-of-monads
+-}
+
 _YOUR_CODE_HERE = undefined -- ignore me

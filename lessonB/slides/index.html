@@ -398,7 +398,7 @@ gcd a b = gcd b (a `mod` b)
 <section>
 <pre><code class="haskell">
 listLength :: [a] -> Int
-listLength list = if length list == 0
+listLength list = if list == []
                   then 0
                   else 1 + listLength (tail list)
 
@@ -459,8 +459,8 @@ listLength (_:xs) = 1 + listLength xs
 
 <section>
 <pre><code class="haskell">
-positivs :: [Int]
-positivs = filter (> 0) [-1, 3, -4, 9, -3]
+positives :: [Int]
+positives = filter (> 0) [-1, 3, -4, 9, -3]
 </code>
 </pre>
 <aside class="notes">

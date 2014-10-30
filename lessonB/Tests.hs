@@ -1,3 +1,5 @@
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Main where
 
 {-
@@ -12,10 +14,10 @@ module Main where
 -}
 
 import qualified UpdateRecords     as UR
-import UsingDataTypes   
+import UsingDataTypes
 import Prelude hiding (Maybe (..))
-import qualified IntBST
-import IntBST (IntBST (..))
+import qualified BinTree
+import BinTree (BinTree (..))
 import qualified Maybe
 import Maybe (Maybe (..))
 import Data.List (foldl', nub, sort)
@@ -28,6 +30,25 @@ main = hspec $ do
         it "updates the record" $ do
             UR.backupDBWeekly `shouldBe` correctBackupDBWeekly
 
+    describe "BinTree.insert" $ do
+        it "insert 1 into an empty tree" $ do
+            BinTree.insert (1 :: Int) Nil `shouldBe` Node 1 Nil Nil
+
+    describe "BinTree.insert" $ do
+        it "insert 2 1 3 4 into an empty tree" $ do
+            BinTree.insert (4 :: Int) (BinTree.insert 1 (BinTree.insert 3 (BinTree.insert 2 Nil)))
+              `shouldBe` Node 2 (Node 1 Nil Nil) (Node 3 Nil (Node 4 Nil Nil))
+
+    describe "BinTree.insert" $ do
+        it "make sure duplicates are ignored" $ do
+            BinTree.insert (3 :: Int) (BinTree.insert 1 (BinTree.insert 3 (BinTree.insert 2 Nil)))
+              `shouldBe` Node 2 (Node 1 Nil Nil) (Node 3 Nil Nil)
+
+    describe "BinTree.inorder" $ do
+        it "make sure an in-order traversal ouputs a sorted list" $ do
+            let propSorted (xs :: [Int]) = BinTree.inorder (foldl' (flip BinTree.insert) Nil xs) == (sort . nub) xs
+             in QC.quickCheck propSorted
+
     describe "UsingDataTypes.parseLine" $ do
         let input1 = "21527 FATAL augue@tristiquepellentesque.org logged out"
         it input1 $ do
@@ -39,7 +60,7 @@ main = hspec $ do
         it input2 $ do
             parseLine input2
             `shouldBe`
-            LogLine (Log 19440 Info "Nam.ac.nulla@consequat.net requested api.json")    
+            LogLine (Log 19440 Info "Nam.ac.nulla@consequat.net requested api.json")
 
         let garbage = "l90sm3s()u0dsada¨^s+sd"
         it ("should handle garbage \"" ++ garbage ++ "\"") $ do
@@ -58,15 +79,15 @@ main = hspec $ do
             let input = "21527 FATAL augue@tristiquepellentesque.org logged out\n" ++
                         "19440 INFO Nam.ac.nulla@consequat.net requested api.json\n" ++
                         "l90sm3s()u0dsada¨^s+sd"
-            parse input 
-            `shouldBe` 
+            parse input
+            `shouldBe`
             [Log 21527 Fatal "augue@tristiquepellentesque.org logged out",
              Log 19440 Info "Nam.ac.nulla@consequat.net requested api.json"]
 
     describe "UsingDataTypes.importantOnly" $ do
         it "should remove Debug and Info log lines" $ do
             importantOnly [Log 0 Info "", Log 0 Debug "", Log 0 Warn "", Log 0 Fatal "", Log 0 Info "", Log 0 Debug ""]
-            `shouldBe` 
+            `shouldBe`
             [Log 0 Warn "", Log 0 Fatal ""]
 
     describe "UsingDataTypes.sorted" $ do
@@ -74,25 +95,6 @@ main = hspec $ do
             sorted [Log 9 Info "", Log 3 Debug "", Log 0 Warn "", Log 1453 Fatal "", Log 90 Info "", Log 2 Debug ""]
             `shouldBe`
             [Log 0 Warn "", Log 2 Debug "", Log 3 Debug "", Log 9 Info "", Log 90 Info "", Log 1453 Fatal ""]
-
-    describe "IntBST.insert" $ do
-        it "insert 1 into an empty tree" $ do
-            IntBST.insert 1 Nil `shouldBe` Node 1 Nil Nil
-
-    describe "IntBST.insert" $ do
-        it "insert 2 1 3 4 into an empty tree" $ do
-            IntBST.insert 4 (IntBST.insert 1 (IntBST.insert 3 (IntBST.insert 2 Nil)))
-              `shouldBe` Node 2 (Node 1 Nil Nil) (Node 3 Nil (Node 4 Nil Nil))
-
-    describe "IntBST.insert" $ do
-        it "make sure duplicates are ignored" $ do
-            IntBST.insert 3 (IntBST.insert 1 (IntBST.insert 3 (IntBST.insert 2 Nil)))
-              `shouldBe` Node 2 (Node 1 Nil Nil) (Node 3 Nil Nil)
-
-    describe "IntBST.inorder" $ do
-        it "make sure an in-order traversal ouputs a sorted list" $ do
-            let propSorted xs = IntBST.inorder (foldl' (flip IntBST.insert) Nil xs) == (sort . nub) xs
-             in QC.quickCheck propSorted
 
     describe "Maybe.safeDiv" $ do
         it "make sure divide by non-zero denominator returns the same result as `div`" $ do
@@ -162,7 +164,7 @@ main = hspec $ do
     describe "TextCalculator.textMul" $ do
         it "multiplicates random (positive) numbers" $ do
             QC.quickCheck $ QC.forAll positivePairs (\(x, y) -> TC.textMul (show x) (show y) == (show (x * y)))
-    
+
 
 correctBackupDBWeekly :: UR.ScheduledJob
 correctBackupDBWeekly = UR.ScheduledJob {
@@ -177,7 +179,7 @@ correctBackupDBWeekly = UR.ScheduledJob {
     }
 
 positivePairs :: QC.Gen (Integer, Integer)
-positivePairs = 
+positivePairs =
     do x <- QC.arbitrary
        y <- QC.arbitrary
        return (abs x, abs y)

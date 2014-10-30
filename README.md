@@ -15,3 +15,4 @@ This repo contains exercises for learning Haskell, with tests for verifying the 
 * [Nishant Shukla's Haskell course at Uni. of Virginia](http://shuklan.com/haskell/)
 * [What I Wish I Knew When Learning Haskell](http://dev.stephendiehl.com/hask/#intro)
 * [Hoogle](https://www.fpcomplete.com/hoogle)
+* [krispo's list of libraries and frameworks](https://haskell.zeef.com/konstantin.skipor)

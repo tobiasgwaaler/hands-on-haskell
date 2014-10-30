@@ -54,25 +54,25 @@ main = hspec $ do
             QC.property $ \x y -> F1.xor x y ==  x `xor` y
 
     describe "PatternMatching.secondElement" $ do
-        let input = [12345]
+        let input = [1,2,3,4,5]
             expected = 2
          in it ("returns the second element from " ++ show input) $ do
             L.secondElement input `shouldBe` expected
 
     describe "PatternMatching.drop3" $ do
-        let input = [123456]
-            expected = [456]
+        let input = [1,2,3,4,5,6]
+            expected = [4,5,6]
          in it ("drops the three first elements in " ++ show input) $ do
             L.drop3 input `shouldBe` expected
 
     describe "PatternMatching.thirdAndLast" $ do
-        let input = [123]
+        let input = [1,2,3]
             expected = 3
          in it ("returns the third element in " ++ show input) $ do
             L.thirdAndLast input `shouldBe` expected
 
     describe "Recursion.secondToLast" $ do
-        let input = [1234]
+        let input = [1,2,3,4]
             expected = 3
         it ("returns the second to last element in " ++ show input) $ do
             R.secondToLast input `shouldBe` expected
