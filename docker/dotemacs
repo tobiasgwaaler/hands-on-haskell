@@ -1,0 +1,2 @@
+(add-to-list 'load-path "/haskell/haskell-mode/")
+(load "haskell-mode-autoloads.el")
