@@ -13,7 +13,7 @@ executable a
   main-is:             Tests.hs
   
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.7 && <4.8,
+  build-depends:       base >=4.6 && <4.8,
                        QuickCheck,
                        hspec
 
@@ -25,7 +25,7 @@ executable b
   main-is:             Tests.hs
   
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.7 && <4.8,
+  build-depends:       base >=4.6 && <4.8,
                        QuickCheck,
                        hspec
 
