@@ -51,7 +51,7 @@ main = hspec $ do
 
     describe "Functions.xor" $ do
         it "is correct" $ do
-            QC.property $ \x y -> F1.xor x y ==  x `xor` y
+          QC.property $ \x y -> F1.xor x y ==  (x && (not y)) || (y && (not x))
 
     describe "PatternMatching.secondElement" $ do
         let input = [1,2,3,4,5]
