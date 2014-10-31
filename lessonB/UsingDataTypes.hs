@@ -1,5 +1,7 @@
 module UsingDataTypes where
 
+import Data.List (sortBy)
+
 {-
     Full disclaimer, this exercise is basically *stolen* from a brilliant
     Haskell course, CIS194 at University of Pennsylvania 
@@ -64,7 +66,15 @@ data MaybeLogLine = LogLine Log
                   deriving (Show, Eq)
 
 parseLine :: String -> MaybeLogLine
-parseLine line = undefined
+parseLine line = case words line of
+                      (ts:level:rest) -> LogLine (Log (read ts) (toLevel level) (unwords rest))
+                      _ -> Error
+
+toLevel "DEBUG" = Debug
+toLevel "INFO" = Info
+toLevel "WARN" = Warn
+toLevel "FATAL" = Fatal
+toLevel _ = error "Unknown log level" -- yikes, we should really use `Maybe` here :)
 
 {-
     Exercise 2:
@@ -74,7 +84,10 @@ parseLine line = undefined
     so we're left with a list of valid log lines
 -}
 validLogLines :: [MaybeLogLine] -> [Log]
-validLogLines = undefined
+validLogLines ls = valid ls []
+  where valid [] acc = acc
+        valid (Error:rest) acc = valid rest acc
+        valid (LogLine l:rest) acc = valid rest (acc ++ [l])
 
 
 {-
@@ -85,7 +98,7 @@ validLogLines = undefined
     'validLogLines' you can use the 'lines' function defined in the prelude.
 -}
 parse :: Rawlog -> [Log]
-parse = undefined
+parse = validLogLines . map parseLine . lines
 
 
 {-
@@ -95,7 +108,7 @@ parse = undefined
     so we're left with only WARN and FATAL
 -}
 importantOnly :: [Log] -> [Log]
-importantOnly = undefined
+importantOnly = filter (\(Log _ level _) -> level `elem` [Warn, Fatal])
 
 
 {-
@@ -105,5 +118,7 @@ importantOnly = undefined
     Sort the list by timestamp so the lines are in 
     ascending order (oldest first)
 -}
+
 sorted :: [Log] -> [Log]
-sorted = undefined
+sorted = sortBy compareLogs
+  where compareLogs (Log ts1 _ _) (Log ts2 _ _) = ts1 `compare` ts2

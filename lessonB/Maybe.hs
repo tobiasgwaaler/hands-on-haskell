@@ -24,7 +24,9 @@ data Maybe a = Just a
 -}
 
 safeDiv :: Int -> Int -> Maybe Int
-safeDiv a b = _YOUR_CODE_HERE
+safeDiv a b = if b == 0
+                 then Nothing
+                 else Just (a `div` b)
 
 {-
     Finish the implementation of `safeHead` below to return Nothing if the
@@ -32,8 +34,8 @@ safeDiv a b = _YOUR_CODE_HERE
 -}
 
 safeHead :: [a] -> Maybe a
-safeHead [] = _YOUR_CODE_HERE
-safeHead _Match_Non_empty_List_Here = _YOUR_CODE_HERE
+safeHead [] = Nothing
+safeHead (x:_) = Just x
 
 {-
     The great thing with `Maybe` is that you are forced to pattern-match on it
@@ -54,7 +56,11 @@ safeHead _Match_Non_empty_List_Here = _YOUR_CODE_HERE
 -}
 
 f :: Int -> Int -> Maybe Int
-f a b = _YOUR_CODE_HERE
+f a b = let n = a `safeDiv` b
+            d = a - b
+         in case n of
+                 Nothing -> Nothing
+                 Just n' -> n' `safeDiv` d
 
 {-
     Concluding remarks:
