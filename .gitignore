@@ -1,0 +1,9 @@
+.cabal-sandbox
+Setup.hs
+cabal.sandbox.config
+dist/
+.DS_Store
+tmp.hs
+*.hi
+*.ho
+*.o

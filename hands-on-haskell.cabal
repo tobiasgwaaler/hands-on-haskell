@@ -1,0 +1,34 @@
+name:                hands-on-haskell
+version:             2.0.0.0
+author:              Tobias G. Waaler
+maintainer:          tobiasgwaaler@gmail.com
+category:            Educational
+build-type:          Simple
+
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+
+executable a
+  main-is:             Tests.hs
+  
+  -- Other library packages from which modules are imported.
+  build-depends:       base >=4.7 && <4.8,
+                       QuickCheck,
+                       hspec
+
+  hs-source-dirs:      lessonA
+  default-language:    Haskell2010
+
+
+executable b
+  main-is:             Tests.hs
+  
+  -- Other library packages from which modules are imported.
+  build-depends:       base >=4.7 && <4.8,
+                       QuickCheck,
+                       hspec
+
+  hs-source-dirs:      lessonB
+  default-language:    Haskell2010
+  

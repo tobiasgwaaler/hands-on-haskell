@@ -3,7 +3,7 @@ module-template: ! 'module MODULE_NAME where
 '
 extensions: {}
 environment: ghc-7.4.2-stable-13.09
-cabal-file: project.cabal
+cabal-file: hansds-on-haskell.cabal
 version: 1
 ghc-args: []
 excluded-modules: []
