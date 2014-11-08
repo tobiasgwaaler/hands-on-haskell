@@ -11,10 +11,14 @@ module Main where
 
 -}
 
-import qualified Test.QuickCheck as QC
+import Test.QuickCheck
 import Test.Hspec
 
+import qualified Tests.GroceryShopping as GroceryShopping
+
+
+main :: IO ()
 main = hspec $ do
-    describe "TODO" $ do
-        it "Write tests :)" $ do
-            1 `shouldBe` 1
+    GroceryShopping.tests
+
+
