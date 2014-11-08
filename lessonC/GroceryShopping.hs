@@ -13,10 +13,7 @@ module GroceryShopping where
     (The real app should be able to scrape ingredients from any 
     recipe site online and add them to your shopping cart on an 
     online grocery store like kolonial.no :)
--}
 
-
-{-
     Let's start by deciding exactly *what* to do. One of the 
     things I really enjoy when solving problems in Haskell
     is to use the type system to formalize my thinking. 
@@ -31,44 +28,32 @@ module GroceryShopping where
     natural language processing and your grandmother. What should the 
     result of the parsing look like?
 
-    First of all, we need a list of ingredients:
+    Now what is an ingredient really? I'd say its an edible item, 
+    such as milk, oranges or fish filet along with a quantity in some
+    measurable unit:
 -}
+data Ingredient = Ingredient Quantity Unit Name
 
-data Ingredients = Ingredients [Ingredient]
+type Name = String
 
+type Quantity = Int
+
+data Unit = Ml   -- millilitre
+          | G    -- grams
+          | Pcs  -- pieces
 {-
-    That was easy. Now what is an Ingredient? I'd say its an edible item, 
-    such as milk, oranges or fish filet along with a quantity:
--}
-data Ingredient = Ingredient Item Quantity
-{-
-    You can see where we're going with this, right? We keep dividing
-    the problem into smaller pieces until we reach the "atoms".
-
-    This is certainly not the only way to model this domain, and you might
-    argue that we could get away with a few type aliases instead. But let's
-    carry on, it's so much fun!
-
-    We can keep Item pretty simple. Let's just say it has a string describing
-    the edible item. This could be "apple", "canned tomato soup" and so on.
--}
-data Item = Item String
-{-
-    Next up is Quantity. And that's an interesting one. From reading recipes 
+    Unit and Quantity is an interesting one. From reading recipes 
     you'll get the impression that there's lots of units of measure to
     worry about. But if you think about it the number of "atomic" units 
-    can really by cut down to three:
--}
-data Quantity = Weight Int    -- weight in grams
-              | Volume Int    -- volume in millilitre
-              | Pieces Int    -- a discrete number of pieces
+    can really by cut down to three dimensions: volume (Ml), weight (G) 
+    and units (Pcs).
 
-{-
     As long as we measure everything in it's lowest denomination this is 
     sufficient to describe quantities.
 
     And that's it for our Ingredients! We've described how ingredients
-    are structured and what they're made up of.
+    are structured and what they're made up of. This is certainly not the
+    only way to model this domain, but it seems good enough for now.
 
     At this point I think it's a good idea to define a "pretty printer" for 
     our Ingredient data type to make it easier to parse for simple human minds.
@@ -114,15 +99,28 @@ data Quantity = Weight Int    -- weight in grams
 
 -}
 printIngredient :: Ingredient -> String
-printIngredient (Ingredient (Item name) (quantity)) = _YOUR_CODE_HERE
+printIngredient (Ingredient quantity unit name) = _YOUR_CODE_HERE
 
 
 
 
 
 
+{-
+    As I mentioned in the introduction this isn't 2013 and therefore we 
+    should not have to perform arithmetic with our human brains anymore.
+
+-}
+adjustQuantities :: Ingredient -> Ingredient
+adjustQuantities ingredient = _YOUR_CODE_HERE
 
 
+{-
+    TODO:
+    - Adjust for portions
+    - Sum identical ingredients
+    - Keep track of which recipe a given ingredient came from
+-}
 
 
 
