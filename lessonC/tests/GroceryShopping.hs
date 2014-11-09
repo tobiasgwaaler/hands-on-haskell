@@ -16,7 +16,6 @@ printIngredientTests =
         testPrinter (Ingredient 2 Pcs "pineapple")         "2 pcs pineapple"
 
 type Expected = String
-type IngredientName = String
 testPrinter :: Ingredient -> Expected -> Spec
 testPrinter ingredient expected =
     it expected $ do
