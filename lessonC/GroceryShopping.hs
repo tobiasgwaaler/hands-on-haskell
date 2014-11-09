@@ -33,6 +33,7 @@ module GroceryShopping where
     measurable unit:
 -}
 data Ingredient = Ingredient Quantity Unit Name
+    deriving (Show, Eq)
 
 type Name = String
 
@@ -41,8 +42,9 @@ type Quantity = Int
 data Unit = Ml   -- millilitre
           | G    -- grams
           | Pcs  -- pieces
+          deriving (Show, Eq)
 {-
-    Unit and Quantity is an interesting one. From reading recipes 
+    Unit and Quantity are interesting. From reading recipes 
     you'll get the impression that there's lots of units of measure to
     worry about. But if you think about it the number of "atomic" units 
     can really by cut down to three dimensions: volume (Ml), weight (G) 
@@ -50,6 +52,12 @@ data Unit = Ml   -- millilitre
 
     As long as we measure everything in it's lowest denomination this is 
     sufficient to describe quantities.
+
+    Also, notice that we derive Show and Eq. Show enables you to 
+    use the show function to represent the value as a string, while 
+    Eq enables equality comparison (==). We need both for our tests to
+    work because they need to compare the expected result with the actual result
+    (Eq) and print the result to the command line (Show).
 
     And that's it for our Ingredients! We've described how ingredients
     are structured and what they're made up of. This is certainly not the
@@ -107,20 +115,40 @@ printIngredient (Ingredient quantity unit name) = _YOUR_CODE_HERE
 
 
 {-
-    As I mentioned in the introduction this isn't 2013 and therefore we 
-    should not have to perform arithmetic with our human brains anymore.
+    Now that we can print ingredients in good fashion it's time we start
+    parsing them as well.
 
+    Parsing unstructured text like this is quite the challenge. There are
+    numerous ways of writing an ingredient list, and no matter how
+    clever we are we won't be able to parse all variations. Our strategy 
+    will be to do the best we can, but simply return Nothing if 
+    the parsing fails.
+
+    The input we should handle is on the form:
+    <quantity> <unit> <name>
+    
+    Examples:
+    400 g Cod filet
+    1 l Milk
+    9 pcs Eggs
+    1.500 kg Flour
+
+    <quantity> will always be a number, possibly with decimals
+    <unit>     can be one of the units we used for printing ingredients,
+               but case-insensitive
+
+    For the most part parseIngredient is the opposite of printIngredient, 
+    but there are some differences:
+        - parseIngredient should be able to parse 
+          "1.5 kg flour". printIngredient would 
+          have trailing zeroes in that case, but our
+          parser should handle both.
+        - parseIngredient should not care if you type "pcs"
+          or "pc" to denote pieces
 -}
-adjustQuantities :: Ingredient -> Ingredient
-adjustQuantities ingredient = _YOUR_CODE_HERE
+parseIngredient :: String -> Maybe Ingredient
+parseIngredient input = _YOUR_CODE_HERE
 
-
-{-
-    TODO:
-    - Adjust for portions
-    - Sum identical ingredients
-    - Keep track of which recipe a given ingredient came from
--}
 
 
 

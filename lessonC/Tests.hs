@@ -19,6 +19,7 @@ import qualified Tests.GroceryShopping as GroceryShopping
 
 main :: IO ()
 main = hspec $ do
-    GroceryShopping.tests
+    GroceryShopping.printIngredientTests
+    GroceryShopping.parseIngredientTests
 
 
