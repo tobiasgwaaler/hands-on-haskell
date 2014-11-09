@@ -34,7 +34,7 @@ parseIngredientTests =
 
 testParser :: String -> Maybe Ingredient -> Spec
 testParser input expected =
-    it (show expected) $ do
+    it input $ do
         parseIngredient input `shouldBe` expected
 
     

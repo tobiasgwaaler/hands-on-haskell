@@ -145,6 +145,22 @@ printIngredient (Ingredient quantity unit name) = _YOUR_CODE_HERE
           parser should handle both.
         - parseIngredient should not care if you type "pcs"
           or "pc" to denote pieces
+
+    Tip: some relevant functions for working with strings are:
+
+    words :: String -> [String]
+    breaks a string up into a list of words, which were delimited by white space.
+
+    readMaybe :: Read a => String -> Maybe a
+    Tries to parse a string to a given data type, return Nothing if it fails.
+    add "import Text.Read" if you want to use this function.
+
+    truncate :: Integral b => a -> b
+    truncate x returns the integer nearest x between zero and x. Can for instance
+    be used to convert a double to an integer.
+
+    Also, the Data.Char module has a lot of functions for
+    working with Strings and Characters (http://hackage.haskell.org/package/base-4.7.0.1/docs/Data-Char.html)
 -}
 parseIngredient :: String -> Maybe Ingredient
 parseIngredient input = _YOUR_CODE_HERE
