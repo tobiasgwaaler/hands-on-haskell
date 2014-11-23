@@ -56,8 +56,8 @@ sumDigitList = _YOUR_CODE_HERE
    Step 5:
    Calculate the modulus of a number over 10
 -}
-mod90 :: Int -> Int
-mod90 = _YOUR_CODE_HERE
+mod10 :: Int -> Int
+mod10 = _YOUR_CODE_HERE
 
 {-
    Step 6:
