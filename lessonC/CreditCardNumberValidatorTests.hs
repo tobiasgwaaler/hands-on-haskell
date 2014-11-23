@@ -1,5 +1,3 @@
-{-# LANGUAGE ScopedTypeVariables #-}
-
 module Tests.CreditCardNumberValidator where
 
 import qualified Test.QuickCheck as QC
