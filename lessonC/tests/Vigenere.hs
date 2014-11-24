@@ -4,7 +4,7 @@ import qualified Test.QuickCheck as QC
 import qualified Vigenere as VI
 import Test.Hspec
 
-main = hspec $ do
+tests = do
 
     -- Encrypting single characters
     describe "Vigenere.encryptChar" $ do
