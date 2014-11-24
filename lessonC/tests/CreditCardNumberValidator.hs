@@ -4,7 +4,7 @@ import qualified Test.QuickCheck as QC
 import qualified CreditCardNumberValidator as CV
 import Test.Hspec
 
-main = hspec $ do
+tests = do
 
     describe "CreditCardNumberValidator.numberToString" $ do
         it "Converts 4012888888881881 to \"4012888888881881\"" $ do
