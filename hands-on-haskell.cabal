@@ -29,14 +29,15 @@ executable b
 
   hs-source-dirs:      lessonB
   default-language:    Haskell2010
-  
+
 executable c
   main-is:             Tests.hs
   
   build-depends:       base >=4.6 && <4.8,
                        QuickCheck,
-                       hspec
+                       hspec,
+                       containers
 
-  hs-source-dirs:      lessonC
+  hs-source-dirs:      lessonC,
+                       lessonC/Tests
   default-language:    Haskell2010
-
