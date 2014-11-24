@@ -13,8 +13,14 @@ module Vigenere where
     Secret:     MYPASSWORDMYPASSWORDMYPASS (MYPASSWORD repeated)
     Encrypted:  VRENXMFBWWPQOJGMETTEGGHPHF
 
+    Here, two by two characters are considered, and the combination of the two characters determines which
+    character to put in the encrypted string.
+    E.g. 'I' and 'M' translates to 'V' in the encrypted string either by looking up in the Vigenère table, or by doing modulo 26,
+    as explained under «Algebraic description» in the Wikipedia page.
+
     The irregular replacements of the letters makes this method harder to break than Caesar ciphers
-    where a given letter is always replaced by the same other letter.
+    where a given letter is always replaced by the same other letter (and character occurence statistics can be used to
+    figure out the number of shifts, thus breaking the encryption.)
 
     Exercise:
     Try to implement the `encrypt` and `decrypt` functions.
