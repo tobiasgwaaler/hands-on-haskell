@@ -32,16 +32,16 @@ module Vigenere where
 import Data.Char
 
 encryptChar :: (Char, Char) -> Char
-encryptChar (plainChar, keyChar) = _YOUR_CODE_HERE
+encryptChar (plainChar, keyChar) = chr $ (ord plainChar + ord keyChar) `mod` 26 + ord 'A'
 
 decryptChar :: (Char, Char) -> Char
-decryptChar (encryptedChar, keyChar) = _YOUR_CODE_HERE
+decryptChar (encryptedChar, keyChar) = chr $ (ord encryptedChar - ord keyChar) `mod` 26 + ord 'A'
 
 encrypt :: String -> String -> String
-encrypt plainText secretKey = _YOUR_CODE_HERE
+encrypt plainText secretKey = map encryptChar $ zip plainText (cycle secretKey)
 
 decrypt :: String -> String -> String
-decrypt encryptedText secretKey = _YOUR_CODE_HERE
+decrypt encryptedText secretKey = map decryptChar $ zip encryptedText (cycle secretKey)
 
 
 _YOUR_CODE_HERE = undefined -- ignore me
