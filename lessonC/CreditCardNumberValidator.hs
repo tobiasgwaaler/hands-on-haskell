@@ -22,50 +22,52 @@ module CreditCardNumberValidator where
     - This means that the number is valid
 -}
 
+import Data.Char
+
 type DigitList = [Int]
 
 {-
    Step 1:
    Convert a numerical representation of the credit card number to a String
 -}
-numberToString :: Integer -> String
-numberToString = _YOUR_CODE_HERE
+numberToString :: Int -> String
+numberToString = show
 
 {-
    Step 2:
    Split string on single digits, and represent them as Int
 -}
 stringToDigitList :: String -> DigitList
-stringToDigitList = _YOUR_CODE_HERE
+stringToDigitList = map digitToInt
 
 {-
    Step 3:
    Double every other element, starting from the right-most element
 -}
 doubleEveryOtherElement :: DigitList -> DigitList
-doubleEveryOtherElement = _YOUR_CODE_HERE
+doubleEveryOtherElement l = reverse $ map (\(n, i) -> if i `mod` 2 == 0 then 2 * n else n ) $ zip (reverse l) [1..]
 
 {-
    Step 4:
    Sum the digits in a list
 -}
 sumDigitList :: DigitList -> Int
-sumDigitList = _YOUR_CODE_HERE
+sumDigitList = sum . stringToDigitList . concat . map numberToString
 
 {-
    Step 5:
    Calculate the modulus of a number over 10
 -}
 mod10 :: Int -> Int
-mod10 = _YOUR_CODE_HERE
+mod10 n = n `mod` 10
 
 {-
    Step 6:
    Tie it all together in one single function for determining
    if a credit card number is valid
 -}
-isValidCreditCardNumber :: Integer -> Bool
-isValidCreditCardNumber = _YOUR_CODE_HERE
-
+isValidCreditCardNumber :: Int -> Bool
+isValidCreditCardNumber n = mod10 s == 0
+                            where s = sumDigitList $ doubleEveryOtherElement $ stringToDigitList $ numberToString n
 
 _YOUR_CODE_HERE = undefined -- ignore me
