@@ -38,22 +38,22 @@ instance ToJson Double where
   toJson n = Num n
 
 instance ToJson Int where
-  toJson n = Num _YOUR_CODE_HERE -- `fromIntegral` can be used to convert from Int to Double
+  toJson n = Num (fromIntegral n)
 
 instance ToJson String where
-  toJson s = _YOUR_CODE_HERE
+  toJson s = Str s
 
 instance (ToJson a) => ToJson [(String,a)] where
-  toJson xs = Obj (_YOUR_CODE_HERE)
+  toJson xs = Obj (map (\(lbl,v) -> (lbl, toJson v)) xs)
 
 class FromJson a where
   fromJson :: MuJson -> a
 
 instance FromJson String where
-  fromJson (Str s) = s
-  fromJson (Num n) = _YOUR_CODE_HERE
-  fromJson (Obj vs) = "{" ++ _YOUR_CODE_HERE  ++ "}"
-    where objValues = map _YOUR_CODE_HERE vs -- feel free to delete if you don't want to do it this way :)
+  fromJson (Str s) = show s
+  fromJson (Num n) = show n
+  fromJson (Obj vs) = "{" ++ intercalate "," objValues  ++ "}"
+    where objValues = map (\(lbl, val) -> show lbl ++ ":" ++ fromJson val) vs
 
 {- Complete the following `ToJson` instances: -}
 
