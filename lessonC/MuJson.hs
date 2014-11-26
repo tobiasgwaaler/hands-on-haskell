@@ -52,7 +52,7 @@ class FromJson a where
 instance FromJson String where
   fromJson (Str s) = s
   fromJson (Num n) = _YOUR_CODE_HERE
-  fromJson (Obj vs) = "{" ++ _YOUR_CODE_HERE  ++ "}"
+  fromJson (Obj vs) = "{" ++ _YOUR_CODE_HERE  ++ "}" -- `intercalate` can be used to join a list of strings with a separator
     where objValues = map _YOUR_CODE_HERE vs -- feel free to delete if you don't want to do it this way :)
 
 {- Complete the following `ToJson` instances: -}
