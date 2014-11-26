@@ -28,7 +28,7 @@ type DigitList = [Int]
    Step 1:
    Convert a numerical representation of the credit card number to a String
 -}
-numberToString :: Integer -> String
+numberToString :: Int -> String
 numberToString = _YOUR_CODE_HERE
 
 {-
@@ -64,7 +64,7 @@ mod10 = _YOUR_CODE_HERE
    Tie it all together in one single function for determining
    if a credit card number is valid
 -}
-isValidCreditCardNumber :: Integer -> Bool
+isValidCreditCardNumber :: Int -> Bool
 isValidCreditCardNumber = _YOUR_CODE_HERE
 
 
