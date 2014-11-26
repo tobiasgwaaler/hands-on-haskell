@@ -2,6 +2,8 @@
 
 module MuJson where
 
+import Data.List
+
 {-
 Let's define a new data type that represent a subset of JSON:
 -}
@@ -50,7 +52,8 @@ class FromJson a where
 instance FromJson String where
   fromJson (Str s) = s
   fromJson (Num n) = _YOUR_CODE_HERE
-  fromJson (Obj o) = "{" ++ _YOUR_CODE_HERE ++ "}"
+  fromJson (Obj vs) = "{" ++ _YOUR_CODE_HERE  ++ "}"
+    where objValues = map _YOUR_CODE_HERE vs -- feel free to delete if you don't want to do it this way :)
 
 {- Complete the following `ToJson` instances: -}
 
