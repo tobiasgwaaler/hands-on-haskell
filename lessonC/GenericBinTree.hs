@@ -44,18 +44,21 @@ data BinTree a = Nil                             -- ← Empty tree
     myFunction` command.)
 -}
 
--- insert :: _YOUR_CODE_HERE
+insert :: (Ord a ) => a -> BinTree a -> BinTree a
 
 {- The first case is inserting into an empty tree: -}
 
-insert n Nil = _YOUR_CODE_HERE
+insert n Nil = Node n Nil Nil
 
 {- ... the next case is inserting into a non-empty tree (i.e. a `Node`). We
  need to find out whether to insert into the left or the right subtree. and
  then our problem has been reduced to inserting a value into an BinTree again.
  We (soon) have a function to do that, don't we..? :) -}
 
-insert n _YOUR_CODE_HERE {- code for matching a non-empty tree -} = _YOUR_CODE_HERE
+insert n (Node x l r) = case compare n x of
+                             EQ -> Node x l r
+                             GT -> Node x l (insert n r)
+                             LT -> Node x (insert n l) r
 
 {-
     Next, we're goint to create a function that does an in-order traversal of a
@@ -67,9 +70,9 @@ insert n _YOUR_CODE_HERE {- code for matching a non-empty tree -} = _YOUR_CODE_H
       [1,2,3] ++ [4] ++ [5,6] = [1,2,3,4,5,6]
 -}
 
--- inorder :: _YOUR_CODE_HERE
-inorder Nil = _YOUR_CODE_HERE -- What's the only value we can return here?
-inorder (Node value left right) = _YOUR_CODE_HERE
+inorder :: BinTree a -> [a]
+inorder Nil = []
+inorder (Node value left right) = inorder left ++ [value] ++ inorder right
 
 {-
     Bonus question:
