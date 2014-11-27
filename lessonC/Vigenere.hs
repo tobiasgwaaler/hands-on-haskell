@@ -30,19 +30,31 @@ module Vigenere where
 -}
 
 import Data.Char
+import Data.List
+import Data.Maybe
+
+alphabet :: [Char]
+alphabet = ['A'..'Z']
+
+char2int :: Char -> Int
+char2int c = fromJust $ c `elemIndex` alphabet -- Don't judge me!
+
+int2char :: Int -> Char
+int2char i = alphabet !! i
 
 encryptChar :: (Char, Char) -> Char
-encryptChar (plainChar, keyChar) = chr $ (ord plainChar + ord keyChar) `mod` 26 + ord 'A'
+encryptChar (plainChar, keyChar) =
+  int2char $ ((char2int plainChar) + (char2int keyChar)) `mod` 26
 
 decryptChar :: (Char, Char) -> Char
-decryptChar (encryptedChar, keyChar) = chr $ (ord encryptedChar - ord keyChar) `mod` 26 + ord 'A'
+decryptChar (encryptedChar, keyChar) =
+  int2char $ ((char2int encryptedChar) - (char2int keyChar)) `mod` 26
 
 encrypt :: String -> String -> String
-encrypt plainText secretKey = map encryptChar $ zip plainText (cycle secretKey)
+encrypt plainText secretKey = zipWith (curry encryptChar) plainText (cycle secretKey)
 
 decrypt :: String -> String -> String
-decrypt encryptedText secretKey = map decryptChar $ zip encryptedText (cycle secretKey)
-
+decrypt encryptedText secretKey = zipWith (curry decryptChar) encryptedText (cycle secretKey)
 
 _YOUR_CODE_HERE = undefined -- ignore me
 
