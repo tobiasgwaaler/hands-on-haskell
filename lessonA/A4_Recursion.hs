@@ -48,7 +48,7 @@ returnLastElement2 (x:xs) = returnLastElement2 xs
     Define the secondToLast function so it returns the second to last element in the input list.
     Return 0 if the list is too short.
 -}
-secondToLast _ = 0
+secondToLast _ = _YOUR_CODE_HERE
 
 {-
     Exercise:
@@ -62,10 +62,12 @@ secondToLast _ = 0
 listLength :: [Int] -> Int
 listLength list = listLengthRec 0 list
 
-listLengthRec count list = 0 -- implement me
+listLengthRec count list = _YOUR_CODE_HERE
 
 {-
     Already we're getting tired of writing these recursive functions. In RecursionSchemes
     we'll look at some of the function programming darlings map, filter, fold and their friends,
     and see how they can help us get out of this mess.
 -}
+
+_YOUR_CODE_HERE = undefined -- ignore me
