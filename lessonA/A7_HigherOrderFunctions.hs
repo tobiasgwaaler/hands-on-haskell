@@ -55,7 +55,8 @@ mySet1 = intersect evens divBy3
 -}
 
 singleton :: Int -> Set
-singleton n = _YOUR_CODE_HERE
+singleton n = \x -> n == x
+-- alternatively: (==n)
 
 {-
     Exercise:
@@ -73,6 +74,8 @@ union a b n = a n || b n
 -}
 
 difference :: Set -> Set -> Set
-difference a b = _YOUR_CODE_HERE
+difference a b = \x -> let memberOfA = a x
+                           memberOfB = b x
+                        in memberOfA && (not memberOfB)
 
 _YOUR_CODE_HERE = undefined -- ignore me
