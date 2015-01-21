@@ -1,5 +1,7 @@
 module A9_ProjectEuler where
 
+import Data.Char (digitToInt)
+
 {-
     Some exercises from Project Euler - https://projecteuler.net
 -}
