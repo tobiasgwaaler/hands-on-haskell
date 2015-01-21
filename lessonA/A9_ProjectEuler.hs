@@ -40,7 +40,6 @@ problem1 = sumOfMultiplesOf 3 5 [1..999]
 problem4 = maximum [x * y | x <- [111..999], y <- [111..999], isPalindromic (x * y)]
   where isPalindromic n = (show n) == (reverse $ show n)
 
-
 {-
     Problem 6
 

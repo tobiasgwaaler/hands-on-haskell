@@ -131,9 +131,20 @@ main = hspec $ do
         it "is correct" $ do
             PE.problem16 `shouldBe` (2 * 683)
 
+    describe "HigherOrderFunctions.singleton" $ do
+        it "should contain only the given number" $ do
+            map (HOF.singleton 3) [1,2,3,4] `shouldBe` [False, False, True, False]
+
     describe "HigherOrderFunctions.union" $ do
-        it "should return union" $ do
-            QC.property $ \n -> HOF.explicitSet n == HOF.unionedSet n
+        let twoOrThree = HOF.singleton 3 `HOF.union` HOF.singleton 2
+            expected = 2
+            in it "should be the union of two sets" $ do
+              map twoOrThree [1,2,3,4] `shouldBe` [False, True, True, False]
+
+    describe "HigherOrderFunctions.difference" $ do
+        let evensExceptTwo = HOF.evens `HOF.difference` HOF.singleton 2
+         in it "should be the difference of two sets" $ do
+              map evensExceptTwo [1,2,3,4] `shouldBe` [False, False, False, True]
 
     describe "QuickCheckExamples.encodeDecode" $ do
         it "decode is inverse encode" $ do
