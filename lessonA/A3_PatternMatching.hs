@@ -36,13 +36,13 @@ desugaredList = 1:(2:(3:[]))
         * the function ":"
 
     The ":" function takes an element and a list and returns a new list with the
-    element added to the head of it.
+    element prepended.
     If this explanation didn't make much sense don't sweat it, we'll just focus on
     using it in practice for now.
 
     Conceptually you can think of pattern matching on lists like this:
     * Pattern matching lets us divide the list into smaller segments
-    * The last element in the list is always the empty list []
+    * The last element in a (finite) list is always the empty list []
     * If you don't use the empty list [] in your pattern match, the last variable
       in your pattern will be "the rest of the list".
 -}
@@ -50,7 +50,8 @@ desugaredList = 1:(2:(3:[]))
 {-
     Exercise:
     Define the secondElement function so it returns the second element
-    in the list. Use pattern matching.
+    in the list. Use pattern matching. We'll assume that lists have a least two
+    elements for now...
 
     tip: the underscore represents a wildcard, matching any pattern. Replace
          it with a pattern match and get cracking!
@@ -61,7 +62,8 @@ secondElement (_:x:_) = x
 {-
     Exercise:
     Define the drop3 function so it "skips" the 3 first elements in the list,
-    but returns the rest. Use pattern matching.
+    but returns the rest. Use pattern matching. Again, we'll assume that all
+    lists are long enough for now...
 -}
 drop3 (_:_:_:xs) = xs
 
@@ -70,10 +72,6 @@ drop3 (_:_:_:xs) = xs
     Exercise:
     Define the thirdAndLast function so it accepts lists of length 3, and returns the third (and last)
     element in that list.
-
-    note: because the function you define only accepts lists of length 3 it's a partial function.
-          That means it doesn't know what to do if it receives a list of length /= 3, and
-          the runtime will throw a PatternMatchFail exception.
 -}
 thirdAndLast (_:_:x:[]) = x
 
@@ -83,3 +81,4 @@ thirdAndLast (_:_:x:[]) = x
     In Recursion we'll see how this can be achieved by recursing through the list.
 -}
 
+_YOUR_CODE_HERE = undefined -- ignore me
