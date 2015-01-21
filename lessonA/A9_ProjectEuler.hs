@@ -33,7 +33,7 @@ problem1 = _YOUR_CODE_HERE
           [x+y | x <- [1,2], y <- [8,9], (x+y) `mod` 2 == 0] = [1+9, 2+8]
 
 -}
-problem4 = x
+problem4 = _YOUR_CODE_HERE
 
 {-
     Problem 6
