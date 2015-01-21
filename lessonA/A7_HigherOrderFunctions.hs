@@ -14,22 +14,23 @@ module A7_HigherOrderFunctions where
 type Set = (Int -> Bool)
 
 {-
-    Sets are then easily defined as logical expressions on the input number.
+    Sets are then defined as functions that returns true/false based on the
+    number they're given.
 -}
 
--- Even numbers
+-- The set of even numbers
 evens :: Set
 evens n = n `mod` 2 == 0
 
--- Positive numbers
+-- The set of positive numbers
 positives :: Set
 positives n = n > 0
 
--- Divisible by 3
+-- The set of numbers divisible by 3
 divBy3 :: Set
 divBy3 n = n `mod` 3 == 0
 
--- Empty set
+-- The empty set
 emptySet :: Set
 emptySet _ = False
 
@@ -38,32 +39,40 @@ emptySet _ = False
     combine them with set operators, such as intersect and union.
 -}
 
--- Intersection of two sets
+-- The intersection of two sets is a function that returns a function that
+-- takes `x` and checks if it's a member of both sets.
 intersect :: Set -> Set -> Set
-intersect a b = \x -> a x && b x
-
--- Intersection of arbitrarely many sets
-intersect2 :: [Set] -> Set
-intersect2 sets n = all ($ n) sets
+intersect a b = \x -> let memberOfA = a x
+                          memberOfB = b x
+                       in memberOfA && memberOfB
 
 -- Combinations
 mySet1 = intersect evens divBy3
-mySet2 = intersect2 [evens, divBy3, positives]
-
--- Print set members within a given range of numbers
-main = mapM_ putStrLn $ map show $ filter mySet2 [-50..50]
 
 {-
-    Exercise 1:
+    Exercise:
+    Write a function that returns a set containing only the provided argument.
+-}
+
+singleton :: Int -> Set
+singleton n = _YOUR_CODE_HERE
+
+{-
+    Exercise:
     Write a function for set union.
 -}
 
 union :: Set -> Set -> Set
-union _ _ = emptySet -- TODO Replace with a proper union function
+union a b = _YOUR_CODE_HERE
 
-explicitSet :: Set
-explicitSet n = n `mod` 2 == 0 || n `mod` 3 == 0
+{-
+    Exercise:
+    Write a function for set difference. Given two sets a and b, the result
+    should be a set with only those numbers that appear in set a, but not is
+    set b.
+-}
 
-unionedSet :: Set
-unionedSet = union evens divBy3
+difference :: Set -> Set -> Set
+difference a b = _YOUR_CODE_HERE
 
+_YOUR_CODE_HERE = undefined -- ignore me
