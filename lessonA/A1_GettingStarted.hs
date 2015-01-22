@@ -36,9 +36,6 @@ myName = "Haskell Curry"
   ... then change the target to `Tests` and hit Run again.
   You passed a test, right? Congrats.
 
-  Although myName may seem like a variable or something like that, it's actually a function.
-  Function definitions are that simple. No keywords or anything.
-
   There's one more thing: Haskell is statically typed, right? But we haven't seen any
   type annotations yet.
   So far we've let the compiler infer the types for us. Most of the time that works great: we get the

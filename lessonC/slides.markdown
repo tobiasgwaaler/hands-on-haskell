@@ -1,7 +1,10 @@
+# Hands-on Haskell
+
+---
+
 # Recap
 
-^ Quick recap – if you're new to all of this, don't worry too much about
-^ absorbing all of this right away.
+^ Quick recap – if you're new to all of this, don't worry too much about absorbing all of this right away. Stop me to ask questions!
 
 ---
 
@@ -22,6 +25,8 @@ add a b = a + b
 
 Calling a function:
 
+^ No parentheses!
+
 ```haskell
 add :: Int -> Int -> Int
 add a b = a + b
@@ -38,6 +43,8 @@ main = print (addTwice 4 6) -- prints "16"
 # Data Types
 
 An *algebraic data type* for representing a computation that may fail:
+
+^ Sometimes called `Option` or `Optional` with `Some` and `None` (e.g. in Scala and Swift)
 
 ```haskell
 data Maybe a = Nothing
@@ -64,8 +71,7 @@ safeDiv n d = if d == 0
                  else Just (div n d)
 ```
 
-^ Since the returned value is "wrapped" in `Maybe`, the caller of the function
-^ is forced to deal with the possibility of failure.
+^ Since the returned value is "wrapped" in `Maybe`, the caller of the function is forced to deal with the possibility of failure, as we'll see on the next slide.
 
 ---
 
@@ -76,7 +82,7 @@ Pattern matching allows finding out which constructor created a value:
 ^ This sounds fancier that it is: Think of it of it as simply "matching a value".
 
 ```haskell
-advancedCalculation a b c =
+advancedCalculation a b c =      -- a/b*c
   case safeDiv a b of
     Nothing -> Nothing
     Just n  -> Just (n * c)
@@ -194,7 +200,7 @@ isSingleton _   = False
 
 # Type Classes
 
-## Polymorphism, please!
+### Polymorphism, please!
 
 What should the type of a function taking a list and sorting it be?
 
@@ -202,7 +208,7 @@ What should the type of a function taking a list and sorting it be?
 
 # Type Classes
 
-## Polymorphism, please!
+### Polymorphism, please!
 
 What should the type of a function taking a list and sorting it be?
 
@@ -214,7 +220,7 @@ sort :: [Int] -> [Int]
 
 # Type Classes
 
-## Polymorphism, please!
+### Polymorphism, please!
 
 What should the type of a function taking a list and sorting it be?
 
@@ -228,7 +234,7 @@ Nope. Too specific. We want to sort e.g. `Double`s too.
 
 # Type Classes
 
-## Polymorphism, please!
+### Polymorphism, please!
 
 What should the type of a function taking a list and sorting it be?
 
@@ -239,7 +245,7 @@ sort :: [a] -> [a]
 
 # Type Classes
 
-## Polymorphism, please!
+### Polymorphism, please!
 
 What should the type of a function taking a list and sorting it be?
 
@@ -265,11 +271,7 @@ class Eq a where
    x /= y = not (x == y)
 ```
 
-^ The declaration states that for a type `a` to be an instance of
-^ the class Eq, it must support equality and inequality operators
-^ of the specified types.  In fact, because a default definition
-^ has already been included for `/=`, declaring an instance of this
-^ class only requires a definition for `==`.
+^ The declaration states that for a type `a` to be an instance of the class Eq, it must support equality and inequality operators of the specified types.  In fact, because a default definition has already been included for `/=`, declaring an instance of this class only requires a definition for `==`.
 
 ---
 
@@ -343,6 +345,8 @@ data Colour = Red
             | Blue
             deriving (Eq, Ord, Show)
 
+
+sort :: Ord a => [a] -> [a]
 sorted = sort [Blue, Red, Green, Blue, Red]
 ```
 
@@ -363,5 +367,8 @@ instance ToJSON Coord where
 
 sendReply :: ToJson a => a -> IO ()
 sendReply req reply = httpSend req (toJson reply)
-
 ```
+
+---
+
+# Time to code! 🐸

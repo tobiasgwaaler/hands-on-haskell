@@ -5,43 +5,34 @@ module A2_Functions where
 -}
 
 
--- Defining a function:
-welcomeMessage = "Welcome to the future"
-{-     ^              ^
-      name           body
+-- Defining a function taking one parameter:
+welcome name = "Welcome, " ++ name ++ "."
+--  ^     ^    `------------^------------'
+-- name  parameter         body
 
+{-
     There's no keyword like "def", "function" or anything preceding the name, just:
-    <functionName> <optional arguments> = <body>
--}
-
--- Calling a function:
-printWelcomeMessage = putStrLn welcomeMessage
-
--- Do you want some input parameters with that function?
-welcome message = "Message: " ++ message
-{-        ^         ^
-        input     output
+    <functionName> <arguments> = <body>
 -}
 
 -- Calling a function with arguments
-welcomeMessage2 = welcome "Welcome to the present"
+welcomeSirOrMadam = welcome "Sir or Madam"
 
 {-
     Now if we do multiple function applications and intend on passing the result
     of the first application to the second application and so on, we would have to
-    use parenthesis to explicitly define the order of computation:
+    use parentheses to remove abiguities:
 -}
 printWelcomeMessage2 = putStrLn (welcome "Welcome to the present")
 {-
     otherwise the compiler would interpret that function this way:
 
-printWelcomeMessage2 = putStrLn welcome "Welcome to the present"
-                        ^         ^       ^
-             function to apply   arg1    arg2
+printWelcomeMessage2 = (putStrLn welcome) "Welcome to the present"
+                           ^        ^                 ^
+             function to apply     arg    arg to what (putstrln welcome) returned
 
-    So a general tip is: if in doubt, add parenthesis!
+    So a general tip is: if in doubt, add parentheses!
 -}
-
 
 
 {-
@@ -49,14 +40,15 @@ printWelcomeMessage2 = putStrLn welcome "Welcome to the present"
     Use the multiply function to return the product of 10 and 20.
     Fill in your answer as the body of multiply10by20.
 -}
-multiply arg1 arg2 = arg1 * arg2
 -- This function returns the product of its arguments
+multiply arg1 arg2 = arg1 * arg2
+
 multiply10by20 = multiply 10 20
 
 
 {-
     Exercise:
-    Define a function, plus, that takes 2 arguments and returns their sum
+    Define a function, plus, that takes two arguments and returns their sum
 -}
 plus :: Integer -> Integer -> Integer
 plus arg1 arg2 = arg1 + arg2
@@ -68,7 +60,7 @@ plus arg1 arg2 = arg1 + arg2
     ... and you must use the plus function to do so!
 -}
 sum3 :: Integer -> Integer -> Integer -> Integer
-sum3 arg1 arg2 arg3 = plus arg1 $ plus arg2 arg3
+sum3 arg1 arg2 arg3 = plus arg1 (plus arg2 arg3)
 
 
 {-
@@ -82,7 +74,13 @@ isDollar character = character == '$'
 
 {-
     Exercise:
-    Define an "exclusive or" operator: http://en.wikipedia.org/wiki/Exclusive_or#Truth_table
+    Define an "exclusive or" function: http://en.wikipedia.org/wiki/Exclusive_or#Truth_table
+    You probably want to use the following functions:
+
+    (&&) :: Bool -> Bool -> Bool
+    (||) :: Bool -> Bool -> Bool
 -}
 xor :: Bool -> Bool -> Bool
 xor arg1 arg2 = (arg1 && not arg2) || (arg2 && not arg1)
+
+_YOUR_CODE_HERE = undefined -- ignore me

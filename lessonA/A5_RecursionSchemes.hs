@@ -67,3 +67,5 @@ greaterThan2 nums = filter (> 2) nums
 -}
 filterNot :: (Int -> Bool) -> [Int] -> [Int]
 filterNot condition list = filter (not . condition) list
+
+_YOUR_CODE_HERE = undefined -- ignore me
