@@ -7,8 +7,8 @@ module A4_Recursion where
 -}
 downToZero x =
     if x > 0
-    then downToZero (x - 1)
-    else x
+       then downToZero (x - 1)
+       else x
 {-
     This meaningless function returns 0 by reducing the input number by 1 each time the function is called.
     As you may have noticed this function is flawed. For negative numbers it will never terminate!
@@ -17,14 +17,13 @@ downToZero x =
 
     Lists and recursion is a marriage made in heaven:
 -}
-returnLastElement list =
-    if length list == 1
-    then list !! 0
-    else returnLastElement (tail list)
+returnLastElementPartial [x] = x
+returnLastElementPartial xs = returnLastElementPartial (tail xs)
 
-{-  
-    This is one way to recurse through a list. We could do all sorts of things with each element
-    in the list by replacing the expression in the then-clause.
+{-
+    This is one way to recurse through a list. Our base case is the singleton
+    list (a list of one element). For other lists we recurse on a stricly
+    smaller list.
 
     Sidenote: You might have noticed that this function is partial, it's not defined for the empty list.
               depending on our use case this might be a really bad idea.
@@ -46,9 +45,10 @@ returnLastElement2 (x:xs) = returnLastElement2 xs
 {-
     Exercise:
     Define the secondToLast function so it returns the second to last element in the input list.
-    Return 0 if the list is too short.
+    Return 0 if the list is too short. Feel free to
+    add more function clauses as you see fit.
 -}
-secondToLast _ = 0
+secondToLast _ = _YOUR_CODE_HERE
 
 {-
     Exercise:
@@ -62,10 +62,12 @@ secondToLast _ = 0
 listLength :: [Int] -> Int
 listLength list = listLengthRec 0 list
 
-listLengthRec count list = 0 -- implement me
+listLengthRec count list = _YOUR_CODE_HERE
 
 {-
     Already we're getting tired of writing these recursive functions. In RecursionSchemes
     we'll look at some of the function programming darlings map, filter, fold and their friends,
     and see how they can help us get out of this mess.
 -}
+
+_YOUR_CODE_HERE = undefined -- ignore me

@@ -345,6 +345,8 @@ data Colour = Red
             | Blue
             deriving (Eq, Ord, Show)
 
+
+sort :: Ord a => [a] -> [a]
 sorted = sort [Blue, Red, Green, Blue, Red]
 ```
 
