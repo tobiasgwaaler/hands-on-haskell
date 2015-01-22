@@ -41,7 +41,7 @@ startsWithT = filter (\(x:xs) -> x == 'T') celebrities
     Define the add1 function so it adds 1 to all the numbers in a list
 -}
 add1 :: [Int] -> [Int]
-add1 list = _YOUR_CODE_HERE
+add1 nums = map (+ 1) nums
 
 {-
     Exercise:
@@ -50,7 +50,7 @@ add1 list = _YOUR_CODE_HERE
     tip: the `show` function converts ints to strings
 -}
 numsAsStrings :: [Int] -> [String]
-numsAsStrings list = _YOUR_CODE_HERE
+numsAsStrings nums = map show nums
 
 {-
     Exercise:
@@ -58,7 +58,7 @@ numsAsStrings list = _YOUR_CODE_HERE
     that are greater than 2
 -}
 greaterThan2 :: [Int] -> [Int]
-greaterThan2 list = _YOUR_CODE_HERE
+greaterThan2 nums = filter (> 2) nums
 
 {-
     Exercise:
@@ -66,6 +66,6 @@ greaterThan2 list = _YOUR_CODE_HERE
     In other words, filterNot will *keep* the exact elements that filter would *remove*
 -}
 filterNot :: (Int -> Bool) -> [Int] -> [Int]
-filterNot condition list = _YOUR_CODE_HERE
+filterNot condition list = filter (not . condition) list
 
 _YOUR_CODE_HERE = undefined -- ignore me

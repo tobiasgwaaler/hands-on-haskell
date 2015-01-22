@@ -56,7 +56,7 @@ desugaredList = 1:(2:(3:[]))
     tip: the underscore represents a wildcard, matching any pattern. Replace
          it with a pattern match and get cracking!
 -}
-secondElement _ = _YOUR_CODE_HERE
+secondElement (_:x:_) = x
 
 
 {-
@@ -65,7 +65,7 @@ secondElement _ = _YOUR_CODE_HERE
     but returns the rest. Use pattern matching. Again, we'll assume that all
     lists are long enough for now...
 -}
-drop3 _ = _YOUR_CODE_HERE
+drop3 (_:_:_:xs) = xs
 
 
 {-
@@ -73,7 +73,7 @@ drop3 _ = _YOUR_CODE_HERE
     Define the thirdAndLast function so it accepts lists of length 3, and returns the third (and last)
     element in that list.
 -}
-thirdAndLast _ = _YOUR_CODE_HERE
+thirdAndLast (_:_:x:[]) = x
 
 {-
     It's tempting to write a function that returns the last element of the list

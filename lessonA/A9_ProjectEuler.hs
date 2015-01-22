@@ -1,5 +1,7 @@
 module A9_ProjectEuler where
 
+import Data.Char (digitToInt)
+
 {-
     Some exercises from Project Euler - https://projecteuler.net
 -}
@@ -14,7 +16,10 @@ module A9_ProjectEuler where
     A simple solution to this involves sum, filter and mod.
 -}
 
-problem1 = _YOUR_CODE_HERE
+sumOfMultiplesOf :: Int -> Int -> [Int] -> Int
+sumOfMultiplesOf f1 f2 numbers = sum $ filter (\n -> n `mod` f1 == 0 || n `mod` f2 == 0) numbers
+
+problem1 = sumOfMultiplesOf 3 5 [1..999]
 
 {-
     Problem 4
@@ -33,7 +38,9 @@ problem1 = _YOUR_CODE_HERE
           [x+y | x <- [1,2], y <- [8,9], (x+y) `mod` 2 == 0] = [1+9, 2+8]
 
 -}
-problem4 = _YOUR_CODE_HERE
+
+problem4 = maximum [x * y | x <- [111..999], y <- [111..999], isPalindromic (x * y)]
+  where isPalindromic n = (show n) == (reverse $ show n)
 
 {-
     Problem 6
@@ -50,7 +57,10 @@ problem4 = _YOUR_CODE_HERE
     Find the difference between the sum of the squares of the first one hundred
     natural numbers and the square of the sum.
 -}
-problem6 = _YOUR_CODE_HERE
+problem6 = squareOfSums - sumOfSquares
+           where sumOfSquares = sum $ map (^ 2) range
+                 squareOfSums = sum range ^ 2
+                 range        = [1..100]
 
 {-
     Problem 16
@@ -59,6 +69,7 @@ problem6 = _YOUR_CODE_HERE
 
     What is the sum of the digits of the number 2^1000?
 -}
-problem16 = _YOUR_CODE_HERE
+problem16 = sum $ map digitToInt (show (2^1000))
+
 
 _YOUR_CODE_HERE = undefined -- ignore me

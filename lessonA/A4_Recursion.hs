@@ -48,7 +48,9 @@ returnLastElement2 (x:xs) = returnLastElement2 xs
     Return 0 if the list is too short. Feel free to
     add more function clauses as you see fit.
 -}
-secondToLast _ = _YOUR_CODE_HERE
+secondToLast []       = 0
+secondToLast (x:_:[]) = x
+secondToLast (x:xs)   = secondToLast xs
 
 {-
     Exercise:
@@ -62,7 +64,8 @@ secondToLast _ = _YOUR_CODE_HERE
 listLength :: [Int] -> Int
 listLength list = listLengthRec 0 list
 
-listLengthRec count list = _YOUR_CODE_HERE
+listLengthRec count []     = count
+listLengthRec count (x:xs) = listLengthRec (count + 1) xs
 
 {-
     Already we're getting tired of writing these recursive functions. In RecursionSchemes

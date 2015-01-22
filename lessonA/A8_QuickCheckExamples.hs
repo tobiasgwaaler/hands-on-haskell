@@ -29,7 +29,11 @@ reverseProperty' xs = xs == (reverse . reverse) xs
     [(1,'H'),(4,'e'),(2,'l'),(1,'o'),(1,' '),(1,'H'),(1,'a'),(1,'s'),(1,'k'),(1,'e'),(2,'l'),(3,'!')]
 -}
 encode :: String -> [(Int, Char)]
-encode _ = [] -- TODO Implement this
+encode s = case s of
+    []     -> []
+    (x:xs) -> (n, x) : encode rest
+                 where n    = length $ x : takeWhile (== x) xs
+                       rest = dropWhile (== x) xs
 
 {-
     Excercise 2:
@@ -42,5 +46,7 @@ encode _ = [] -- TODO Implement this
 -}
 
 decode :: [(Int, Char)] -> String
-decode _ = [] -- TODO Implement this
+decode list = case list of
+    []          -> []
+    (n, x) : xs -> replicate n x ++ decode xs
 

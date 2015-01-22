@@ -63,7 +63,7 @@ backupDB = ScheduledJob {
     }
 
 backupDBWeekly :: ScheduledJob
-backupDBWeekly = undefined
+backupDBWeekly = backupDB { user ="dbadmin", priority = 8, displayName ="Weekly Backup of Postgres DB" }
 
 
 

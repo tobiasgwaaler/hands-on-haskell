@@ -43,7 +43,7 @@ printWelcomeMessage2 = (putStrLn welcome) "Welcome to the present"
 -- This function returns the product of its arguments
 multiply arg1 arg2 = arg1 * arg2
 
-multiply10by20 = _YOUR_CODE_HERE
+multiply10by20 = multiply 10 20
 
 
 {-
@@ -51,7 +51,7 @@ multiply10by20 = _YOUR_CODE_HERE
     Define a function, plus, that takes two arguments and returns their sum
 -}
 plus :: Integer -> Integer -> Integer
-plus arg1 arg2 = _YOUR_CODE_HERE
+plus arg1 arg2 = arg1 + arg2
 
 
 {-
@@ -60,7 +60,7 @@ plus arg1 arg2 = _YOUR_CODE_HERE
     ... and you must use the plus function to do so!
 -}
 sum3 :: Integer -> Integer -> Integer -> Integer
-sum3 arg1 arg2 arg3 = _YOUR_CODE_HERE
+sum3 arg1 arg2 arg3 = plus arg1 (plus arg2 arg3)
 
 
 {-
@@ -69,7 +69,7 @@ sum3 arg1 arg2 arg3 = _YOUR_CODE_HERE
     True only if that character is a dollar sign ($).
 -}
 isDollar :: Char -> Bool
-isDollar character = _YOUR_CODE_HERE
+isDollar character = character == '$'
 
 
 {-
@@ -81,6 +81,6 @@ isDollar character = _YOUR_CODE_HERE
     (||) :: Bool -> Bool -> Bool
 -}
 xor :: Bool -> Bool -> Bool
-xor arg1 arg2 = _YOUR_CODE_HERE
+xor arg1 arg2 = (arg1 && not arg2) || (arg2 && not arg1)
 
 _YOUR_CODE_HERE = undefined -- ignore me

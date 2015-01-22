@@ -56,6 +56,5 @@ encrypt plainText secretKey = zipWith (curry encryptChar) plainText (cycle secre
 decrypt :: String -> String -> String
 decrypt encryptedText secretKey = zipWith (curry decryptChar) encryptedText (cycle secretKey)
 
-
 _YOUR_CODE_HERE = undefined -- ignore me
 
