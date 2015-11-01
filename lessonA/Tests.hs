@@ -1,26 +1,15 @@
 module Main where
 
-{-
-
-
-
-    You're not supposed to touch this ;)
-
-
-
-
--}
-
-import qualified A1_GettingStarted          as GS
-import qualified A2_Functions               as F1
-import qualified A3_PatternMatching         as L
-import qualified A4_Recursion               as R
-import qualified A5_RecursionSchemes        as RS
-import qualified A6_Currying                as CR
-import qualified A7_HigherOrderFunctions    as HOF
-import qualified A8_QuickCheckExamples      as QCE
-import qualified A9_ProjectEuler            as PE
-import qualified A10_Regex                  as Regex
+import qualified GettingStarted          as GS
+import qualified Functions               as F1
+import qualified PatternMatching         as L
+import qualified Recursion               as R
+import qualified RecursionSchemes        as RS
+import qualified Currying                as CR
+import qualified HigherOrderFunctions    as HOF
+import qualified QuickCheckExamples      as QCE
+import qualified ProjectEuler            as PE
+import qualified Regex                  as Regex
 
 import Data.Bits (xor)
 import qualified Test.QuickCheck as QC
@@ -39,7 +28,7 @@ main = hspec $ do
         it "adds to *arbitrary* numbers" $ do
             QC.property $ \x y -> F1.plus x y == x + y
 
-    describe "Functions.sum3" $ do 
+    describe "Functions.sum3" $ do
         it "adds three *arbitrary* numbers" $ do
             QC.property $ \x y z -> F1.sum3 x y z == x + y + z
 
@@ -108,7 +97,7 @@ main = hspec $ do
 
         regexTest "su." "oosubstr" ["sub"]
         regexTest ".i.of" "aa1i1ofs" ["1i1of"]
-              
+
         regexTest "su*" "papasuubstring" ["suu", "s"]
         regexTest "ab*" "abbbba" ["abbbb", "a"]
         regexTest "a*b" "accbaaabsdab" ["b", "aaab", "ab"]
@@ -153,4 +142,3 @@ main = hspec $ do
 regexTest needle haystack expected =
     it ("'" ++ needle ++ "' in '" ++ haystack ++ "'") $ do
         Regex.find needle haystack `shouldBe` expected
-
