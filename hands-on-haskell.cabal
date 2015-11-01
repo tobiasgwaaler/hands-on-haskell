@@ -8,36 +8,32 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
-
-executable a
-  main-is:             Tests.hs
-  
-  build-depends:       base >=4.6 && <4.8,
-                       QuickCheck,
-                       hspec
-
-  hs-source-dirs:      lessonA
-  default-language:    Haskell2010
-
-
-executable b
-  main-is:             Tests.hs
-  
-  build-depends:       base >=4.6 && <4.8,
-                       QuickCheck,
-                       hspec
-
-  hs-source-dirs:      lessonB
-  default-language:    Haskell2010
-
-executable c
-  main-is:             Tests.hs
-  
-  build-depends:       base >=4.6 && <4.8,
+test-suite exercises
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      .,
+                      Functions,
+                      Maybe,
+                      PatternMatching,
+                      Recursion,
+                      RecursionSchemes,
+                      UpdateRecords,
+                      HigherOrderFunctions,
+                      QuickCheck,
+                      UsingDataTypes,
+                      ProjectEuler,
+                      TextCalculator,
+                      BinTree,
+                      Vigenere,
+                      Regex
+  other-modules:
+  build-depends:       base,
                        QuickCheck,
                        hspec,
                        containers
+  main-is:             Spec.hs
+  default-language:    Haskell2010
 
-  hs-source-dirs:      lessonC,
-                       lessonC/Tests
+
+-- Cabal requires a library (or executable) to be present to build a project:
+library
   default-language:    Haskell2010
