@@ -1,4 +1,4 @@
-module A3_PatternMatching where
+module PatternMatching where
 
 {-
     Now it's time to introduce lists.
@@ -10,9 +10,6 @@ nonEmptyList = [1,2,3]
     A few things to notice:
         * All the values must be of the same type.
         * We use a special syntax for lists: []
-
-    Take a look at the CheatSheet if you're curious about some of the typical
-    functions we can use on lists.
 
     Now that we know what lists are we can explore pattern matching:
 -}

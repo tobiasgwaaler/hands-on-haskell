@@ -13,7 +13,7 @@ test-suite exercises
   hs-source-dirs:      .
                       , Functions
                       , Maybe
-                      -- , PatternMatching
+                      , PatternMatching
                       -- , Recursion
                       -- , RecursionSchemes
                       -- , UpdateRecords
