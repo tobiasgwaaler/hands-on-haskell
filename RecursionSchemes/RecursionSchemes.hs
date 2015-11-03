@@ -1,4 +1,4 @@
-module A5_RecursionSchemes where
+module RecursionSchemes where
 
 {-
     This is what we all came here for. Finally we'll start using higher order functions!
@@ -54,7 +54,7 @@ numsAsStrings list = _YOUR_CODE_HERE
 
 {-
     Exercise:
-    Define the greaterThan2 function so it returns the integers from a list 
+    Define the greaterThan2 function so it returns the integers from a list
     that are greater than 2
 -}
 greaterThan2 :: [Int] -> [Int]
