@@ -1,9 +1,13 @@
-module A4_Recursion where
+module Recursion where
 
 {-
-    A recursive function is a recursive function is a recursive function is a recursive function is. Very funny.
+    A recursive function is a recursive function
+                         is a recursive function
+                         is a recursive function is a...
+    Funny, right?
 
-    Informally we can say that a recursive function calls itself until some condition is met and then returns a value.
+    Informally we can say that a recursive function calls itself until
+    some condition is met and then returns a value.
 -}
 downToZero x =
     if x > 0

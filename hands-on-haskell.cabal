@@ -14,7 +14,7 @@ test-suite exercises
                       , Functions
                       , Maybe
                       , PatternMatching
-                      -- , Recursion
+                      , Recursion
                       -- , RecursionSchemes
                       -- , UpdateRecords
                       , HigherOrderFunctions
