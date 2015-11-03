@@ -29,33 +29,33 @@ module Vigenere where
     In order to keep it simple, the tests only use UPPERCASE texts and 'A' to 'Z'.
 -}
 
-import Data.Char
-import Data.List
-import Data.Maybe
+
+-- These imports will come handy:
+import Data.Char -- https://hackage.haskell.org/package/base-4.8.1.0/docs/Data-Char.html
+import Data.List -- https://hackage.haskell.org/package/base-4.8.1.0/docs/Data-List.html
+import Data.Maybe -- https://hackage.haskell.org/package/base-4.8.1.0/docs/Data-Maybe.html
+
 
 alphabet :: [Char]
 alphabet = ['A'..'Z']
 
 char2int :: Char -> Int
-char2int c = fromJust $ c `elemIndex` alphabet -- Don't judge me!
+char2int c = _YOUR_CODE_HERE
 
 int2char :: Int -> Char
-int2char i = alphabet !! i
+int2char i = _YOUR_CODE_HERE
 
 encryptChar :: (Char, Char) -> Char
-encryptChar (plainChar, keyChar) =
-  int2char $ ((char2int plainChar) + (char2int keyChar)) `mod` 26
+encryptChar (plainChar, keyChar) = _YOUR_CODE_HERE
 
 decryptChar :: (Char, Char) -> Char
-decryptChar (encryptedChar, keyChar) =
-  int2char $ ((char2int encryptedChar) - (char2int keyChar)) `mod` 26
+decryptChar (encryptedChar, keyChar) = _YOUR_CODE_HERE
 
 encrypt :: String -> String -> String
-encrypt plainText secretKey = zipWith (curry encryptChar) plainText (cycle secretKey)
+encrypt plainText secretKey = _YOUR_CODE_HERE
 
 decrypt :: String -> String -> String
-decrypt encryptedText secretKey = zipWith (curry decryptChar) encryptedText (cycle secretKey)
+decrypt encryptedText secretKey = _YOUR_CODE_HERE
 
 
 _YOUR_CODE_HERE = undefined -- ignore me
-

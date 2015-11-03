@@ -1,10 +1,10 @@
-module Tests.Vigenere where
+module Vigenere.VigenereSpec where
 
 import qualified Test.QuickCheck as QC
 import qualified Vigenere as VI
 import Test.Hspec
 
-tests = do
+spec = do
 
     -- Encrypting single characters
     describe "Vigenere.encryptChar" $ do
@@ -36,4 +36,3 @@ tests = do
     describe "Vigenere.decrypt.encrypt" $ do
         it "encrypts then decrypts properly" $ do
             (VI.decrypt (VI.encrypt "SECRET" "MYTEXT") "SECRET") == "MYTEXT"
-
