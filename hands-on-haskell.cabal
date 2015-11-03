@@ -10,21 +10,21 @@ cabal-version:       >=1.10
 
 test-suite exercises
   type:                exitcode-stdio-1.0
-  hs-source-dirs:      .,
-                      Functions,
-                      Maybe,
-                      PatternMatching,
-                      Recursion,
-                      RecursionSchemes,
-                      UpdateRecords,
-                      HigherOrderFunctions,
-                      QuickCheck,
-                      UsingDataTypes,
-                      ProjectEuler,
-                      TextCalculator,
-                      BinTree,
-                      Vigenere,
-                      Regex
+  hs-source-dirs:      .
+                      , Functions
+                      -- , Maybe
+                      -- , PatternMatching
+                      -- , Recursion
+                      -- , RecursionSchemes
+                      -- , UpdateRecords
+                      -- , HigherOrderFunctions
+                      -- , QuickCheck
+                      -- , UsingDataTypes
+                      -- , ProjectEuler
+                      -- , TextCalculator
+                      -- , BinTree
+                      -- , Vigenere
+                      -- , Regex
   other-modules:
   build-depends:       base,
                        QuickCheck,

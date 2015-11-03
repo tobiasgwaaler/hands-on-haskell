@@ -7,3 +7,4 @@ tmp.hs
 *.hi
 *.ho
 *.o
+.stack-work

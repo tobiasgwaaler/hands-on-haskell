@@ -1,18 +1,12 @@
-# Hands-on Haskell
-This repo contains exercises for learning Haskell, with tests for verifying the solutions.
+# Haskell Exercises
+This is a collection of exercises for learning Haskell. Each exercise comes with tests for verifying your solution.
 
-## Installation & Usage
-* Install [Haskell platform](https://www.haskell.org/platform/) (or [GHC](http://www.haskell.org/ghc/download) and [Cabal](http://www.haskell.org/cabal/download.html) if you're adventurous). If this proves to be difficult you can try a ["containerized" version](https://github.com/tobiasgwaaler/docker-haskell-env).
-* Clone this repo: `git clone https://github.com/tobiasgwaaler/hands-on-haskell.git && cd hands-on-haskell`
-* `cabal run <lesson>` to run the tests, where \<lesson\> is `a`, `b` and so on. Example: `cabal run a` will run the tests for lesson A.
+You are free to use these exercises in workshops and other learning material.
 
-### Resources
-* [Osλo Haskell](http://www.meetup.com/Oslo-Haskell/)
-* [Learn You a Haskell](http://learnyouahaskell.com/)
-* [FPComplete's School of Haskell](https://www.fpcomplete.com/school)
-* [Brent Yorgey's course](http://www.seas.upenn.edu/~cis194/lectures.html)
-* [CS240 at Stanford](http://www.scs.stanford.edu/14sp-cs240h/)
-* [Nishant Shukla's Haskell course at Uni. of Virginia](http://shuklan.com/haskell/)
-* [What I Wish I Knew When Learning Haskell](http://dev.stephendiehl.com/hask/#intro)
-* [Hoogle](https://www.fpcomplete.com/hoogle)
-* [krispo's list of libraries and frameworks](https://haskell.zeef.com/konstantin.skipor)
+It's all a bit rough around the edges and pull requests are most welcome :)
+
+## Getting started
+* Install [Stack](https://github.com/commercialhaskell/stack)
+* Clone this repo
+* Inside the `exercises` directory, run `stack setup` once to install GHC
+* To build and run the tests: `stack test` (or `stack test --file-watch` if you want to rerun the tests automatically after making a change)
