@@ -75,7 +75,7 @@ f a b = _YOUR_CODE_HERE
     syntax and you will not be required to do this boring “threading” of
     results.
 
-    “Learn you a Haskell” has a chapter which introduces monads by show the
+    “Learn you a Haskell” has a chapter which introduces monads by showing the
     Maybe monad:
 
       http://learnyouahaskell.com/a-fistful-of-monads
