@@ -24,9 +24,9 @@ test-suite exercises
                       , LogParser
                       , ProjectEuler
                       , TextCalculator
+                      , Regex
                       -- , BinTree
                       -- , Vigenere
-                      -- , Regex
   other-modules:
   build-depends:       base,
                        QuickCheck,

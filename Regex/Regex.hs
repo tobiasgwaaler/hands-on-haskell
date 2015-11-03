@@ -1,4 +1,4 @@
-module A10_Regex where
+module Regex where
 
 {-
     This is a bigger exercise where you'll get to use all that you've learned about Haskell.
@@ -15,7 +15,7 @@ module A10_Regex where
         *        - matches the preceding pattern element zero or more times
         ?        - matches the preceding pattern element zero or one times
 
-    By running the main method you can see how your function responds to different input.
+    By running the main method (stack runghc Regex/Regex.hs) you can see how your function responds to different input.
     There are also a few test cases in the Test module you can look at.
 -}
 
