@@ -16,7 +16,7 @@ test-suite exercises
                       , PatternMatching
                       , Recursion
                       , RecursionSchemes
-                      -- , UpdateRecords
+                      , UpdateRecords
                       , HigherOrderFunctions
                       -- , QuickCheck
                       -- , UsingDataTypes
