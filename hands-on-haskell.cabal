@@ -17,7 +17,7 @@ test-suite exercises
                       -- , Recursion
                       -- , RecursionSchemes
                       -- , UpdateRecords
-                      -- , HigherOrderFunctions
+                      , HigherOrderFunctions
                       -- , QuickCheck
                       -- , UsingDataTypes
                       -- , ProjectEuler

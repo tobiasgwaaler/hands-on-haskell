@@ -1,16 +1,13 @@
-module A7_HigherOrderFunctions where
+module HigherOrderFunctions where
 
 {-
-    Higher order functions.
-    We have already seen higher order functions in use in the Currying-module,
-    but not in a very useful way (only by setting default parameters).
-
-    Here follows a simple implementation of sets of integers, as functions.
+    Now for some potentially mind blowing business: we're going to implement
+    sets of integers, as functions!
     The idea is that a set is a boolean function for all integers, and
     returns true if a given integer is part of the set and false otherwise.
 -}
 
--- Create a type alias to avoid repetition of (Int -> Bool)
+-- We create a type alias to avoid repetition of (Int -> Bool)
 type Set = (Int -> Bool)
 
 {-
