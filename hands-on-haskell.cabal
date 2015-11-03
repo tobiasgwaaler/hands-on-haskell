@@ -26,7 +26,7 @@ test-suite exercises
                       , TextCalculator
                       , Regex
                       , BinTree
-                      -- , Vigenere
+                      , Vigenere
   other-modules:
   build-depends:       base,
                        QuickCheck,
