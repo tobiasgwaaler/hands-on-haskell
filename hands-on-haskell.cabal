@@ -22,7 +22,7 @@ test-suite exercises
                       , QuickCheck
                       -- challenges
                       , LogParser
-                      -- , ProjectEuler
+                      , ProjectEuler
                       -- , TextCalculator
                       -- , BinTree
                       -- , Vigenere

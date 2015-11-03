@@ -1,4 +1,4 @@
-module A9_ProjectEuler where
+module ProjectEuler where
 
 {-
     Some exercises from Project Euler - https://projecteuler.net
