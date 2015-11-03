@@ -1,6 +1,22 @@
 # Haskell Exercises
 This is a collection of exercises for learning Haskell. Each exercise comes with tests for verifying your solution.
 
+I suggest you do the exercises in this order:
+* Functions
+* Maybe
+* PatternMatching
+* Recursion
+* RecursionSchemes
+* UpdateRecords
+* HigherOrderFunctions
+* QuickCheck
+* LogParser
+* ProjectEuler
+* TextCalculator
+* Regex
+* BinTree
+* Vigenere
+
 You are free to use these exercises in workshops and other learning material.
 
 It's all a bit rough around the edges and pull requests are most welcome :)
