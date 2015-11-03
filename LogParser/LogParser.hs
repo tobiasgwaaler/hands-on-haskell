@@ -1,8 +1,8 @@
-module UsingDataTypes where
+module LogParser where
 
 {-
-    Full disclaimer, this exercise is basically *stolen* from a brilliant
-    Haskell course, CIS194 at University of Pennsylvania 
+    Full disclosure: this exercise is heavly inspired by a homework assignment
+    from the brilliant Haskell course, CIS194 at University of Pennsylvania
     (http://www.seas.upenn.edu/~cis194/).
 
     If you want to learn more Haskell on your own the course material is
@@ -11,7 +11,7 @@ module UsingDataTypes where
     =======================================================================
 
 
-    Logging is something most applications use. Among other things logs can 
+    Logging is something most applications use. Among other things logs can
     be used to notify of unexpected situations or a tool when debugging.
     Below we have the raw output from one such log, listing a 'timestamp',
     a log level and a message.
@@ -57,7 +57,7 @@ data Log = Log Timestamp Level Message
     represent the result of *trying* to parse a log line, and possibly failing.
 
     And by the way, feel free to define you're own helper functions as you see fit
-    when working with these exercises. 
+    when working with these exercises.
 -}
 data MaybeLogLine = LogLine Log
                   | Error
@@ -68,8 +68,8 @@ parseLine line = undefined
 
 {-
     Exercise 2:
-    parseLine gave us the log on a structured form, but 
-    there's still some garbage in there that we really don't want to 
+    parseLine gave us the log on a structured form, but
+    there's still some garbage in there that we really don't want to
     see. Remove the garbage lines from the ouput,
     so we're left with a list of valid log lines
 -}
@@ -100,9 +100,9 @@ importantOnly = undefined
 
 {-
     Exercise 5:
-    When looking at logs it can be helpful to see the 
+    When looking at logs it can be helpful to see the
     lines in correct (chronological) order.
-    Sort the list by timestamp so the lines are in 
+    Sort the list by timestamp so the lines are in
     ascending order (oldest first)
 -}
 sorted :: [Log] -> [Log]

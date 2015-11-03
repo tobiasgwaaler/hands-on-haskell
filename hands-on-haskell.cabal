@@ -11,6 +11,7 @@ cabal-version:       >=1.10
 test-suite exercises
   type:                exitcode-stdio-1.0
   hs-source-dirs:      .
+                      -- basics
                       , Functions
                       , Maybe
                       , PatternMatching
@@ -19,7 +20,8 @@ test-suite exercises
                       , UpdateRecords
                       , HigherOrderFunctions
                       , QuickCheck
-                      -- , UsingDataTypes
+                      -- challenges
+                      , LogParser
                       -- , ProjectEuler
                       -- , TextCalculator
                       -- , BinTree
