@@ -2,7 +2,6 @@ module Functions.FunctionsSpec where
 
 import qualified Functions
 
-import Data.Bits (xor)
 import qualified Test.QuickCheck as QC
 import Test.Hspec
 
