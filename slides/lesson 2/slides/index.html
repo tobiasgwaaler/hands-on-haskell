@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Osλo Haskell - Hands-on Haskell</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+        <link rel="stylesheet" href="plugin/highlight/styles/docco.css">
+
+
+        <style type="text/css">
+        pre {
+                box-shadow: none !important;
+                font-size: 0.85em !important;
+            }
+        code {
+                background: transparent !important;
+            }
+        </style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+
+
+<section>
+	<h1>Hands-on Haskell</h1>
+</section>
+
+
+<section>
+    <h2>Recap!</h2>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Functions</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage = "Welcome to the future"
+
+
+
+
+
+
+</code></pre>
+
+<aside class="notes">
+<ul>
+  <li>Defining a function</li>
+  <li>Minimal syntax.</li>
+  <li>no return statement</li>
+  <li>(technically this is not a function, because it doesn't take input)</li>
+</ul>
+</aside>
+
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage name = "Welcome, " ++ name
+
+
+
+
+
+
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>Let's add some input</li>
+  <li>one parameter</li>
+  <li>Using the string concat operator</li>
+</ul>
+</aside>
+
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage name = "Welcome, " ++ name
+
+
+msg = welcomeMessage "Tobias"
+
+
+
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>Calling the function</li>
+  <li>Passing an argument</li>
+</ul>
+</aside>
+
+</section>
+
+<section>
+<pre><code class="haskell">
+
+welcomeMessage name = "Welcome, " ++ name
+
+
+msg = welcomeMessage "Tobias"
+
+
+main = putStrLn msg
+</code></pre>
+<aside class="notes">
+<ul>
+  <li><code>main</code> is the entrypoint</li>
+  <li><code>putStrLn</code> is in the Prelude</li>
+</ul>
+</aside>
+</section>
+
+
+
+
+<section>
+<pre><code class="haskell">
+welcomeMessage :: String -> String
+welcomeMessage name = "Welcome, " ++ name
+
+msg :: String
+msg = welcomeMessage "Tobias"
+
+main :: IO ()
+main = putStrLn msg
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>Type inference is nice</li>
+  <li>We should add type signatures</li>
+  <li>Todays topic!</li>
+</ul>
+</aside>
+</section>
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Lists</h2>
+<aside class="notes">
+<ul>
+  <li>One of many data structures</li>
+  <li>Great when learning fp (recursion, pattern matching etc.)</li>
+</ul>
+</aside>
+
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers :: [Int]
+   numbers = [0,1,2,3,4,5,6,7,8,9]
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>a list of integers</li>
+</ul>
+</aside>
+</section>
+
+
+<section>
+  <h2>Our list toolbox</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+   numbers :: [Int]
+   numbers = [0,1,2,3,4] ++ [5,6,7,8,9]
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+     five :: Int
+     five = [0,1,2,3,4,5,6,7,8,9] !! 5
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+ten :: Int
+ten = length [0,1,2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+   numbers :: [Int]
+   numbers = 0:[1,2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers :: [Int]
+   numbers = 0:1:[2,3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers :: [Int]
+   numbers = 0:1:2:[3,4,5,6,7,8,9]
+</code></pre>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+   numbers :: [Int]
+   numbers = 0:1:2:3:4:5:6:7:9:[]
+</code></pre>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Pattern Matching</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+openDoor :: String -> String
+openDoor secret = if secret == "Open Sesame" 
+                  then "Open up!" 
+                  else "Sorry"
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>if-then-else can often be rewritten with pattern matching</li>
+</ul>
+</aside>
+</section>
+
+<section>
+<pre><code class="haskell">
+openDoor :: String -> String
+openDoor "Open Sesame" = "Open up!"
+openDoor _             = "Sorry"
+
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>the order is important</li>
+  <li>wildcard matches everything</li>
+</ul>
+</aside>
+</section>
+
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Pattern Matching</h2>
+    <h2>♥</h2>
+    <h2>Lists</h2>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+first (x:xs) = x
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>using the cons operator</li>
+</ul>
+</aside>
+
+</section>
+
+
+<section>
+<pre><code class="haskell">
+ rest (x:xs) = xs
+</code></pre>
+</section>
+
+<section>
+<pre><code class="haskell">
+third (x1:x2:x3:x4:xs) = x3
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>will only match lists with at least 4 elements</li>
+</ul>
+</aside>
+
+</section>
+
+
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Recursion</h2>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+gcd ::  Int -> Int -> Int
+gcd a b = if b == 0
+          then a
+          else gcd b (a `mod` b)
+
+-- ... the largest positive integer 
+-- that divides the numbers without a remainder.
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>stupid function, just an example of recursion</li>
+</ul>
+</aside>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Recursion</h2>
+    <h2>♥</h2>
+    <h2>Pattern Matching</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+gcd ::  Int -> Int -> Int
+gcd a b = if b == 0
+          then a
+          else gcd b (a `mod` b)
+
+-- ... the largest positive integer 
+-- that divides the numbers without a remainder.
+
+</code></pre>
+<aside class="notes">
+<ul>
+  <li>Let's rewrite it using pattern matching</li>
+</ul>
+</aside>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+gcd ::  Int -> Int -> Int
+gcd a b = if b == 0
+          then a
+          else gcd b (a `mod` b)
+
+gcd ::  Int -> Int -> Int
+gcd a 0 = a
+gcd a b = gcd b (a `mod` b)
+</code></pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+<section>
+    <h2>Recursion</h2>
+    <h2>♥</h2>
+    <h2>Pattern Matching</h2>
+    <h2>♥</h2>
+    <h2>Lists</h2>
+</section>
+
+<section>
+<pre><code class="haskell">
+listLength :: [a] -> Int
+listLength list = if list == []
+                  then 0
+                  else 1 + listLength (tail list)
+
+
+
+
+</code>
+</pre>
+<aside class="notes">
+<ul>
+  <li>Computes the length of the list</li>
+  <li>Using recursion</li>
+  <li>if-then-else -> pattern matching</li>
+</ul>
+</aside>
+</section>
+
+<section>
+<pre><code class="haskell">
+listLength :: [a] -> Int
+listLength list = if length list == 0
+                  then 0
+                  else 1 + listLength (tail list)
+
+listLength :: [a] -> Int
+listLength []     = 0
+listLength (_:xs) = 1 + listLength xs
+</code>
+</pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Recursion Schemes</h2>
+<aside class="notes">
+<ul>
+  <li>This gets old ...</li>
+  <li>So let's abstract away the cruft</li>
+</ul>
+</aside>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+           filter :: (a -> Bool) -> [a] -> [a]
+</code>
+</pre>
+<aside class="notes">
+<ul>
+  <li>Keeps the elements that satisfies the predicate</li>
+</ul>
+</aside>
+</section>
+
+<section>
+<pre><code class="haskell">
+positives :: [Int]
+positives = filter (> 0) [-1, 3, -4, 9, -3]
+</code>
+</pre>
+<aside class="notes">
+<ul>
+  <li>Using filter to keep positive numbers only</li>
+</ul>
+</aside>
+</section>
+
+<section>
+<pre><code class="haskell">
+
+           map :: (a -> b) -> [a] -> [b]
+</code>
+</pre>
+<aside class="notes">
+<ul>
+  <li>apply a function to each element</li>
+</ul>
+</aside>
+</section>
+
+<section>
+<pre><code class="haskell">
+showThem :: [String]
+showThem = map show [1,2,3,4,5]
+</code>
+</pre>
+</section>
+
+<section>
+  <h3>... you get the picture</h3>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Currying</h2>
+</section>
+
+
+<section>
+    <h3><code>Why -> All -> The -> Arrows</code></h3>
+<aside class="notes">
+<ul>
+  <li>Partial application</li>
+  <li>Can be confusing</li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+<section>
+<pre><code class="haskell">
+add :: Int -> Int -> Int
+add a b = a + b
+
+
+
+</code>
+</pre>
+<aside class="notes">
+<ul>
+  <li>Example</li>
+</ul>
+</aside>
+</section>
+
+<section>
+<pre><code class="haskell">
+add :: Int -> Int -> Int
+add a b = a + b
+
+add5 :: Int -> Int
+add5 = add 5
+</code>
+</pre>
+<aside class="notes">
+<ul>
+  <li>"Fixes" the 'a'</li>
+</ul>
+</aside>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Data types</h2>   
+<aside class="notes">
+<ul>
+  <li>New stuff!</li>
+</ul>
+</aside>     
+</section>
+
+<section>
+    <pre><code class="haskell">
+                Int
+                Integer
+                Float
+                Double
+                Char
+                String
+                Boolean
+                etc.
+    </code></pre>
+<aside class="notes">
+<ul>
+  <li>Common data types you've seen</li>
+</ul>
+</aside>     
+
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+
+
+
+
+
+
+    </code></pre>
+<aside class="notes">
+<ul>
+  <li>First up: type aliases</li>
+  <li>It's still a String!</li>
+  <li>Improves readability, that's all</li>
+</ul>
+</aside>     
+
+</section>
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+  
+  data Home = House StreetName HouseNumber
+
+
+
+    </code></pre>
+<aside class="notes">
+<ul>
+  <li>This is the real deal!</li>
+  <li>House is a constructor</li>
+  <li>StreetName and HouseNumber are fields</li>
+</ul>
+</aside>   
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+  
+  data Home = House StreetName HouseNumber
+  
+  data Area = Area { name   :: String,
+                     houses :: [Home] }
+    </code></pre>
+<aside class="notes">
+<ul>
+  <li>Records</li>
+  <li>Will be desugared to <code>data</code></li>
+  <li>Gives us functions for accessing the fields</li>
+</ul>
+</aside>     
+
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
++-------------------------------------------+
+| data Home = House StreetName HouseNumber  |
++-------------------------------------------+
+  data Area = Area { name   :: String,
+                     houses :: [Home] }
+    </code></pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+
+  data Home = House StreetName HouseNumber
+
+
+
+      </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+
+  data Home = House StreetName HouseNumber
+            | Van StreetName
+
+
+    </code></pre>
+    <aside class="notes">
+<ul>
+  <li>Alternatives</li>
+  <li>Van and House are constructors</li>
+</ul>
+</aside>     
+</section>
+
+<section>
+    <pre><code class="haskell">
+  type StreetName = String
+  type HouseNumber = String
+
+  data Home = House StreetName HouseNumber
+            | Van StreetName
+            | Tent
+
+    </code></pre>
+    <aside class="notes">
+<ul>
+  <li>Tent doesn't have any fields</li>
+</ul>
+</aside>     
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Constructors</h2>        
+<aside class="notes">
+<ul>
+  <li>Values are created with constructors</li>
+</ul>
+</aside>   
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+
+
+
+    </code></pre>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+myHome :: Home
+myHome = House "Slottsplassen" "1"
+
+    </code></pre>
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Pattern Matching</h2>        
+<aside class="notes">
+<ul>
+  <li>Constructors are what we pattern match on</li>
+</ul>
+</aside>   
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+
+
+
+    </code></pre>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+isStrange :: Home -> Bool
+isStrange Tent = True
+isStrange _    = False
+    </code></pre>
+<aside class="notes">
+<ul>
+  <li>Pattern Matching example</li>
+</ul>
+</aside>   
+</section>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2><code>case</code></h2>
+    <h4>(Pattern Matching)</h4>
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+isStrange :: Home -> Bool
+isStrange Tent = True
+isStrange _    = False
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+data Home = House StreetName HouseNumber
+          | Van StreetName
+          | Tent
+
+isStrange :: Home -> Bool
+isStrange home = case home of
+                 Tent -> True
+                 _    -> False
+    </code></pre>
+</section>
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Type Variables</h2>
+    <h3>(and recursive types)</h3>
+<aside class="notes">
+<ul>
+  <li>like "generics"</li>
+</ul>
+</aside>   
+</section>
+
+
+<section>
+    <pre><code class="haskell">
+data List a = Elem a (List a)
+            | End 
+            deriving (Show)
+
+
+
+
+
+
+    </code></pre>
+<aside class="notes">
+<ul>
+  <li><code>a</code> can be anything!</li>
+</ul>
+</aside>  
+</section>
+
+<section>
+    <pre><code class="haskell">
+data List a = Elem a (List a)
+            | End 
+            deriving (Show)
+
+listOfInts :: List Integer
+listOfInts = Elem 1 (Elem 2 (Elem 3 End))
+
+
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="haskell">
+data List a = Elem a (List a)
+            | End 
+            deriving (Show)
+
+listOfInts :: List Integer
+listOfInts = Elem 1 (Elem 2 (Elem 3 End))
+
+listOfStrings :: List String
+listOfStrings = Elem "1" (Elem "2" (Elem "3" End))
+    </code></pre>
+<aside class="notes">
+<ul>
+  <li>Can be used with Integer, String or anything else</li>
+</ul>
+</aside>  
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------------------------------------------------------------- -->
+
+<section>
+    <h2>Exercises!</h2>
+    <h3>hands-on-haskell.com</h3>
+</section>
+
+
+
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({                
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,   
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { 
+                        hljs.initHighlightingOnLoad(); 
+                        } 
+                    },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
