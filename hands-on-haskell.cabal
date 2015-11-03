@@ -23,7 +23,7 @@ test-suite exercises
                       -- challenges
                       , LogParser
                       , ProjectEuler
-                      -- , TextCalculator
+                      , TextCalculator
                       -- , BinTree
                       -- , Vigenere
                       -- , Regex
