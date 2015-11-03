@@ -1,7 +1,6 @@
 module BinTree where
 
 {-
-    Let's put our new knowledge of algebraic data types into practice.
     We're going to define functions that operate on a tree in order to use it
     as a binary search tree, i.e. a tree where nodes have a value, and where a
     node's left subtree consists of strictly smaller values that its own value,
